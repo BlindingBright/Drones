@@ -1,0 +1,20 @@
+# ==============================================================================
+# 3D Whoop - PASS 3 CLI  (from "Pass 2 Full Flight.BBL", logs 1/4/5)
+# Craft: 31mm props, 0802 16000kv (12-pole), TBS Lucid AIO (AM32), DJI O4 Lite, 2S 300mAh
+# Betaflight 4.5.1. Applies ON TOP of Pass 2. Filters only; PIDs unchanged on purpose.
+# ==============================================================================
+
+# With motor_poles fixed, the RPM filter now removes the motor noise:
+#   gyro 400-1000 Hz after filtering: -26 dB -> -31 dB
+#   D-term 400-1000 Hz:               -21 dB -> -32 dB
+# That headroom lets us open the lowpass filters a step for less delay
+# (sharper response, a little faster catch after reversals).
+
+set gyro_lpf1_dyn_min_hz = 300
+set gyro_lpf1_dyn_max_hz = 600
+
+set dterm_lpf1_dyn_min_hz = 90
+set dterm_lpf1_dyn_max_hz = 180
+set dterm_lpf2_static_hz = 180
+
+save

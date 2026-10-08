@@ -1,0 +1,14 @@
+# ==============================================================================
+# 3D Whoop - PASS 12 CLI  (idle first; AM32 min duty 3 / KV 2100 kept)
+# Betaflight 4.5.1. Applies ON TOP of the master tune. Fly as its own pack.
+# ==============================================================================
+
+# AM32 min duty 3 now adds on top of Betaflight idle:
+#   before ESC tests: min duty 0.5 + BF 4%  -> ~4.5% effective, idle ~70-79k eRPM
+#   now:              min duty 3   + BF 4%  -> ~7% effective,   idle ~82k up / ~108k inverted
+# BF 2% puts the effective idle back near ~5%: less float at center, smaller thrust
+# jump crossing center. The ESC min duty floor keeps the low end from going weak.
+# If center feels too loose, try 300 (3%).
+set dshot_idle_value = 200
+
+save

@@ -1,0 +1,9 @@
+{
+  "autodeskProduct": "Fusion",
+  "type": "script",
+  "author": "",
+  "description": {"": "Lil' Horny: Fractal 65 (streamlined) + DJI O4 Lite + TBS Lucid AIO whoop mock-up for designing the camera / battery / antenna-horn mount."},
+  "supportedOS": "windows|mac",
+  "editEnabled": true,
+  "version": "1.0.0"
+}

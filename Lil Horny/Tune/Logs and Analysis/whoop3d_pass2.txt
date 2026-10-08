@@ -1,0 +1,41 @@
+# ==============================================================================
+# 3D Whoop - PASS 2 CLI  (from "Baseline Pass 1 Full Flight.BBL")
+# Craft: 31mm props, 0802 16000kv, TBS Lucid AIO (AM32), DJI O4 Lite, 2S 300mAh, ~30g
+# Betaflight 4.5.1 (AT32F435), 8k/8k, 3D feature ON, DShot600 bidir
+# Paste into the Betaflight CLI tab. Changes only - everything else stays as-is.
+# ==============================================================================
+
+# Turn off sliders so the raw values below are not recalculated over the top of
+# (your current values are kept; we just edit them directly from here on)
+set simplified_pids_mode = OFF
+set simplified_dterm_filter = OFF
+set simplified_gyro_filter = OFF
+
+# --- 1. CRITICAL FIX: MOTOR POLE COUNT -----------------------------------------
+# The gyro noise line matches 12 poles (164x above noise floor) vs 14 poles (1.8x).
+# With 14 the RPM filter has been notching ~17% BELOW the real motor noise.
+set motor_poles = 12
+
+# --- 2. 3D TRANSITION SMOOTHNESS ----------------------------------------------
+# Idle 2.8% -> 4.0%: more drive into the ESC at the reversal and at center stick,
+# less time sitting at near-zero authority (motor stuck at idle while others max).
+set dshot_idle_value = 400
+
+# Thrust linearization: boosts PID authority at low motor output, which is exactly
+# where every 3D reversal happens (both directions pass through ~0 rpm).
+set thrust_linear = 20
+
+# --- 3. PIDs (step response measured with reversal windows excluded) ----------
+# Roll: overshoots 1.14 then sags to 0.88 -> a little less FF, a little more I
+set i_roll = 88
+set f_roll = 110
+
+# Pitch: 1.34 overshoot with ~14 Hz ringing -> less FF, more low-end D
+set f_pitch = 105
+set d_min_pitch = 38
+
+# Yaw: only reaches 0.82 of setpoint (sluggish/under-holding) -> more P and I
+set p_yaw = 50
+set i_yaw = 95
+
+save

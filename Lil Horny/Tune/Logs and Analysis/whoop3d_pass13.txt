@@ -1,0 +1,16 @@
+# ==============================================================================
+# 3D Whoop - PASS 13 CLI  (fly AFTER Pass 12 idle, as its own pack)
+# Betaflight 4.5.1. Applies ON TOP of Pass 12. Focus: wobble after reversals.
+# ==============================================================================
+
+# Wobble (8-60 Hz roll / pitch, deg/s) vs time since a direction switch, Pass 11:
+#   0-130 ms 7.9/6.2 | 130-250 ms 18.1/12.3 | 250-500 ms 17.7/11.5 | calm 3.9/3.2
+# Same 3-5x spike in EVERY pass since Pass 1, so not caused by the ESC change.
+# It's the props spinning back up into the quad's own wash at only 22-46% throttle,
+# below the TPA breakpoint, so D is already at full strength there.
+# Roll wobbles ~50% more than pitch but has less D (34-40 vs 42-46).
+# Bring roll D up to match pitch for more propwash damping.
+set d_min_roll = 38
+set d_roll = 44
+
+save

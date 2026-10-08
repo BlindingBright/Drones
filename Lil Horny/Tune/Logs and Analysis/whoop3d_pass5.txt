@@ -1,0 +1,19 @@
+# ==============================================================================
+# 3D Whoop - PASS 5 CLI  (from "Pass 4 Full Flight.BBL", crash trimmed at 47.6 s)
+# Craft: 31mm props, 0802 16000kv (12-pole), TBS Lucid AIO (AM32 2.21, 15 deg), O4 Lite, 2S 300mAh
+# Betaflight 4.5.1. Applies ON TOP of Pass 4. Focus: pitch overshoot.
+# ==============================================================================
+
+# Pitch has overshot every pass (step peak 1.34 / 1.38 / 1.22 / 1.55) while roll is now
+# clean (1.12, settles at 1.0). Pitch carries more inertia (O4 Lite + battery along the
+# pitch axis), so the same gains are under-damped there. D noise just went up 50% in
+# Pass 4, so instead of more D: a little less P and FF on pitch only.
+set p_pitch = 44
+set f_pitch = 95
+
+save
+
+# ---- ESC-only change for this same pack (separate metric, so both can be judged) ----
+# AM32 (Multi ESC Config Tool): Startup Power 100 -> 120 on ALL FOUR (M1-M4), Save Settings.
+# Target: reversal spin-up (stuck at ~112-115 ms for 3 passes). Bench-test first, props off:
+# flick through center several times; any stutter/twitch on restart -> go back to 100.

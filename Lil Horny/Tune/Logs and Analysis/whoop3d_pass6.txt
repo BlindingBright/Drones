@@ -1,0 +1,21 @@
+# ==============================================================================
+# 3D Whoop - PASS 6 CLI  (from "Pass 5 Full Flight.BBL", tree hit at 55.8 s trimmed)
+# Craft: 31mm props, 0802 16000kv (12-pole), TBS Lucid AIO (AM32 2.21, 15 deg), O4 Lite, 2S 300mAh
+# Betaflight 4.5.1. Applies ON TOP of Pass 5. Focus: finish pitch.
+# ==============================================================================
+
+# Pass 5 (P44/FF95) cut pitch overshoot 1.55 -> 1.35 but made pitch slower to respond
+# (t50 11 -> 17 ms). Motors run cool, so damp the overshoot with D instead and give back
+# a little FF for snap.
+set d_min_pitch = 42
+set f_pitch = 100
+
+save
+
+# ---- ESC (Multi ESC Config Tool, all four M1-M4) ----
+# Startup Power 120 -> back to 100. It did not help: reversal spin-up 112 -> 122 ms,
+# motor spread 47 -> 70 ms.
+#
+# ---- Hardware ----
+# Fresh props: raw gyro noise inverted has climbed every pass since Pass 3
+# (roll 80-200 Hz: 1.0 -> 1.9 -> 2.4) after several crashes + the tree.

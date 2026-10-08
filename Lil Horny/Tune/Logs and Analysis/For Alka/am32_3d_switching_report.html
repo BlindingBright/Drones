@@ -1,0 +1,192 @@
+<title>Lucid AIO 3D Switching Tests</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: single bench-report column; data tables and scope plots break out wider on desktop */
+:root {
+  --bg: #f5f6f8;
+  --surface: #ffffff;
+  --fg: #1b2230;
+  --muted: #5b6577;
+  --line: #d9dde5;
+  --accent: #b35f00;
+  --accent-soft: #fbeedc;
+  --good: #1f7a4a;
+  --bad: #b3322b;
+  --display: "Barlow Semi Condensed", "Arial Narrow", system-ui, sans-serif;
+  --body: "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12161d; --surface: #1a2029; --fg: #e3e7ee; --muted: #9aa4b5; --line: #2c3442;
+    --accent: #f0a53a; --accent-soft: #2e2416; --good: #5cc28d; --bad: #f07a72; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #12161d; --surface: #1a2029; --fg: #e3e7ee; --muted: #9aa4b5; --line: #2c3442;
+  --accent: #f0a53a; --accent-soft: #2e2416; --good: #5cc28d; --bad: #f07a72; color-scheme: dark;
+}
+body { background: var(--bg); color: var(--fg); font: 16px/1.6 var(--body); }
+.wrap { max-width: 980px; margin: 0 auto; padding-inline: 20px; padding-block: 40px 64px; display: grid; gap: 44px; }
+.prose { max-width: 68ch; }
+h1, h2, h3 { font-family: var(--display); line-height: 1.15; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(2rem, 5vw, 2.8rem); font-weight: 700; letter-spacing: -0.01em; }
+h2 { font-size: 1.55rem; font-weight: 600; margin-bottom: 12px; }
+h3 { font-size: 1.15rem; font-weight: 600; }
+p { margin: 0 0 12px; }
+.eyebrow { font: 600 0.78rem/1 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+header { display: grid; gap: 14px; border-bottom: 2px solid var(--fg); padding-bottom: 22px; }
+.spec { font: 0.85rem/1.6 var(--mono); color: var(--muted); }
+.spec b { color: var(--fg); font-weight: 600; }
+.verdict { background: var(--accent-soft); border-left: 4px solid var(--accent); padding: 18px 20px; display: grid; gap: 10px; }
+.verdict ul { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+.tablebox { overflow-x: auto; border: 1px solid var(--line); background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font: 0.88rem/1.4 var(--mono); font-variant-numeric: tabular-nums; }
+th, td { padding: 9px 12px; text-align: right; border-bottom: 1px solid var(--line); white-space: nowrap; }
+th:first-child, td:first-child { text-align: left; }
+thead th { font: 600 0.72rem/1.3 var(--mono); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); background: var(--bg); vertical-align: bottom; }
+tbody tr:last-child td { border-bottom: 0; }
+tr.hl td { background: var(--accent-soft); font-weight: 600; }
+.good { color: var(--good); } .bad { color: var(--bad); }
+.note { font-size: 0.85rem; color: var(--muted); margin-top: 8px; }
+figure { margin: 0; display: grid; gap: 8px; }
+figure img { width: 100%; height: auto; border: 1px solid var(--line); background: #fff; display: block; }
+figcaption { font-size: 0.88rem; color: var(--muted); max-width: 75ch; }
+.grid2 { display: grid; gap: 28px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); }
+.grid2 > * { min-width: 0; }
+.q { counter-reset: q; display: grid; gap: 14px; list-style: none; padding: 0; margin: 0; }
+.q li { counter-increment: q; display: grid; grid-template-columns: 2.2em 1fr; gap: 4px; }
+.q li::before { content: "Q" counter(q); font: 600 0.9rem/1.6 var(--mono); color: var(--accent); }
+code { font: 0.85em var(--mono); background: var(--surface); border: 1px solid var(--line); padding: 1px 5px; }
+.event { border: 1px solid var(--line); background: var(--surface); padding: 18px 20px; display: grid; gap: 8px; }
+.files td { white-space: normal; text-align: left; }
+.files td:first-child { white-space: nowrap; }
+</style>
+
+<div class="wrap">
+  <header>
+    <span class="eyebrow">AM32 2.21 · 3D direction-switch test · Oct 2026</span>
+    <h1>Lucid AIO 3D Switching Tests</h1>
+    <p class="prose">Min duty and KV slider tests on a 3D whoop, following your suggested plan: default, then min duty 3, then KV halved, then min duty 4 with KV ~2200 (flown at 2100). Plus the earlier logs comparing factory firmware, 22.5° timing and startup power 120.</p>
+    <div class="spec">
+      <b>Craft</b> TBS Lucid AIO (AT32F435 FC + AM32 ESC) · 0802 16000kv, 12-pole · Gemfan 31mm prototype 3D props · 2S 300mAh · DJI O4 Lite · ~30 g<br>
+      <b>Betaflight</b> 4.5.1 · 8k/8k · feature 3D · DShot600 bidir · dshot_idle_value 400 (4%) · thrust_linear 20 · blackbox 2 kHz<br>
+      <b>AM32 constant</b> bidirectional, comp PWM, variable PWM, stuck rotor ON · sine startup OFF · timing 15° · startup 100 · poles 12 · running brake 10
+    </div>
+  </header>
+
+  <section class="verdict prose">
+    <h2>Summary</h2>
+    <ul>
+      <li><b>Min duty 4 + KV 2100 is the clear winner:</b> median switch 153 → <b>126 ms</b> (−18%), now faster than factory 2.03 (136 ms). All four motors land within 5 ms of each other (125–130 ms).</li>
+      <li><b>It's also the smoothest:</b> low-rpm eRPM ripple halved (3.3k → 1.7k), motor spread 70 → 38 ms, slow switches 33% → 7%.</li>
+      <li><b>The rough 30–60k eRPM window finally moved:</b> with min duty 3 / KV 5100 it sat at ~40–110 ms after every switch. With min duty 4 / KV 2100 the motor dips to ~20k at ~60 ms and is climbing by ~85 ms.</li>
+      <li>Min duty 3 alone smoothed things; KV 5100 alone added speed but brought ripple back; the low KV + min duty 4 combination got both.</li>
+      <li><b>Final: min duty back to 3 at KV 2100 (E)</b> switches exactly as fast as D (126 ms median), a bit more consistently (p90 148 ms, spread 34 ms), with less pitch overshoot. <b>This is the setting we're keeping.</b></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Min duty / KV test (A → E)</h2>
+    <p class="prose">Same Betaflight config for every run; B–D on the same day with the same props. Times are from the moment Betaflight flips direction until each motor reaches 100k eRPM in the new direction; medians over clean reversals (no second flip within 450 ms). Impacts trimmed out.</p>
+    <div class="tablebox">
+      <table>
+        <thead><tr><th>Config</th><th>Reversals</th><th>Switch median</th><th>Switch p90</th><th>Restart phase<br>(min → 100k)</th><th>Slow &gt;200 ms</th><th>Motor spread</th><th>Low-rpm ripple</th><th>Attitude kick<br>med / p90</th></tr></thead>
+        <tbody>
+          <tr><td>A · default (min duty 0.5, KV 10220)</td><td>52</td><td>153 ms</td><td>183 ms</td><td>45 ms</td><td class="bad">17 (33%)</td><td>70 ms</td><td>3.3k</td><td>60 / 136 °/s</td></tr>
+          <tr><td>B · min duty 3</td><td>23</td><td>147 ms</td><td>172 ms</td><td>42 ms</td><td class="good">1 (4%)</td><td>49 ms</td><td class="good">1.8k</td><td>85 / 173 °/s</td></tr>
+          <tr><td>C · min duty 3 + KV 5100</td><td>28</td><td>142 ms</td><td>172 ms</td><td>39 ms</td><td class="good">1 (4%)</td><td>45 ms</td><td>3.5k</td><td>68 / 172 °/s</td></tr>
+          <tr><td>D · min duty 4 + KV 2100</td><td>30</td><td>126 ms</td><td>154 ms</td><td>37 ms</td><td class="good">2 (7%)</td><td>38 ms</td><td class="good">1.7k</td><td>82 / 149 °/s</td></tr>
+          <tr class="hl"><td>E · min duty 3 + KV 2100 (kept)</td><td>28</td><td>126 ms</td><td>148 ms</td><td>36 ms</td><td class="good">1 (4%)</td><td>34 ms</td><td class="good">1.8k</td><td>84 / 185 °/s</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="tablebox" style="margin-top:14px">
+      <table>
+        <thead><tr><th>Per-motor median switch (BF m0 / m1 / m2 / m3)</th><th>m0</th><th>m1</th><th>m2</th><th>m3</th></tr></thead>
+        <tbody>
+          <tr><td>A · default</td><td>152</td><td>147</td><td>156</td><td>155</td></tr>
+          <tr><td>B · min duty 3</td><td>143</td><td>149</td><td>146</td><td>154</td></tr>
+          <tr><td>C · min duty 3 + KV 5100</td><td>139</td><td>135</td><td>139</td><td>149</td></tr>
+          <tr><td>D · min duty 4 + KV 2100</td><td>125</td><td>128</td><td>126</td><td>130</td></tr>
+          <tr class="hl"><td>E · min duty 3 + KV 2100</td><td>118</td><td>128</td><td>123</td><td>129</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Low-rpm ripple = RMS of 20–200 Hz eRPM ripple while a motor runs between 5k and 150k eRPM, away from reversals. A pools two days of default flying (3 packs). Attitude kick = peak roll/pitch tracking error in the 300 ms after a switch.</p>
+  </section>
+
+  <figure>
+    <img src="esc_test_ABCDE.png" alt="Median mean-motor eRPM through reversals for configs A, C, D and E, both directions">
+    <figcaption>Median eRPM (mean of 4 motors) aligned on the direction switch. A and C sit in a noisy 30–60k section from ~40–110 ms. Both KV 2100 runs (D green, E red) dip cleaner to ~20k around 60 ms and reach 100k ~15–20 ms ahead of C in both directions. D and E overlap through the switch itself. B is left off for readability.</figcaption>
+  </figure>
+
+  <section>
+    <h2>Earlier logs: firmware and other settings</h2>
+    <div class="tablebox">
+      <table>
+        <thead><tr><th>Log</th><th>Reversals</th><th>Switch median</th><th>Switch p90</th><th>Stop phase</th><th>Motor spread</th></tr></thead>
+        <tbody>
+          <tr class="hl"><td>Factory AM32 (2.03), timing 15°</td><td>24</td><td>136 ms</td><td>169 ms</td><td>68 ms</td><td>37 ms</td></tr>
+          <tr><td>2.21, timing 22.5° (reset by the update)</td><td>10</td><td>140 ms</td><td>168 ms</td><td>88 ms</td><td>49 ms</td></tr>
+          <tr><td>2.21, timing 15°</td><td>20</td><td>146 ms</td><td>175 ms</td><td>91 ms</td><td>37 ms</td></tr>
+          <tr><td>2.21, startup power 120</td><td>11</td><td>144 ms</td><td>162 ms</td><td>98 ms</td><td>56 ms</td></tr>
+          <tr><td>2.21, startup power 100 (default)</td><td>16</td><td>148 ms</td><td>177 ms</td><td>97 ms</td><td>62 ms</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Stop phase = switch → eRPM minimum. On 2.21 the stop phase is ~30 ms longer than on factory firmware; the restart phase is actually a little shorter on 2.21. Factory log caveats: Betaflight idle was 2.8% and the Betaflight tune was untuned (first flight).</p>
+  </section>
+
+  <figure>
+    <img src="esc_compare_history.png" alt="Median mean-motor eRPM through reversals for factory firmware and several 2.21 settings">
+    <figcaption>Factory 2.03 (blue) falls through to ~10k eRPM at ~60 ms and climbs straight out. Every 2.21 setting sits in the rough 30–60k section first.</figcaption>
+  </figure>
+
+  <section class="grid2">
+    <div class="prose">
+      <h2>Other observations</h2>
+      <p><b>Min duty adds on top of the Betaflight idle.</b> At the same <code>dshot_idle_value</code> (4%), idle speed rose from roughly 70–79k (A) to 87–93k (B) and 85–101k (D) eRPM. Center stick floats a bit more as a result.</p>
+      <p><b>KV 5100 alone cost smoothness; KV 2100 + min duty 4 didn't.</b> C's ripple went back to default levels, D's is the lowest of any run.</p>
+      <p><b>Flight side effect in D:</b> pitch overshoot rose a little (step peak 1.22 → 1.37). Back at min duty 3 (E) it returned to 1.22, and inverted motor jitter dropped (19 → 17).</p>
+      <p><b>D vs E is close enough that the pilot couldn't pick one by feel</b>; the logs agree. Same switch speed and smoothness, E slightly more consistent.</p>
+      <p><b>No desyncs or failed restarts</b> in A–E.</p>
+    </div>
+    <div class="event">
+      <span class="eyebrow">Failed restart · 2.21 at 22.5° timing</span>
+      <h3>Motor never restarted after a reversal</h3>
+      <p>Right after the AM32 update (which silently changed timing 15° → 22.5°), BF motor 0 (ESC M1) went to 0 eRPM after a REV → FWD switch at ~37.1 s and stayed there for 0.75 s while Betaflight commanded 2047, then the quad crashed. Stuck rotor protection was ON. The other three motors restarted normally. No repeat since going back to 15°.</p>
+      <p class="note">File 02, log 4 of 5.</p>
+    </div>
+  </section>
+
+  <section class="prose">
+    <h2>Questions</h2>
+    <ol class="q">
+      <li>The 30–60k eRPM section shrank only at KV 2100. Is that the low-rpm throttle limit releasing, and is there more to get by going lower than 2100 or higher on min duty, or does desync risk climb fast from here?</li>
+      <li>What changed in 3D reversal handling between 2.03 and 2.21? Factory firmware stopped the motor ~30 ms faster at default settings.</li>
+      <li>Worth trying lower startup power with min duty 4 for smoothness, or leave startup at 100?</li>
+      <li>You mentioned a possible 3D fix for desyncs. Would the failed restart above be relevant?</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Log files</h2>
+    <div class="tablebox">
+      <table class="files">
+        <thead><tr><th>File</th><th>What to look at</th></tr></thead>
+        <tbody>
+          <tr><td>01_AM32-factory-2.03_…</td><td>Factory reference. AM32 still had poles set to 14.</td></tr>
+          <tr><td>02_AM32-2.21_timing22.5-…_STALL-in-log4</td><td>5 logs. Log 4 = failed restart at ~37.1 s. Log 1 end = prop came off (not ESC). Log 5 = clean flight.</td></tr>
+          <tr><td>03_…_startup120_…</td><td>Tree hit at 55.8 s.</td></tr>
+          <tr><td>04_…_DEFAULT-A1</td><td>Log 4 is the flight (106 s, clean).</td></tr>
+          <tr><td>05_…_DEFAULT-A2</td><td>2 packs. Impact at 70.0 s in log 1; log 2 truncated (flash full).</td></tr>
+          <tr><td>06_…_minduty3_kv10220_TEST-B</td><td>Log 3 is the flight; impact at 79 s.</td></tr>
+          <tr><td>07_…_minduty3_kv5100_TEST-C</td><td>Crash at 88.6 s.</td></tr>
+          <tr><td>08_…_minduty4_kv2100_TEST-D</td><td>Clean 86 s flight, no impacts.</td></tr>
+          <tr><td>09_…_minduty3_kv2100_TEST-E</td><td>Clean 94 s flight, no impacts. Final setting.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,61 @@
+# ==============================================================================
+# 3D Whoop - MASTER TUNE (final after Pass 14, 2026-10-08; AM32 settings from Pass 11)
+# Craft: 31mm props, 0802 16000kv (12-pole), TBS Lucid AIO, DJI O4 Lite, 2S 300mAh, ~30 g
+# Betaflight 4.5.1 (AT32F435), 8k/8k, feature 3D, DShot600 bidirectional
+#
+# Everything changed from the stock/baseline config in one file. Paste onto a fresh
+# config (or after a firmware update) to get this tune back.
+# ==============================================================================
+
+# --- Sliders off: raw values below are the tune --------------------------------
+set simplified_pids_mode = OFF
+set simplified_dterm_filter = OFF
+set simplified_gyro_filter = OFF
+
+# --- Motors / 3D --------------------------------------------------------------
+set motor_poles = 12
+set dshot_idle_value = 200
+# 2% (was 4%): AM32 min duty 3 adds on top, so effective idle is back near ~5% (Pass 12)
+set thrust_linear = 10
+# 10 (was 20): AM32 min duty 3 + KV 2100 now supply the low-end punch; halving this cut the
+# post-reversal roll wobble (130-250 ms) from 20.9 to 9.1 deg/s (Pass 14)
+# vbat_sag_compensation stays 0 on purpose: pilot uses the power fade as the land cue
+
+# --- Filters (RPM filter on target thanks to motor_poles 12) -----------------
+set gyro_lpf1_dyn_min_hz = 300
+set gyro_lpf1_dyn_max_hz = 600
+set dterm_lpf1_dyn_min_hz = 90
+set dterm_lpf1_dyn_max_hz = 180
+set dterm_lpf2_static_hz = 180
+
+# --- PIDs ---------------------------------------------------------------------
+set i_roll = 88
+set f_roll = 110
+set d_min_roll = 38
+set d_roll = 44
+# roll D raised to match pitch for post-reversal propwash (Pass 13)
+
+set p_pitch = 44
+set f_pitch = 100
+set d_min_pitch = 42
+
+set p_yaw = 50
+set i_yaw = 95
+
+# --- TPA (3D: measured from center in each direction) -------------------------
+set tpa_rate = 45
+set tpa_breakpoint = 1450
+
+save
+
+# ==============================================================================
+# AM32 2.21 (Multi ESC Config Tool), all four ESCs M1-M4 identical:
+#   Bi-directional ON, Complementary PWM ON, Variable PWM ON, Stuck Rotor Protection ON
+#   Sinusoidal Startup OFF, Stall Protection OFF, Brake On Stop OFF, Auto-Timing OFF
+#   Timing Advance 15  (an AM32 update reset this to 22.5 once; check after every flash!)
+#   Motor Poles 12, Startup Power 100
+#   Motor KV 2100 and Minimum Duty Cycle 3 (from AM32 dev Alka's tests, 2026-10-08):
+#     3D switch 153 -> 126 ms vs defaults (KV 10220 / min duty 0.5). Lower KV allows more
+#     throttle at low rpm; min duty adds on top of BF dshot_idle_value.
+#   Running Brake Level 10, Stopped Brake Level 10, Sine Range 15, Sine Power 6
+# ==============================================================================

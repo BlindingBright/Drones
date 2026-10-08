@@ -1,0 +1,11 @@
+# ==============================================================================
+# 3D Whoop - PASS 15 CLI  (OPTIONAL polish, on top of the master tune)
+# ==============================================================================
+
+# With thrust_linear 10, roll lost a little snap: step peak 1.04 -> 0.93 (slightly under target).
+# A bit more roll feedforward restores stick response without touching damping or noise.
+set f_roll = 120
+
+save
+
+# Revert if roll feels twitchy on stick inputs:  set f_roll = 110  then save

@@ -1,0 +1,15 @@
+# ==============================================================================
+# 3D Whoop - PASS 14 CLI  (optional experiment, on top of the master tune)
+# Betaflight 4.5.1. One change only.
+# ==============================================================================
+
+# thrust_linear 20 was added in Pass 2 when the ESC was weak at low rpm (min duty 0.5,
+# KV 10220). AM32 now runs min duty 3 + KV 2100, which gives that low-end punch on its own.
+# Both boosting the same low-output range may over-drive the motors right as they restart
+# after a reversal (the 130-250 ms roll wobble that D couldn't fix).
+# Halving it tests whether the ESC alone is enough.
+set thrust_linear = 10
+
+save
+
+# Revert if worse:  set thrust_linear = 20  then save
