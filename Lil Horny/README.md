@@ -13,7 +13,7 @@ In my testing I used a cut-down Pavo Pico frame and a cut-down Fractal 65. All p
 - **TBS Lucid AIO 1-2S** (the battery mount is made for this and fits around the plugs)
 - **DJI O4 Lite** (the camera mount is made for this)
 - **Gemfan 123D** propellers
-- **0802 16000kv–19000kv** motors
+- **0802 16000kv** motors
 
 Fits 200 mAh to 300 mAh 2S packs with the same battery mount:
 

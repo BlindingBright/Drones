@@ -19,7 +19,7 @@ I tested the prints on a cut-down Fractal 65 and a cut-down Pavo Pico, and they 
 | Frame | Fractal 65 (or Pavo Pico), cut down |
 | Flight controller / ESC | TBS Lucid AIO 1-2S (AM32). The battery mount is shaped to fit around its plugs |
 | Video | DJI O4 Lite. The camera mount is made for it |
-| Motors | 0802, 16000–19000 kv |
+| Motors | 0802, 16000 kv |
 | Props | Gemfan 123D (31 mm) |
 | Battery | 2S, 200–300 mAh. Both sizes fit the same battery mount ([example 1](https://www.amazon.com/dp/B0D3F5YF9L), [example 2](https://www.amazon.com/dp/B0GXZCW923)) |
 
