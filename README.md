@@ -33,7 +33,7 @@ Lil Horny/
 │   ├── Lil Horny 3D Master Tune.txt   Betaflight 4.5.1 CLI "diff all" — the current tune
 │   ├── esc1-4_config.bin              AM32 settings for each ESC
 │   └── Logs and Analysis/             Blackbox logs, plots, TUNING_NOTES.md, ESC_TEST_PLAN.md
-├── Readme Project Info.docx
+├── README.md              Project info and build list
 └── Lil Horny - Lisence Info Please Read.txt
 ```
 
