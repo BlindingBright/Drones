@@ -42,7 +42,7 @@ Lil Horny/
 1. **Print the mounts** from `Frame Files/`. The standoffs are meant to be printed in TPU.
 2. **ESCs (AM32 2.21):** load the `Tune/esc*_config.bin` files with [esc-configurator.com](https://esc-configurator.com)
    (props off, battery plugged in). The key settings are: bidirectional ON, 12 motor poles, timing 15°,
-   startup power 100, min duty 3, motor KV 2100, complementary PWM ON and running brake 10.
+   startup power 100, min duty 3, motor KV 2200 (stock is fine), complementary PWM ON and running brake 10.
    Updating AM32 can reset these values (it changed timing to 22.5° on mine), so check them again after any flash.
 3. **Betaflight 4.5.1:** paste `Tune/Lil Horny 3D Master Tune.txt` into the CLI and it will `save`.
    It turns on 3D mode (1496 low / 1500 neutral / 1504 high, with a deadband of 3), sets

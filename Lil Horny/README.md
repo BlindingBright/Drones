@@ -24,7 +24,7 @@ Fits 200 mAh to 300 mAh 2S packs with the same battery mount:
 
 - AM32 updated to 2.21
 - 12 pole motor count (important with smaller motors)
-- Maxed out KV
+- Stock KV (2200) is fine
 
 ## Betaflight
 
