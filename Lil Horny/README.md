@@ -5,6 +5,8 @@ Lil Horny is released under [CC BY-NC-SA 4.0](https://creativecommons.org/licens
 All project files are in this folder, and the project is updated regularly on
 [Google Drive](https://drive.google.com/drive/folders/10FEdRLiF6wVrJK5k8aDCwKiYdItE1z3n?usp=drive_link).
 
+You can see it in action here: <https://www.youtube.com/watch?v=3YmYATX25bI>
+
 The frame is based on the **Fractal 65**, created by Fractal Engineering; all credit goes to them.
 In my testing I used a cut-down Pavo Pico frame and a cut-down Fractal 65. All prints work with both.
 
@@ -15,8 +17,9 @@ In my testing I used a cut-down Pavo Pico frame and a cut-down Fractal 65. All p
 - **Gemfan 123D** propellers
 - **0802 16000kv** motors
 
-Fits 200 mAh to 300 mAh 2S packs with the same battery mount:
+Fits 200 mAh to 300 mAh 2S packs with the same battery mount- Tattu packs recommended.:
 
+- <https://www.amazon.com/dp/B097BVFYLX/>
 - <https://www.amazon.com/dp/B0D3F5YF9L>
 - <https://www.amazon.com/dp/B0GXZCW923>
 
