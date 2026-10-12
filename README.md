@@ -16,7 +16,7 @@ I tested the prints on a cut-down Fractal 65 and a cut-down Pavo Pico, and they 
 
 | Part | Notes |
 |---|---|
-| Frame | Fractal 65 (or Pavo Pico), cut down |
+| Frame | Fractal 65/75 (or Pavo Pico), cut down |
 | Flight controller / ESC | TBS Lucid AIO 1-2S (AM32). The battery mount is shaped to fit around its plugs |
 | Video | DJI O4 Lite. The camera mount is made for it |
 | Motors | 0802, 16000 kv |
