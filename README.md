@@ -10,7 +10,7 @@ the printable mounts, the Fusion 360 design, a Betaflight tune and the AM32 ESC 
 plus all the blackbox logs and analysis from tuning it.
 
 The frame is based on the **Fractal 65** by Fractal Engineering, and all credit for the frame goes to them.
-I tested the prints on a cut-down Fractal 65 and a cut-down Pavo Pico, and they fit both.
+I tested the prints on a cut-down Fractal 65/75 and a cut-down Pavo Pico, and they fit both.
 
 ### Build list
 
@@ -47,7 +47,7 @@ Lil Horny/
 3. **Betaflight 4.5.1:** paste `Tune/Lil Horny 3D Master Tune.txt` into the CLI and it will `save`.
    It turns on 3D mode (1496 low / 1500 neutral / 1504 high, with a deadband of 3), sets
    `motor_poles = 12` and enables bidirectional DShot.
-   Before the first flight, check in the Motors tab (props off) that all four motors spin the right way in both directions.
+   Before the first flight, check in the Motors tab (props off) that all four motors spin the right way in both directions. Change motor direction settings via CLI, using the built in motor direction change in BetaFlight is currently bugged and will cause motors to go full throttle on the bench.
 
 The full pass-by-pass story of the tune — what was changed, why, and what the logs showed — is in
 [`Tune/Logs and Analysis/TUNING_NOTES.md`](Lil%20Horny/Tune/Logs%20and%20Analysis/TUNING_NOTES.md).
