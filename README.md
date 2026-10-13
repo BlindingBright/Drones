@@ -34,10 +34,13 @@ Lil Horny/
 │   ├── esc1-4_config.bin              AM32 settings for each ESC
 │   └── Logs and Analysis/             Blackbox logs, plots, TUNING_NOTES.md, ESC_TEST_PLAN.md
 ├── README.md              Project info and build list
+├── SETUP_GUIDE.md         Step-by-step build and setup guide
 └── Lil Horny - Lisence Info Please Read.txt
 ```
 
 ### Setting it up
+
+**Step-by-step instructions: [Lil Horny Setup Guide](Lil%20Horny/SETUP_GUIDE.md).** Quick version:
 
 1. **Print the mounts** from `Frame Files/`. The standoffs are meant to be printed in TPU.
 2. **ESCs (AM32 2.21):** load the `Tune/esc*_config.bin` files with [esc-configurator.com](https://esc-configurator.com)

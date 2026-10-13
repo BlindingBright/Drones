@@ -1,5 +1,7 @@
 # Lil Horny — Project Info
 
+**New here? Start with the [Setup Guide](SETUP_GUIDE.md).**
+
 Lil Horny is released under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en). Please follow that license.
 
 All project files are in this folder, and the project is updated regularly on
