@@ -1,0 +1,56 @@
+# BetaFlight 3D Edition: starter tune for the TBS Lucid AIO (1-2S)
+# Tuned on ZoeFPV's "Lil Horny": 2S, 0802 16000kv motors, Gemfan 31 mm 3D props, ~30 g.
+# Other motors/props/frames: it should fly, but expect to adjust PIDs.
+#
+# HOW TO USE: Betaflight Configurator > CLI tab > paste everything below > press Enter.
+# It does NOT reset your receiver, ports, modes, OSD or board alignment, only the settings listed.
+# UNPLUG THE BATTERY before it saves. (In 3D with AM32, saving/disconnecting with a battery
+# plugged in can spin the motors up.)
+
+# --- 3D mode ---
+feature 3D
+set 3d_deadband_low = 1496
+set 3d_deadband_high = 1504
+set 3d_neutral = 1500
+set 3d_deadband_throttle = 3
+
+# --- 3D Edition test settings (start with stock behaviour; the guide tells you when to change) ---
+set 3d_iterm_mode = RESET
+set 3d_iterm_reset_ms = 250
+set debug_mode = 3D_ITERM
+
+# --- motors / ESC ---
+set dshot_bidir = ON
+set motor_poles = 12
+set dshot_idle_value = 150
+
+# --- filters ---
+set dyn_notch_count = 1
+set dyn_notch_q = 500
+set gyro_lpf1_dyn_min_hz = 300
+set gyro_lpf1_dyn_max_hz = 600
+set simplified_gyro_filter = OFF
+
+profile 0
+set dterm_lpf1_dyn_min_hz = 90
+set dterm_lpf1_dyn_max_hz = 180
+set dterm_lpf2_static_hz = 180
+set p_roll = 54
+set i_roll = 88
+set d_roll = 53
+set f_roll = 132
+set d_min_roll = 46
+set p_pitch = 53
+set i_pitch = 95
+set d_pitch = 55
+set f_pitch = 110
+set d_min_pitch = 50
+set p_yaw = 50
+set i_yaw = 95
+set thrust_linear = 10
+set tpa_rate = 35
+set tpa_breakpoint = 1550
+set simplified_pids_mode = OFF
+set simplified_dterm_filter = OFF
+
+save
