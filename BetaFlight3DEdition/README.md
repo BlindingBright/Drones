@@ -57,7 +57,7 @@ flip sign. So after every flip, the quad drifts until the I-term rebuilds. `PER_
 - **Motor restart watchdog**: warn and log when a motor fails to restart after a reversal.
 - **3D-aware anti-gravity**: anti-gravity treats every reversal as a throttle chop and raises P while the props
   are stopped (test first with `set anti_gravity_p_gain = 0`).
-- Per-direction thrust / TPA (whoop props are weaker reversed).
+- Per-direction thrust / TPA 
 - Fixes for 3D bugs in stock Betaflight: the low-voltage cutoff shifts the 3D center into reverse; a failsafe *landing*
   sends full reverse throttle; `vbat_sag_compensation` and dynamic idle silently do nothing in 3D; and `thr_mid` other
   than 50 shifts the 3D center.
