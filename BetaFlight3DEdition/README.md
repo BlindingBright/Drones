@@ -13,6 +13,7 @@ through center should hold their attitude better instead of drifting after every
 |---|---|---|
 | **Firmware: TBS Lucid AIO 1-2S** | `BetaFlight3DEdition_v0.1.0-test_TBS_LUCID_AIO.hex` | **[⬇ Download](https://github.com/BlindingBright/betaflight/releases/download/v0.1.0-3d-test/BetaFlight3DEdition_v0.1.0-test_TBS_LUCID_AIO.hex)** · [copy in this folder](firmware/TBS_LUCID_AIO/BetaFlight3DEdition_v0.1.0-test_TBS_LUCID_AIO.hex) · [release page](https://github.com/BlindingBright/betaflight/releases/tag/v0.1.0-3d-test) |
 | **Pilot testing guide** | [TESTING_GUIDE.md](TESTING_GUIDE.md) | **Start here** |
+| **Log & feedback upload** | [Google Form](https://forms.gle/Vfq3c2W7Lp5FE36t5) | Up to 10 logs at once |
 | **Starter tune** (paste in CLI) | [3D_Edition_starter_tune_TBS_LUCID_AIO.txt](tunes/3D_Edition_starter_tune_TBS_LUCID_AIO.txt) | 3D, motor, filter and PID settings only |
 | ZoeFPV's full `diff all` (reference) | [ZoeFPV_LilHorny_diff_all.txt](tunes/ZoeFPV_LilHorny_diff_all.txt) | Contains build-specific settings; don't paste it whole |
 | **Source code** | [zip](https://github.com/BlindingBright/betaflight/archive/refs/tags/v0.1.0-3d-test.zip) · [tar.gz](https://github.com/BlindingBright/betaflight/archive/refs/tags/v0.1.0-3d-test.tar.gz) · [browse](https://github.com/BlindingBright/betaflight/tree/3d-iterm-memory) | How to build: [BUILD_FROM_SOURCE.md](BUILD_FROM_SOURCE.md) |
@@ -25,11 +26,12 @@ After flashing, the CLI `version` command shows `4.5.1 ... (481694999)`.
 
 ## Send logs & feedback
 
-### 👉 Log upload form: coming soon. Until then, attach logs to a [GitHub issue](https://github.com/BlindingBright/Drones/issues/new)
+### 👉 [Upload your blackbox logs and report (Google Form)](https://forms.gle/Vfq3c2W7Lp5FE36t5)
 
 You can upload several `.BBL` logs at once, along with your drone details, an AM32 settings screenshot and a short report. Every
 log helps. Results from different motors, props and frames are what tell us whether a change really works.
-Bugs and ideas are also welcome as [GitHub issues](https://github.com/BlindingBright/Drones/issues).
+Uploading files needs a Google sign-in (that's how Google Forms handles files). Without a Google account, attach your logs to a
+[GitHub issue](https://github.com/BlindingBright/Drones/issues/new) instead. Bugs and ideas are also welcome as issues.
 
 ## What's different from Betaflight 4.5.1
 

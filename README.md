@@ -7,7 +7,7 @@ Frames, mounts, tunes and flight-log analysis for my FPV builds. Each project li
 **[BetaFlight 3D Edition](BetaFlight3DEdition/)** is an experimental Betaflight 4.5.1 build with improvements for 3D
 (reversible-motor) flight, starting with keeping the I-term trim through motor reversals. It has a ready-to-flash file for the
 **TBS Lucid AIO**, a step-by-step [testing guide](BetaFlight3DEdition/TESTING_GUIDE.md), a starter tune, and the full source.
-3D pilots: please fly it and send logs!
+3D pilots: please fly it and [send your logs](https://forms.gle/Vfq3c2W7Lp5FE36t5)!
 
 ## Latest project: Lil Horny (3D whoop)
 

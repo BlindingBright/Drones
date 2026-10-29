@@ -132,8 +132,13 @@ Fly **2 packs of each mode**. One pack can only show big differences, so two pac
 
 ## 8. Send your logs
 
-**Log upload form: coming soon.** Until then, zip your `.BBL` files and attach them to a
-[GitHub issue](https://github.com/BlindingBright/Drones/issues/new) with your drone details and how it felt.
+**[Upload your logs and report here](https://forms.gle/Vfq3c2W7Lp5FE36t5)** (Google Form).
+
+- [ ] Add all your `.BBL` files in one go (up to 10 files, 100 MB each), plus your AM32 screenshot if you have one.
+- [ ] Say which `3d_iterm_mode` each log was flown with, and write a few lines about how it felt.
+
+Uploading needs a Google sign-in (that's how Google Forms handles files). No Google account? Zip the logs and attach them to a
+[GitHub issue](https://github.com/BlindingBright/Drones/issues/new) instead.
 
 ## 9. Troubleshooting
 
@@ -141,8 +146,8 @@ Fly **2 packs of each mode**. One pack can only show big differences, so two pac
 |---|---|
 | `version` doesn't show `(481694999)` | The flash didn't take. Flash again (step 4). |
 | `get 3d_iterm_mode` says the setting doesn't exist | You're on stock firmware. Flash again (step 4). |
-| A motor stalls, stutters or stops after a reversal | Disarm. Check AM32 settings (PWM **by rpm**, timing 15°), motor solder joints and props. Note it in the form. |
-| The quad drifts or wobbles after flips | That's exactly what we're measuring. Keep flying the protocol and describe it in the form. |
+| A motor stalls, stutters or stops after a reversal | Disarm. Check AM32 settings (PWM **by rpm**, timing 15°), motor solder joints and props. Note it in the [form](https://forms.gle/Vfq3c2W7Lp5FE36t5). |
+| The quad drifts or wobbles after flips | That's exactly what we're measuring. Keep flying the protocol and describe it in the [form](https://forms.gle/Vfq3c2W7Lp5FE36t5). |
 | Motors spin up when you save or disconnect | The battery is still plugged in. Unplug it first, every time. |
 | Want to go back to normal Betaflight | Flash official Betaflight 4.5.1 for TBS_LUCID_AIO, then paste your step 2 backup. |
 
