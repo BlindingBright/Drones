@@ -53,4 +53,4 @@ make CC=gcc CXX=g++ test_pid_unittest test_cli_unittest test_rc_controls_unittes
 
 If you build for another board and fly it, please send the logs through the
 [log form](README.md#send-logs--feedback) and say which board and commit you built. Builds for other boards can also be
-requested from ZoeFPV (Discord link at [zoefpv.com](https://zoefpv.com)).
+[requested with the build request form](https://forms.gle/1p93ZjiqDp1PLWA96) or from ZoeFPV (Discord link at [zoefpv.com](https://zoefpv.com)).

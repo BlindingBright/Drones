@@ -3,7 +3,8 @@
 **Betaflight with improvements for 3D (reversible-motor) flight.** Tic-tocks, punch-outs from reversals, and flips
 through center should hold their attitude better instead of drifting after every motor reversal.
 
-> **Status: v0.1.0-test (experimental).** Built on Betaflight 4.5.1 for the **TBS Lucid AIO 1-2S**.
+> **Status: v0.1.0-test (experimental).** Built on Betaflight 4.5.1 for the **TBS Lucid AIO 1-2S** and the
+> **Happymodel CrazyBee F4 SX1280** (`CRAZYBEEF4SX1280`).
 > We need logs from more pilots to prove it before proposing it to the main Betaflight project.
 > Use it for testing. For everyday flying, official Betaflight is the safe choice.
 
@@ -12,17 +13,20 @@ through center should hold their attitude better instead of drifting after every
 | | File | |
 |---|---|---|
 | **Firmware: TBS Lucid AIO 1-2S** | `BetaFlight3DEdition_v0.1.0-test_TBS_LUCID_AIO.hex` | **[⬇ Download](https://github.com/BlindingBright/betaflight/releases/download/v0.1.0-3d-test/BetaFlight3DEdition_v0.1.0-test_TBS_LUCID_AIO.hex)** · [copy in this folder](firmware/TBS_LUCID_AIO/BetaFlight3DEdition_v0.1.0-test_TBS_LUCID_AIO.hex) · [release page](https://github.com/BlindingBright/betaflight/releases/tag/v0.1.0-3d-test) |
+| **Firmware: CrazyBee F4 SX1280** (`CRAZYBEEF4SX1280`) | `BetaFlight3DEdition_v0.1.0-test_CRAZYBEEF4SX1280.hex` | **[⬇ Download](https://github.com/BlindingBright/betaflight/releases/download/v0.1.0-3d-test/BetaFlight3DEdition_v0.1.0-test_CRAZYBEEF4SX1280.hex)** · [copy in this folder](firmware/CRAZYBEEF4SX1280/BetaFlight3DEdition_v0.1.0-test_CRAZYBEEF4SX1280.hex) · settings: [3D_Edition_settings_CRAZYBEEF4SX1280.txt](tunes/3D_Edition_settings_CRAZYBEEF4SX1280.txt) |
 | **Pilot testing guide** | [TESTING_GUIDE.md](TESTING_GUIDE.md) | **Start here** |
 | **Log & feedback upload** | [Google Form](https://forms.gle/Vfq3c2W7Lp5FE36t5) | Up to 10 logs at once |
 | **Starter tune** (paste in CLI) | [3D_Edition_starter_tune_TBS_LUCID_AIO.txt](tunes/3D_Edition_starter_tune_TBS_LUCID_AIO.txt) | 3D, motor, filter and PID settings only |
 | ZoeFPV's full `diff all` (reference) | [ZoeFPV_LilHorny_diff_all.txt](tunes/ZoeFPV_LilHorny_diff_all.txt) | Contains build-specific settings; don't paste it whole |
 | **Source code** | [zip](https://github.com/BlindingBright/betaflight/archive/refs/tags/v0.1.0-3d-test.zip) · [tar.gz](https://github.com/BlindingBright/betaflight/archive/refs/tags/v0.1.0-3d-test.tar.gz) · [browse](https://github.com/BlindingBright/betaflight/tree/3d-iterm-memory) | How to build: [BUILD_FROM_SOURCE.md](BUILD_FROM_SOURCE.md) |
 
-SHA-256 of the Lucid hex: `170a951bc9b7e4c9442fd3cb070f5328d8f59d3019741664842d41ddbe6fc237`.
-After flashing, the CLI `version` command shows `4.5.1 ... (481694999)`.
+SHA-256: Lucid `170a951bc9b7e4c9442fd3cb070f5328d8f59d3019741664842d41ddbe6fc237`,
+CrazyBee `89d3dede762016705bc41cc41911bd33ef88ad2ef3637d21cdc6fd6febff09b4`.
+Both are built from the same commit; after flashing, the CLI `version` command shows `4.5.1 ... (481694999)`.
 
-**Other flight controllers:** not built yet. **Contact ZoeFPV for a custom build** (Discord link at
-[zoefpv.com](https://zoefpv.com)), or [build it yourself](BUILD_FROM_SOURCE.md).
+**Other flight controllers:** **[request a build for your board](https://forms.gle/1p93ZjiqDp1PLWA96)** (Google Form, no sign-in needed),
+or contact ZoeFPV (Discord link at [zoefpv.com](https://zoefpv.com)), or [build it yourself](BUILD_FROM_SOURCE.md).
+Requested boards get built and added to this table.
 
 ## Send logs & feedback
 

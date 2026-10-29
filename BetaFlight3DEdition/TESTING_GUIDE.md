@@ -1,10 +1,13 @@
-# BetaFlight 3D Edition: pilot testing guide (TBS Lucid AIO)
+# BetaFlight 3D Edition: pilot testing guide (TBS Lucid AIO, CrazyBee F4 SX1280)
 
 Thanks for helping test! This guide takes about 20 minutes on the bench plus 4 packs of flying.
 Follow it in order. Every step has a checkbox so you can keep your place.
 
-> **This guide is for the TBS Lucid AIO 1-2S only.** Using a different flight controller?
-> Don't flash this file. **Contact ZoeFPV for a custom build** (Discord link at [zoefpv.com](https://zoefpv.com)).
+> **Supported boards: TBS Lucid AIO 1-2S, and Happymodel CrazyBee F4 SX1280 (`CRAZYBEEF4SX1280`).**
+> The steps are written for the Lucid. **CrazyBee pilots: read [the CrazyBee section](#crazybee-f4-sx1280-crazybeef4sx1280) first**:
+> the ESC, firmware file and settings are different.
+> Using a different flight controller? Don't flash either file. **[Request a build for your board](https://forms.gle/1p93ZjiqDp1PLWA96)**
+> or contact ZoeFPV (Discord link at [zoefpv.com](https://zoefpv.com)).
 
 **What you're testing:** stock Betaflight throws away the I-term (the "trim" the quad has learned) for 250 ms after every
 motor reversal. A 3D quad needs a different trim upright than inverted, so after every flip it drifts until the trim
@@ -151,7 +154,22 @@ Uploading needs a Google sign-in (that's how Google Forms handles files). No Goo
 | Motors spin up when you save or disconnect | The battery is still plugged in. Unplug it first, every time. |
 | Want to go back to normal Betaflight | Flash official Betaflight 4.5.1 for TBS_LUCID_AIO, then paste your step 2 backup. |
 
+## CrazyBee F4 SX1280 (`CRAZYBEEF4SX1280`)
+
+Happymodel's F411 AIO with a built-in ExpressLRS receiver and a BLHeli_S 4-in-1 ESC. Follow the guide above, with
+these changes:
+
+| Step | On the CrazyBee |
+|---|---|
+| 0. Files | Firmware: [`BetaFlight3DEdition_v0.1.0-test_CRAZYBEEF4SX1280.hex`](https://github.com/BlindingBright/betaflight/releases/download/v0.1.0-3d-test/BetaFlight3DEdition_v0.1.0-test_CRAZYBEEF4SX1280.hex). Settings: [`3D_Edition_settings_CRAZYBEEF4SX1280.txt`](tunes/3D_Edition_settings_CRAZYBEEF4SX1280.txt). **Don't use the Lucid starter tune** (different motors and ESC). |
+| 1. Safety | Same rules. The battery-unplugged rule matters for any 3D quad. |
+| 3. ESCs | The ESC runs **BLHeli_S or Bluejay**, not AM32. In [esc-configurator.com](https://esc-configurator.com), set **Motor direction = Bidirectional** on all four ESCs. **Bluejay is recommended**: stock BLHeli_S has no RPM telemetry (no RPM filter, no eRPM in logs). Screenshot the settings for the form. |
+| 4. Flash | Pick the CrazyBee `.hex`. The built-in ExpressLRS receiver keeps working; re-check your binding phrase / bind after flashing if it was wiped. |
+| 5. Settings | Paste the [CrazyBee settings file](tunes/3D_Edition_settings_CRAZYBEEF4SX1280.txt) on top of your own tune. If you run **Bluejay**, uncomment `dshot_bidir = ON` and `motor_poles`. With stock BLHeli_S, leave `dshot_bidir` off or the quad won't arm. |
+| 6–8 | Same bench check, the same 4-pack test and the same [log form](https://forms.gle/Vfq3c2W7Lp5FE36t5). Choose "Other (custom build from ZoeFPV)" as the flight controller and write **CrazyBee F4 SX1280** in the drone details. |
+
 ## Other boards
 
-Only the TBS Lucid AIO is built so far. **For another flight controller, contact ZoeFPV for a custom build**
-(Discord link at [zoefpv.com](https://zoefpv.com)), or compile it yourself, see [BUILD_FROM_SOURCE.md](BUILD_FROM_SOURCE.md).
+Only the TBS Lucid AIO and the CrazyBee F4 SX1280 are built so far. **[Request a build for your board](https://forms.gle/1p93ZjiqDp1PLWA96)**
+(Google Form), contact ZoeFPV (Discord link at [zoefpv.com](https://zoefpv.com)), or compile it yourself, see
+[BUILD_FROM_SOURCE.md](BUILD_FROM_SOURCE.md).
