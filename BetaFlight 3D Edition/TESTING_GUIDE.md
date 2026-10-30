@@ -6,7 +6,7 @@ Follow it in order. Every step has a checkbox so you can keep your place.
 > **Supported boards: TBS Lucid AIO 1-2S, and Happymodel CrazyBee F4 SX1280 (`CRAZYBEEF4SX1280`).**
 > The steps are written for the Lucid. **CrazyBee pilots: read [the CrazyBee section](#crazybee-f4-sx1280-crazybeef4sx1280) first**:
 > the ESC, firmware file and settings are different.
-> Using a different flight controller? Don't flash either file. **[Request a build for your board](https://forms.gle/1p93ZjiqDp1PLWA96)**
+> Using a different flight controller? See **[BOARDS.md](BOARDS.md)** (41 boards). Never flash a file for another board. **[Request a build for your board](https://forms.gle/1p93ZjiqDp1PLWA96)**
 > or contact ZoeFPV (Discord link at [zoefpv.com](https://zoefpv.com)).
 
 **What you're testing:** stock Betaflight throws away the I-term (the "trim" the quad has learned) for 250 ms after every
@@ -170,6 +170,7 @@ these changes:
 
 ## Other boards
 
-Only the TBS Lucid AIO and the CrazyBee F4 SX1280 are built so far. **[Request a build for your board](https://forms.gle/1p93ZjiqDp1PLWA96)**
+Builds for 41 popular boards are in **[BOARDS.md](BOARDS.md)**, with the changes to these steps for boards other than the Lucid / CrazyBee.
+Still not there? **[Request a build for your board](https://forms.gle/1p93ZjiqDp1PLWA96)**
 (Google Form), contact ZoeFPV (Discord link at [zoefpv.com](https://zoefpv.com)), or compile it yourself, see
 [BUILD_FROM_SOURCE.md](BUILD_FROM_SOURCE.md).
