@@ -32,7 +32,7 @@ Any stutter, twitch, or a motor that doesn't restart means stop, back off a step
 | D (optional) | Alka's tip: higher min duty (4) **with lower startup power** (e.g. 80) for a strong but smooth start | `am32_D_...` | `ESC D ....BBL` |
 
 **Finding the setting:** Multi ESC Config Tool 1.86 (per the screenshot) doesn't show Minimum Duty Cycle.
-Check for a newer version of the tool or esc-configurator.com. If neither exposes it for 2.21, ask Alka where it lives.
+Check for a newer version of the tool or am32.ca/configurator. If neither exposes it for 2.21, ask Alka where it lives.
 
 After each flight: feel the motors (more low-rpm power = more heat), and note the feel at center stick.
 

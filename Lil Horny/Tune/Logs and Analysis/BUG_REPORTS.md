@@ -42,12 +42,12 @@ With `feature 3D` enabled and DShot600 bidirectional, all motors spin up to full
 In bidirectional (3D) mode, the motors run up to full throttle when the flight controller reboots after a Betaflight `save`, or when Betaflight Configurator disconnects. The battery is connected and the props are off. The ESC behaves correctly when armed/disarmed normally and on power cycle. My guess is that the ESC misreads the signal line during the FC reboot or the Configurator stop command (e.g. treating it as a PWM/servo input or a non-neutral 3D value). I haven't confirmed that.
 
 **Steps to reproduce**
-1. AM32 [version] on TBS Lucid AIO ESC (target: [target name shown in esc-configurator]), bidirectional ON, motor poles 12.
+1. AM32 [version] on TBS Lucid AIO ESC (target: [target name shown in am32.ca/configurator]), bidirectional ON, motor poles 12.
 2. Betaflight 4.5.1, 3D feature, DShot600 bidirectional.
 3. Battery + USB connected, then `save` in the Betaflight CLI / Disconnect in Configurator.
 4. Motors spin to full throttle [direction], [duration / until battery removed].
 
 **Notes**
 - [Did this happen on the previous AM32 version? yes / no / not tested]
-- ESC settings: [screenshot from esc-configurator]
+- ESC settings: [screenshot from am32.ca/configurator]
 - Linked Betaflight issue: [link]

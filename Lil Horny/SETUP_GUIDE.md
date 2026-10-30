@@ -27,7 +27,7 @@ See it fly: <https://www.youtube.com/watch?v=3YmYATX25bI>
 **Software (all free)**
 
 - [Betaflight Configurator](https://github.com/betaflight/betaflight-configurator/releases) (firmware 4.5.1)
-- [esc-configurator.com](https://esc-configurator.com) (opens in Chrome or Edge)
+- [am32.ca/configurator](https://am32.ca/configurator) (opens in Chrome or Edge)
 
 **Files from this folder**
 
@@ -81,7 +81,7 @@ Then:
 > Props off for this whole step.
 
 1. Plug in a battery, then connect USB.
-2. Open [esc-configurator.com](https://esc-configurator.com) in Chrome and click **Connect**, then **Read Setup**.
+2. Open [am32.ca/configurator](https://am32.ca/configurator) in Chrome and click **Connect**, then **Read Setup**.
 3. **Update AM32 to 2.21** if it isn't on it already. Pick the release for the *same target your ESC
    shows now* (the Lucid is **AT32F421**).
 4. Load the matching `Tune/escN_config.bin` onto each ESC, or just type in the values from the table

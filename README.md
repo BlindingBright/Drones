@@ -50,7 +50,7 @@ Lil Horny/
 **Step-by-step instructions: [Lil Horny Setup Guide](Lil%20Horny/SETUP_GUIDE.md).** Quick version:
 
 1. **Print the mounts** from `Frame Files/`. The standoffs are meant to be printed in TPU.
-2. **ESCs (AM32 2.21):** load the `Tune/esc*_config.bin` files with [esc-configurator.com](https://esc-configurator.com)
+2. **ESCs (AM32 2.21):** load the `Tune/esc*_config.bin` files with [am32.ca/configurator](https://am32.ca/configurator)
    (props off, battery plugged in). The key settings are: bidirectional ON, 12 motor poles, timing 15°,
    startup power 100, min duty 3, motor KV 2200 (stock is fine), complementary PWM ON and running brake 10.
    Updating AM32 can reset these values (it changed timing to 22.5° on mine), so check them again after any flash.

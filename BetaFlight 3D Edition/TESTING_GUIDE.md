@@ -21,7 +21,7 @@ You'll fly 2 packs with stock behaviour and 2 packs with the new mode, then send
 - [ ] A 3D-capable quad on a **TBS Lucid AIO 1-2S** (built-in AM32 ESCs)
 - [ ] **3D props** (symmetric/reversible) and charged packs. Use fresh, tight props: worn props wreck the logs
 - [ ] [Betaflight Configurator](https://github.com/betaflight/betaflight-configurator/releases) and a USB data cable
-- [ ] [esc-configurator.com](https://esc-configurator.com) (open in Chrome or Edge) to read your AM32 settings
+- [ ] [am32.ca/configurator](https://am32.ca/configurator) (open in Chrome or Edge) to read your AM32 settings
 - [ ] The files (all on the [project page](README.md#downloads)):
   - Firmware: [`BetaFlight3DEdition_v0.1.0-test_TBS_LUCID_AIO.hex`](https://github.com/BlindingBright/betaflight/releases/download/v0.1.0-3d-test/BetaFlight3DEdition_v0.1.0-test_TBS_LUCID_AIO.hex)
   - Starter tune: [`3D_Edition_starter_tune_TBS_LUCID_AIO.txt`](tunes/3D_Edition_starter_tune_TBS_LUCID_AIO.txt)
@@ -44,7 +44,7 @@ You'll fly 2 packs with stock behaviour and 2 packs with the new mode, then send
 
 ## 3. Check your ESCs (AM32)
 
-- [ ] Open [esc-configurator.com](https://esc-configurator.com), **Connect**, then **Read Setup**. Read only; don't write anything yet.
+- [ ] Open [am32.ca/configurator](https://am32.ca/configurator), **Connect**, then **Read Setup**. Read only; don't write anything yet.
 - [ ] Make sure **Bi-directional** (3D) is **on for all four ESCs**.
 - [ ] **Take a screenshot** of the settings. The log form asks for it, because ESC settings change results a lot.
 
@@ -163,7 +163,7 @@ these changes:
 |---|---|
 | 0. Files | Firmware: [`BetaFlight3DEdition_v0.1.0-test_CRAZYBEEF4SX1280.hex`](https://github.com/BlindingBright/betaflight/releases/download/v0.1.0-3d-test/BetaFlight3DEdition_v0.1.0-test_CRAZYBEEF4SX1280.hex). Settings: [`3D_Edition_settings_CRAZYBEEF4SX1280.txt`](tunes/3D_Edition_settings_CRAZYBEEF4SX1280.txt). **Don't use the Lucid starter tune** (different motors and ESC). |
 | 1. Safety | Same rules. The battery-unplugged rule matters for any 3D quad. |
-| 3. ESCs | The ESC runs **BLHeli_S or Bluejay**, not AM32. In [esc-configurator.com](https://esc-configurator.com), set **Motor direction = Bidirectional** on all four ESCs. **Bluejay is recommended**: stock BLHeli_S has no RPM telemetry (no RPM filter, no eRPM in logs). Screenshot the settings for the form. |
+| 3. ESCs | The ESC runs **BLHeli_S or Bluejay**, not AM32. In [am32.ca/configurator](https://am32.ca/configurator), set **Motor direction = Bidirectional** on all four ESCs. **Bluejay is recommended**: stock BLHeli_S has no RPM telemetry (no RPM filter, no eRPM in logs). Screenshot the settings for the form. |
 | 4. Flash | Pick the CrazyBee `.hex`. The built-in ExpressLRS receiver keeps working; re-check your binding phrase / bind after flashing if it was wiped. |
 | 5. Settings | Paste the [CrazyBee settings file](tunes/3D_Edition_settings_CRAZYBEEF4SX1280.txt) on top of your own tune. If you run **Bluejay**, uncomment `dshot_bidir = ON` and `motor_poles`. With stock BLHeli_S, leave `dshot_bidir` off or the quad won't arm. |
 | 6–8 | Same bench check, the same 4-pack test and the same [log form](https://forms.gle/Vfq3c2W7Lp5FE36t5). Choose "Other (custom build from ZoeFPV)" as the flight controller and write **CrazyBee F4 SX1280** in the drone details. |

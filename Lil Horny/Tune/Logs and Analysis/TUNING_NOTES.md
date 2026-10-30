@@ -177,7 +177,7 @@ Tic-tocks at 54–58 s and 62–69 s: wobble bursts sit in the ~0.5 s after **ev
   present on AM32 2.21 at every setting (~0.1–0.8 per reversal), ~none on factory 2.03, mostly motor 0 (ESC M1, the
   motor that stalled in Pass 2). Either 2.21 restart telemetry or brief desyncs. Worth sending to Alka, and check motor 0.
 
-## AM32 ESC settings (esc-configurator.com, Chrome, battery plugged in, props off)
+## AM32 ESC settings (am32.ca/configurator, Chrome, battery plugged in, props off)
 
 Read the settings first and **screenshot them as a backup**. All 4 ESCs should match.
 
@@ -196,7 +196,7 @@ Read the settings first and **screenshot them as a backup**. All 4 ESCs should m
 | Running brake level | 10 (max) | Good: strongest braking on decel = faster stop before reversal |
 | PWM frequency | leave, or try 48 kHz | Smoother/quieter on tiny motors, small efficiency cost |
 
-**Updating AM32:** in esc-configurator, flash the latest **stable** release for the *exact same target name*
+**Updating AM32:** in the AM32 configurator (am32.ca/configurator), flash the latest **stable** release for the *exact same target name*
 the ESC reports now (Lucid AIO = AT32F421). Flashing can reset settings, so re-apply the table above.
 Change ESC things in a **separate flight** from CLI changes so we can tell what helped.
 
