@@ -1,4 +1,4 @@
-# BetaFlight 3D Edition: pilot testing guide (v0.2.2-test)
+# BetaFlight 3D Edition: pilot testing guide (v0.3.0-test)
 
 Thanks for helping test! About 20 minutes on the bench, then **4 packs of flying with one settings change in the middle.**
 
@@ -10,7 +10,7 @@ Thanks for helping test! About 20 minutes on the bench, then **4 packs of flying
 | 2 | Flash the 3D Edition file for **your** board ([BOARDS.md](BOARDS.md)) |
 | 3 | Paste **Block A** (stock behaviour), bench-check with props off |
 | 4 | Fly **pack 1 and pack 2** |
-| 5 | Paste **Block B** (the new I-term handling) |
+| 5 | Paste **Block B** (the new 3D handling) |
 | 6 | Fly **pack 3 and pack 4** |
 | 7 | [Upload the 4 logs](https://forms.gle/Vfq3c2W7Lp5FE36t5) and say how it felt |
 
@@ -20,8 +20,10 @@ Everything else below is the detail for each step. Every step has a checkbox so 
 learned) and keeps it at zero for a fixed 250 ms. But a 3D quad needs a *different* trim upright than inverted, so after
 every flip it drifts until the trim rebuilds. The 3D Edition remembers both trims, loads the right one on each flip,
 and (with RPM telemetry) lets the I-term go as soon as all motors have actually restarted (~150 ms on a whoop) instead
-of waiting 250 ms. On ZoeFPV's whoop this cut the trim error in the first 250 ms after a flip by about 65%, and the
-pitch drift after flips by about 20%. Now we need other quads.
+of waiting 250 ms. v0.3.0 adds two more 3D fixes: anti-gravity no longer treats every flip as a throttle chop, and
+dynamic idle (which stock Betaflight skips in 3D) gives the motors more command while they restart after a flip.
+On ZoeFPV's whoop: trim error in the first 250 ms after a flip about 65% smaller, pitch drift after flips about 20% lower,
+and with the v0.3.0 settings less shake in the first 60 ms after a flip (one test day, indicative). Now we need other quads.
 
 ---
 
@@ -69,9 +71,9 @@ For reference, ZoeFPV's AM32 settings on the Lucid whoop (a starting point, not 
 
 ## 4. Flash the firmware
 
-- [ ] Battery unplugged → **Firmware Flasher** → **Load Firmware [Local]** → pick your `BetaFlight3DEdition_v0.2.2-test_<BOARD>.hex`.
+- [ ] Battery unplugged → **Firmware Flasher** → **Load Firmware [Local]** → pick your `BetaFlight3DEdition_v0.3.0-test_<BOARD>.hex`.
 - [ ] **Flash Firmware** → wait for "Programming: SUCCESSFUL".
-- [ ] Connect → **CLI** → `version`. You should see **`4.5.1`** and **`(b5fa258ef)`**, and your board name.
+- [ ] Connect → **CLI** → `version`. You should see **`4.5.1`** and **`(9421121f7)`**, and your board name.
 - [ ] If your settings were wiped, paste your `diff all` backup from step 2 and press Enter.
   (Coming from Betaflight 4.4 or 2026.x? A few lines may be rejected. Re-enter those by hand; check receiver and ports.)
 
@@ -91,17 +93,22 @@ set 3d_iterm_rpm_pct = 40
 set 3d_iterm_learn_thr = 50
 set 3d_iterm_learn_hz_x10 = 5
 set 3d_iterm_axes = ALL
+set 3d_anti_gravity = STOCK
+set 3d_ag_approach_pct = 0
+set 3d_dyn_idle = OFF
 set debug_mode = 3D_ITERM
+profile 0
+set dyn_idle_min_rpm = 0
 save
 ```
 
 This is exactly stock Betaflight behaviour, plus logging. It also resets every 3D Edition setting to its default, so it's safe
-if you flew v0.1 or v0.2.0 before. Your PIDs, rates, receiver, OSD and other 3D settings (deadband etc.) are not touched.
+if you flew an earlier 3D Edition build before. Your PIDs, rates, receiver, OSD and other 3D settings (deadband etc.) are not touched.
 
 **TBS Lucid AIO built like Lil Horny** (2S, 0802, 31 mm 3D props)? Paste the [starter tune](tunes/3D_Edition_starter_tune_TBS_LUCID_AIO.txt)
 instead; it already contains Block A. **CrazyBee F4 SX1280?** Use [its settings file](tunes/3D_Edition_settings_CRAZYBEEF4SX1280.txt) (also contains Block A).
 
-- [ ] Reconnect, type `get 3d_iterm` and check: `3d_iterm_mode = RESET`, `3d_iterm_release = TIME`, `3d_iterm_reset_ms = 250`.
+- [ ] Reconnect, type `get 3d_` and check: `3d_iterm_mode = RESET`, `3d_iterm_release = TIME`, `3d_iterm_reset_ms = 250`, `3d_anti_gravity = STOCK`, `3d_dyn_idle = OFF`.
 - [ ] `get debug_mode` shows `3D_ITERM` (it isn't in Configurator's dropdown; CLI only; it doesn't change how the quad flies).
 
 ## 6. Bench check (props OFF, 2 minutes)
@@ -128,25 +135,39 @@ instead; it already contains Block A. **CrazyBee F4 SX1280?** Use [its settings 
 - [ ] Battery unplugged → Blackbox tab → **Save flash to file**. Name it e.g. `YourCallsign_pack1_RESET.BBL`.
 - [ ] Jot down how it felt: drift after flips, wobble, stalls, anything odd.
 
-## 8. Paste Block B (packs 3 and 4: the new I-term handling)
+## 8. Paste Block B (packs 3 and 4: the new 3D handling)
 
 Battery unplugged. Pick the one that matches step 3:
 
-**With RPM telemetry** (`dshot_bidir = ON`: AM32, Bluejay, BLHeli_32):
+**With RPM telemetry** (`dshot_bidir = ON`: AM32, Bluejay, BLHeli_32). These are the best settings found so far:
 ```
 set 3d_iterm_mode = PER_DIRECTION
 set 3d_iterm_release = RPM
+set 3d_anti_gravity = GATED
+set 3d_ag_approach_pct = 15
+set 3d_dyn_idle = ON
+profile 0
+set dyn_idle_min_rpm = 50
+set dyn_idle_max_increase = 100
 save
 ```
+`dyn_idle_min_rpm = 50` (5000 rpm) suits 1S/2S whoops with high-kv motors (flown). **5-inch and other low-kv quads: use 30**
+(from log replay, not flown yet; bench-check first and send logs).
+Rule of thumb: below the rpm your slowest motor idles at with the stick centered (check in the Motors tab or a log).
 
-**Without RPM telemetry** (stock BLHeli_S):
+**Without RPM telemetry** (stock BLHeli_S): dynamic idle and RPM release both need RPM telemetry, so:
 ```
 set 3d_iterm_mode = PER_DIRECTION
+set 3d_anti_gravity = GATED
+set 3d_ag_approach_pct = 15
 save
 ```
 (Without telemetry the firmware can't see the motors restart, so it keeps the 250 ms timer. Don't use `RPM` there: it would wait the 400 ms cap every time.)
 
-- [ ] Reconnect, `get 3d_iterm` → `3d_iterm_mode = PER_DIRECTION` (and `3d_iterm_release = RPM` if you have telemetry).
+- [ ] Reconnect, `get 3d_` → `3d_iterm_mode = PER_DIRECTION`, `3d_anti_gravity = GATED`, `3d_ag_approach_pct = 15`
+      (with telemetry also `3d_iterm_release = RPM` and `3d_dyn_idle = ON`).
+- [ ] With dynamic idle on: **bench check again, props off** (step 6). Motors should restart cleanly, maybe a bit more briskly.
+      If one stutters or desyncs, set `3d_dyn_idle = OFF`.
 
 ## 9. Fly pack 3 and pack 4 (Block B)
 
@@ -174,8 +195,8 @@ Then you're done. If you want to go back to your own setup: **flash official Bet
 
 | Problem | What to do |
 |---|---|
-| `version` doesn't show `(b5fa258ef)` | The flash didn't take, or it's an older 3D Edition file. Flash again (step 4). |
-| `get 3d_iterm` says a setting doesn't exist | You're on stock Betaflight or 3D Edition v0.1. Flash the v0.2.2 file. |
+| `version` doesn't show `(9421121f7)` | The flash didn't take, or it's an older 3D Edition file. Flash again (step 4). |
+| `get 3d_` says a setting doesn't exist | You're on stock Betaflight or an older 3D Edition build. Flash the v0.3.0 file. |
 | Blackbox stops before the pack ends | Erase before every pack. Still full? `set blackbox_sample_rate = 1/8` (fits a full whoop pack on 8 MB flash; this is what Lil Horny uses). |
 | A motor stalls, stutters or stops after a reversal | Disarm. Check ESC settings, solder joints, props. Mention it in the [form](https://forms.gle/Vfq3c2W7Lp5FE36t5). |
 | The quad drifts or wobbles after flips | That's what we're measuring. Keep flying the routine and describe it. |

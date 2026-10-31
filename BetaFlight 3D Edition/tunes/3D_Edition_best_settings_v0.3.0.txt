@@ -1,0 +1,28 @@
+# BetaFlight 3D Edition v0.3.0-test: best 3D settings found so far (= testing guide Block B, with RPM telemetry)
+# Paste on top of your own tune. Not a full tune: PIDs, rates, receiver, OSD stay as they are.
+# Needs bidirectional DShot RPM telemetry (dshot_bidir = ON: AM32, Bluejay, BLHeli_32). Without it, see TESTING_GUIDE.md Block B.
+# UNPLUG THE BATTERY FIRST (3D: saving with a battery in can spin the motors up). After saving, bench-check props OFF:
+# ~10 fast reversals through center, all motors restart cleanly.
+
+set 3d_iterm_mode = PER_DIRECTION
+set 3d_iterm_release = RPM
+set 3d_iterm_load = FLIP
+set 3d_iterm_reset_ms = 250
+set 3d_iterm_min_ms = 50
+set 3d_iterm_max_ms = 400
+set 3d_iterm_rpm_pct = 40
+set 3d_iterm_learn_thr = 50
+set 3d_iterm_learn_hz_x10 = 5
+set 3d_iterm_axes = ALL
+set 3d_anti_gravity = GATED
+set 3d_ag_approach_pct = 15
+set 3d_dyn_idle = ON
+
+profile 0
+# 50 (5000 rpm) for 1S/2S whoops with high-kv motors (flown); 30 for 5-inch / low-kv (log replay only, not flown yet).
+# Keep it below the rpm of your slowest motor
+# at center stick.
+set dyn_idle_min_rpm = 50
+set dyn_idle_max_increase = 100
+
+save

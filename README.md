@@ -5,8 +5,9 @@ Frames, mounts, tunes and flight-log analysis for my FPV builds. Each project li
 ## New: BetaFlight 3D Edition (testers wanted)
 
 **[BetaFlight 3D Edition](BetaFlight%203D%20Edition/)** is an experimental Betaflight 4.5.1 build with improvements for 3D
-(reversible-motor) flight: it remembers the I-term trim for upright and inverted and releases it as soon as the motors have
-restarted after a reversal. **v0.2.2-test** has ready-to-flash files for **[44 boards](BetaFlight%203D%20Edition/BOARDS.md)**
+(reversible-motor) flight: it remembers the I-term trim for upright and inverted, releases it as soon as the motors have
+restarted after a reversal, stops anti-gravity treating every flip as a throttle chop, and makes dynamic idle work in 3D.
+**v0.3.0-test** has ready-to-flash files for **[44 boards](BetaFlight%203D%20Edition/BOARDS.md)**
 (whoop AIOs and 5-inch stacks; others: [request a build](https://forms.gle/1p93ZjiqDp1PLWA96)), an easy 4-pack
 [testing guide](BetaFlight%203D%20Edition/TESTING_GUIDE.md), a starter tune, and the full source.
 3D pilots: please fly it and [send your logs](https://forms.gle/Vfq3c2W7Lp5FE36t5)!

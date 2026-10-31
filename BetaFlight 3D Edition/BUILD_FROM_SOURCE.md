@@ -1,15 +1,16 @@
 # Building BetaFlight 3D Edition from source
 
 The code lives in the Betaflight fork **[BlindingBright/betaflight](https://github.com/BlindingBright/betaflight)**,
-branch **`3d-iterm-memory`**, based on Betaflight **4.5.1** (`77d01ba3b`). The v0.2.2-test release is commit `b5fa258ef`
-(tag `v0.2.2-3d-test`).
+branch **`3d-iterm-memory`**, based on Betaflight **4.5.1** (`77d01ba3b`). The v0.3.0-test release is commit `9421121f7`
+(tag `v0.3.0-3d-test`).
 
 ## Download the code
 
 | What | Link |
 |---|---|
-| Exact source of the v0.2.2-test release (zip) | <https://github.com/BlindingBright/betaflight/archive/refs/tags/v0.2.2-3d-test.zip> |
-| Same, tar.gz | <https://github.com/BlindingBright/betaflight/archive/refs/tags/v0.2.2-3d-test.tar.gz> |
+| Exact source of the v0.3.0-test release (zip) | <https://github.com/BlindingBright/betaflight/archive/refs/tags/v0.3.0-3d-test.zip> |
+| Same, tar.gz | <https://github.com/BlindingBright/betaflight/archive/refs/tags/v0.3.0-3d-test.tar.gz> |
+| v0.2.2-test source | <https://github.com/BlindingBright/betaflight/archive/refs/tags/v0.2.2-3d-test.zip> |
 | Older v0.1.0-test source | <https://github.com/BlindingBright/betaflight/archive/refs/tags/v0.1.0-3d-test.zip> |
 | Latest development branch (zip) | <https://github.com/BlindingBright/betaflight/archive/refs/heads/3d-iterm-memory.zip> |
 | Browse the code | <https://github.com/BlindingBright/betaflight/tree/3d-iterm-memory> |

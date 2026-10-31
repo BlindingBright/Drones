@@ -1,4 +1,4 @@
-# BetaFlight 3D Edition v0.2.2-test: starter tune for the TBS Lucid AIO (1-2S)
+# BetaFlight 3D Edition v0.3.0-test: starter tune for the TBS Lucid AIO (1-2S)
 # Tuned on ZoeFPV's "Lil Horny": 2S, 0802 16000kv motors, Gemfan 31 mm 3D props, ~30 g.
 # Other motors/props/frames: it should fly, but expect to adjust PIDs.
 #
@@ -14,7 +14,7 @@ set 3d_deadband_high = 1504
 set 3d_neutral = 1500
 set 3d_deadband_throttle = 3
 
-# --- 3D Edition v0.2.2 test settings: Block A = stock behaviour (TESTING_GUIDE step 5; step 8 tells you when to change) ---
+# --- 3D Edition v0.3.0 test settings: Block A = stock behaviour (TESTING_GUIDE step 5; step 8 tells you when to change) ---
 set 3d_iterm_mode = RESET
 set 3d_iterm_release = TIME
 set 3d_iterm_reset_ms = 250
@@ -25,6 +25,9 @@ set 3d_iterm_rpm_pct = 40
 set 3d_iterm_learn_thr = 50
 set 3d_iterm_learn_hz_x10 = 5
 set 3d_iterm_axes = ALL
+set 3d_anti_gravity = STOCK
+set 3d_ag_approach_pct = 0
+set 3d_dyn_idle = OFF
 set debug_mode = 3D_ITERM
 
 # --- motors / ESC ---
