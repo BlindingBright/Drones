@@ -1,14 +1,16 @@
 # Building BetaFlight 3D Edition from source
 
 The code lives in the Betaflight fork **[BlindingBright/betaflight](https://github.com/BlindingBright/betaflight)**,
-branch **`3d-iterm-memory`**, based on Betaflight **4.5.1** (`77d01ba3b`).
+branch **`3d-iterm-memory`**, based on Betaflight **4.5.1** (`77d01ba3b`). The v0.2.2-test release is commit `b5fa258ef`
+(tag `v0.2.2-3d-test`).
 
 ## Download the code
 
 | What | Link |
 |---|---|
-| Exact source of the v0.1.0-test release (zip) | <https://github.com/BlindingBright/betaflight/archive/refs/tags/v0.1.0-3d-test.zip> |
-| Same, tar.gz | <https://github.com/BlindingBright/betaflight/archive/refs/tags/v0.1.0-3d-test.tar.gz> |
+| Exact source of the v0.2.2-test release (zip) | <https://github.com/BlindingBright/betaflight/archive/refs/tags/v0.2.2-3d-test.zip> |
+| Same, tar.gz | <https://github.com/BlindingBright/betaflight/archive/refs/tags/v0.2.2-3d-test.tar.gz> |
+| Older v0.1.0-test source | <https://github.com/BlindingBright/betaflight/archive/refs/tags/v0.1.0-3d-test.zip> |
 | Latest development branch (zip) | <https://github.com/BlindingBright/betaflight/archive/refs/heads/3d-iterm-memory.zip> |
 | Browse the code | <https://github.com/BlindingBright/betaflight/tree/3d-iterm-memory> |
 | Just the changes vs Betaflight 4.5.1 | <https://github.com/BlindingBright/betaflight/compare/77d01ba3b...3d-iterm-memory> |
@@ -39,7 +41,7 @@ Notes from building it:
   `touch tools/gcc-arm-none-eabi-10.3-2021.10/bin/arm-none-eabi-gcc-10.3.1`.
 - Commit (or stash) your changes before building a test binary, and run `touch src/main/build/version.c` after
   committing. Otherwise the firmware reports `norevision` instead of the commit hash, and logs can't be traced to a build.
-- Board names: `ls src/config/configs`. Not every board fits every feature; the 3D Edition changes add under 1 KB.
+- Board names: `ls src/config/configs`. Not every board fits every feature; the 3D Edition changes add a few KB (the F411 builds are at 51–65% of flash).
 
 ## Run the unit tests
 

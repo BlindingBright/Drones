@@ -5,8 +5,10 @@ Frames, mounts, tunes and flight-log analysis for my FPV builds. Each project li
 ## New: BetaFlight 3D Edition (testers wanted)
 
 **[BetaFlight 3D Edition](BetaFlight%203D%20Edition/)** is an experimental Betaflight 4.5.1 build with improvements for 3D
-(reversible-motor) flight, starting with keeping the I-term trim through motor reversals. It has a ready-to-flash file for the
-**TBS Lucid AIO** and the **CrazyBee F4 SX1280** (other boards: [request a build](https://forms.gle/1p93ZjiqDp1PLWA96)), a step-by-step [testing guide](BetaFlight%203D%20Edition/TESTING_GUIDE.md), a starter tune, and the full source.
+(reversible-motor) flight: it remembers the I-term trim for upright and inverted and releases it as soon as the motors have
+restarted after a reversal. **v0.2.2-test** has ready-to-flash files for **[44 boards](BetaFlight%203D%20Edition/BOARDS.md)**
+(whoop AIOs and 5-inch stacks; others: [request a build](https://forms.gle/1p93ZjiqDp1PLWA96)), an easy 4-pack
+[testing guide](BetaFlight%203D%20Edition/TESTING_GUIDE.md), a starter tune, and the full source.
 3D pilots: please fly it and [send your logs](https://forms.gle/Vfq3c2W7Lp5FE36t5)!
 
 ## Latest project: Lil Horny (3D whoop)

@@ -1,4 +1,4 @@
-# BetaFlight 3D Edition: 3D + test settings for the Happymodel CrazyBee F4 SX1280 (CRAZYBEEF4SX1280)
+# BetaFlight 3D Edition v0.2.2-test: 3D + test settings for the Happymodel CrazyBee F4 SX1280 (CRAZYBEEF4SX1280)
 # This is NOT a full tune. Keep your own PIDs/rates; this only turns on 3D and the test logging.
 #
 # HOW TO USE: Betaflight Configurator > CLI > paste > Enter. Unplug the battery before it saves.
@@ -8,9 +8,17 @@
 feature 3D
 set 3d_deadband_throttle = 3
 
-# --- 3D Edition test settings (start with stock behaviour) ---
+# --- 3D Edition v0.2.2 test settings: Block A = stock behaviour (TESTING_GUIDE step 5; step 8 tells you when to change) ---
 set 3d_iterm_mode = RESET
+set 3d_iterm_release = TIME
 set 3d_iterm_reset_ms = 250
+set 3d_iterm_load = FLIP
+set 3d_iterm_min_ms = 50
+set 3d_iterm_max_ms = 400
+set 3d_iterm_rpm_pct = 40
+set 3d_iterm_learn_thr = 50
+set 3d_iterm_learn_hz_x10 = 5
+set 3d_iterm_axes = ALL
 set debug_mode = 3D_ITERM
 
 # --- RPM telemetry: only if your ESC runs Bluejay (stock BLHeli_S has no RPM telemetry) ---
