@@ -8,6 +8,10 @@ through center should hold their attitude better instead of drifting after every
 > We need logs from more pilots and more quads before proposing it to the main Betaflight project.
 > Use it for testing. For everyday flying, official Betaflight is the safe choice.
 
+> **Experimental branch:** [v0.3.1-experimental](EXPERIMENTAL_v0.3.1_TESTING.md) adds 3D fixes for the low-voltage cutoff,
+> failsafe throttle, `thr_mid` and sag compensation. **Untested**: it's the branch ZoeFPV is testing internally. Use v0.3.0 below
+> unless you want to help bench-test it.
+
 ## Start here
 
 1. **[Find your board's firmware (BOARDS.md)](BOARDS.md)**
