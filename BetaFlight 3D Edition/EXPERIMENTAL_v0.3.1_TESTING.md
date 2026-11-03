@@ -91,12 +91,21 @@ save
 - [ ] Props off, plug in a charged pack (not above 4.40 V/cell), arm with the stick centered. The cutoff triggers right away and
       ramps down to 50% over about 10 seconds. **Confirm it engaged** (critical-battery warning on the OSD/goggles) before judging.
       Wait those 10 s before the checks below.
+      **Warning ≠ cutoff.** "LOW BATTERY" (warning) is only a message; the cutoff acts at *critical*, below `vbat_min_cell_voltage`.
+      If you only see the low-battery warning and the motors behave normally, the cutoff hasn't engaged: check with
+      `get vbat_min_cell_voltage` that it really is 440 (the log header line `vbatcellvoltage` shows min, warning, max).
 - [ ] **Stick centered: motors stay at idle** (stock: they spin up in reverse). Log: `rcCommand[3]` ≈ 1500.
 - [ ] Full forward stick: forward thrust, reduced. Full reverse stick: reverse thrust, reduced. With `thr_expo = 25` the log shows
       `rcCommand[3]` ≈ 1705 / ≈ 1295 (about 40% each way; without throttle expo it's 50%).
 - [ ] Disarm, **unplug** (the cutoff stays latched until power-off), **put all three values back** (Betaflight defaults:
       `vbat_cutoff_percent = 100`, `vbat_min_cell_voltage = 330`, `vbat_warning_cell_voltage = 350`), then `save`.
       The warning voltage matters: sag compensation (test 4) uses it and switches itself off if it's left above the full voltage.
+
+**Good to know (stock behaviour, both versions).** With the defaults, `vbat_cutoff_percent = 100`, the cutoff is **off**: low and
+critical battery are only warnings, and nothing touches the throttle. 3D whoops sag hard (Lil Horny: down to ~3.1 V/cell under load,
+below 3.30 V/cell for ~30 s of a 100 s pack), so with a cutoff enabled it would latch on mid-flight, and stays on until you unplug.
+If the warnings flash constantly from sag, `vbat_duration_for_warning` / `vbat_duration_for_critical` (0.1 s units, e.g. 20 = 2 s)
+make them wait for a sustained low voltage.
 
 ## Test 2: failsafe stage 2 throttle (bench, props off, ~5 min)
 
