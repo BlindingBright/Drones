@@ -46,7 +46,8 @@ Once flashed, follow the **[pilot testing guide](TESTING_GUIDE.md)**.
 | **JHEMCU GHF411AIO / GHF405AIO / Play F4 (12A–40A BLS)** | `J_H_15` *(or `J_H_20`)* | EFM8BB21 | **[⬇ J_H_15 48k](firmware/hex/J_H_15_48_v0.22.0-3D.hex)** · [⬇ J_H_20 48k](firmware/hex/J_H_20_48_v0.22.0-3D.hex) |
 | **BetaFPV Air / Meteor 2024+ 1S 5A AIO (EFM8BB51)** | `A_X_5` | EFM8BB51 | **[⬇ 48 kHz](firmware/hex/A_X_5_48_v0.22.0-3D.hex)** · [⬇ 24 kHz](firmware/hex/A_X_5_24_v0.22.0-3D.hex) · [⬇ 96 kHz](firmware/hex/A_X_5_96_v0.22.0-3D.hex) |
 | **Happymodel SuperX HD / ELRS AIO (EFM8BB51)** | `B_X_30` *(or `A_X_5`)* | EFM8BB51 | **[⬇ B_X_30 48k](firmware/hex/B_X_30_48_v0.22.0-3D.hex)** · [⬇ A_X_5 48k](firmware/hex/A_X_5_48_v0.22.0-3D.hex) |
-| **5-Inch / 20x20 & 30x30 4-in-1 Stack ESCs** | | | |
+| **5-Inch / 20x20, 25.5x25.5 & 30x30 AIOs & 4-in-1 Stack ESCs** | | | |
+| **SpeedyBee F405 AIO 40A (`SPEEDYBEEF405AIO`, 25.5x25.5)** | `J_H_40` | EFM8BB21 | **[⬇ 48 kHz](firmware/hex/J_H_40_48_v0.22.0-3D.hex)** · **[⬇ 24 kHz](firmware/hex/J_H_40_24_v0.22.0-3D.hex)** · [⬇ 96 kHz](firmware/hex/J_H_40_96_v0.22.0-3D.hex) |
 | **SpeedyBee F405 V3 / V4 BLS 50A / 55A / 60A 4-in-1** | `G_H_30` *(or `J_H_40`)* | EFM8BB21 | **[⬇ G_H_30 24k](firmware/hex/G_H_30_24_v0.22.0-3D.hex)** · [⬇ G_H_30 48k](firmware/hex/G_H_30_48_v0.22.0-3D.hex) · [⬇ J_H_40 24k](firmware/hex/J_H_40_24_v0.22.0-3D.hex) |
 | **SpeedyBee F405 Mini BLS 35A 4-in-1 (20x20)** | `J_H_25` *(or `G_H_30`)* | EFM8BB21 | **[⬇ J_H_25 24k](firmware/hex/J_H_25_24_v0.22.0-3D.hex)** · [⬇ J_H_25 48k](firmware/hex/J_H_25_48_v0.22.0-3D.hex) · [⬇ G_H_30 24k](firmware/hex/G_H_30_24_v0.22.0-3D.hex) |
 | **Diatone Mamba F40 / F50 / F55 / F60 BLS 4-in-1** | `G_H_30` *(or `J_H_50`)* | EFM8BB21 | **[⬇ G_H_30 24k](firmware/hex/G_H_30_24_v0.22.0-3D.hex)** · [⬇ J_H_50 24k](firmware/hex/J_H_50_24_v0.22.0-3D.hex) |
@@ -91,7 +92,7 @@ Once flashed, follow the **[pilot testing guide](TESTING_GUIDE.md)**.
 | **`J_H_20`** | 20 | [⬇ 24 kHz](firmware/hex/J_H_20_24_v0.22.0-3D.hex) | [⬇ 48 kHz](firmware/hex/J_H_20_48_v0.22.0-3D.hex) | — |
 | **`J_H_25`** | 25 | [⬇ 24 kHz](firmware/hex/J_H_25_24_v0.22.0-3D.hex) | [⬇ 48 kHz](firmware/hex/J_H_25_48_v0.22.0-3D.hex) | — |
 | **`J_H_30`** | 30 | [⬇ 24 kHz](firmware/hex/J_H_30_24_v0.22.0-3D.hex) | [⬇ 48 kHz](firmware/hex/J_H_30_48_v0.22.0-3D.hex) | — |
-| **`J_H_40`** | 40 | [⬇ 24 kHz](firmware/hex/J_H_40_24_v0.22.0-3D.hex) | [⬇ 48 kHz](firmware/hex/J_H_40_48_v0.22.0-3D.hex) | — |
+| **`J_H_40`** | 40 | [⬇ 24 kHz](firmware/hex/J_H_40_24_v0.22.0-3D.hex) | [⬇ 48 kHz](firmware/hex/J_H_40_48_v0.22.0-3D.hex) | [⬇ 96 kHz](firmware/hex/J_H_40_96_v0.22.0-3D.hex) |
 | **`J_H_50`** | 50 | [⬇ 24 kHz](firmware/hex/J_H_50_24_v0.22.0-3D.hex) | [⬇ 48 kHz](firmware/hex/J_H_50_48_v0.22.0-3D.hex) | — |
 | **`J_H_70`** | 70 | [⬇ 24 kHz](firmware/hex/J_H_70_24_v0.22.0-3D.hex) | [⬇ 48 kHz](firmware/hex/J_H_70_48_v0.22.0-3D.hex) | — |
 | **`J_H_90`** | 90 | [⬇ 24 kHz](firmware/hex/J_H_90_24_v0.22.0-3D.hex) | [⬇ 48 kHz](firmware/hex/J_H_90_48_v0.22.0-3D.hex) | — |
