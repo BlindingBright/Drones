@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bluejay3D Configurator — 8-Bit 3D ESC Firmware Suite & Reversal Simulator</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-logo">B3D</div>
+      <div>
+        <h1>Bluejay3D Configurator <span class="badge-ver">v0.22.0-3D</span></h1>
+        <p class="subtitle">AM32 &amp; ESCape32 3D Motor Switching Smoothness Backported to EFM8 8-Bit ESCs</p>
+      </div>
+    </div>
+    <div class="top-actions">
+      <button id="btnConnectSerial" class="btn btn-primary" title="Connect to Flight Controller via WebSerial 4-Way Passthrough">
+        🔌 Connect ESC (WebSerial 4-Way)
+      </button>
+      <label class="btn btn-secondary" for="fileUploadInput">
+        📂 Load .HEX / .BIN
+        <input id="fileUploadInput" type="file" accept=".hex,.bin" hidden />
+      </label>
+      <button id="btnExportHex" class="btn btn-accent">
+        💾 Export Patched .HEX
+      </button>
+      <button id="btnExportBin" class="btn btn-secondary">
+        📦 Export EEPROM .BIN
+      </button>
+    </div>
+  </header>
+
+  <main class="layout-grid">
+    <!-- Left Column: Firmware Target Library, Hardware Presets & Binary Inspector -->
+    <aside class="panel sidebar-panel">
+      <section class="card">
+        <h2>1. Firmware Target Library</h2>
+        <p class="hint">Select a compiled Bluejay3D <code>.hex</code> binary or upload your own dump:</p>
+        <select id="selectHexTarget" class="input-select"></select>
+        <div id="targetMetaGrid" class="meta-grid">
+          <div class="meta-item">
+            <span class="meta-label">Target Layout</span>
+            <span id="metaLayout" class="meta-val">O_H_5 (48 kHz)</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">MCU Family</span>
+            <span id="metaMcu" class="meta-val">EFM8BB21</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Firmware Tag</span>
+            <span id="metaNameTag" class="meta-val">Bluejay3D v0.22</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Flash Usage</span>
+            <span id="metaFlash" class="meta-val">71.1% (1920B free)</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">EEPROM Base</span>
+            <span id="metaEeprom" class="meta-val">0x1A00 (v208)</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Bootloader</span>
+            <span id="metaBoot" class="meta-val">0x1C00 ✓</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>2. 3D Hardware Presets</h2>
+        <p class="hint">One-click profiles calibrated from BetaFlight 3D Edition &amp; ZoeFPV hardware dumps:</p>
+        <div class="preset-buttons">
+          <button class="preset-btn active" data-preset="whoop_1s_2s">
+            <strong>🐝 Block B: 1S/2S 3D Whoop (Lil Horny / 0802)</strong>
+            <span>Packs 3–4 — Fast 6.7k eRPM flip handover, 3.1% min duty, High demag, 1ms restart</span>
+          </button>
+          <button class="preset-btn" data-preset="toothpick_3_4">
+            <strong>⚡ Block B: 3"-4" 3D Toothpick (1204–1404)</strong>
+            <span>Packs 3–4 — Balanced 37.6% braking limit, 5.0k eRPM handover, 2.35% min duty</span>
+          </button>
+          <button class="preset-btn" data-preset="acro_5inch">
+            <strong>🚁 Block B: 5" 3D Acro Quad (2207–2306 4S/6S)</strong>
+            <span>Packs 3–4 — High-inertia prop protection (28.2% brake cap, 3-frame glitch filter)</span>
+          </button>
+          <button class="preset-btn" data-preset="stock_v021">
+            <strong>⚠️ Block A: Stock Bluejay v0.21 Baseline</strong>
+            <span>Packs 1–2 — Emulates legacy v0.21 settings for A/B flight comparison</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>3. WebSerial 4-Way ESC Status</h2>
+        <div id="serialStatusBox" class="serial-status disconnected">
+          <span class="status-dot"></span>
+          <span id="serialStatusText">Offline — Load/Edit .HEX or click Connect ESC</span>
+        </div>
+        <div class="esc-slots">
+          <div class="esc-slot" id="escSlot1"><strong>ESC 1</strong><span>Ready (Sim/Hex)</span></div>
+          <div class="esc-slot" id="escSlot2"><strong>ESC 2</strong><span>Ready (Sim/Hex)</span></div>
+          <div class="esc-slot" id="escSlot3"><strong>ESC 3</strong><span>Ready (Sim/Hex)</span></div>
+          <div class="esc-slot" id="escSlot4"><strong>ESC 4</strong><span>Ready (Sim/Hex)</span></div>
+        </div>
+        <div class="serial-actions">
+          <button id="btnReadEsc" class="btn btn-secondary btn-sm" disabled>Read ESCs</button>
+          <button id="btnWriteEsc" class="btn btn-primary btn-sm" disabled>Write EEPROM</button>
+          <button id="btnFlashEsc" class="btn btn-accent btn-sm" disabled>Flash .HEX</button>
+        </div>
+      </section>
+    </aside>
+
+    <!-- Center Column: Bluejay3D Parameters & Standard ESC Settings -->
+    <section class="panel center-panel">
+      <div class="card highlight-card">
+        <div class="card-header-row">
+          <div>
+            <h2>AM32 / ESCape32 Backported 3D Mode Parameters</h2>
+            <p class="hint">Stored in EEPROM offsets <code>0x11..0x18</code> (compatible with Layout v208)</p>
+          </div>
+          <span class="pill-badge">Bluejay3D Exclusive</span>
+        </div>
+
+        <div class="control-group">
+          <div class="control-header">
+            <label for="inp3dBrakeStrength">3D Direction-Change Braking Strength (<code>Pgm_3D_Brake_Strength</code>)</label>
+            <span id="val3dBrakeStrength" class="control-readout">8 (37.6% Limit / 9.4% Floor)</span>
+          </div>
+          <input id="inp3dBrakeStrength" type="range" min="1" max="10" value="8" />
+          <p class="control-desc">Replaces stock Bluejay's hardcoded <code>Pwm_Limit_Beg</code> (~2%) braking cap and prevents <code>run2</code> from overwriting braking power. Scales active reverse-phase braking proportionally between floor and limit.</p>
+        </div>
+
+        <div class="control-group">
+          <div class="control-header">
+            <label for="inp3dBrakeSpeed">3D Zero-Crossing Handover Speed (<code>Pgm_3D_Brake_Speed</code>)</label>
+            <span id="val3dBrakeSpeed" class="control-readout">5 (64 / ~5,000 eRPM)</span>
+          </div>
+          <input id="inp3dBrakeSpeed" type="range" min="1" max="10" value="5" />
+          <p class="control-desc">Speed threshold (<code>Comm_Period4x_H</code>) where active braking completes and commutation flips to the new direction. If rotor is already slower than this threshold on stick flip, reverses immediately in 0 braking steps (AM32 style).</p>
+        </div>
+
+        <div class="control-group">
+          <div class="control-header">
+            <label for="inp3dMinDuty">3D Minimum Active Duty Floor (<code>Pgm_3D_Min_Duty</code>)</label>
+            <span id="val3dMinDuty" class="control-readout">3 (2.35% Duty Floor)</span>
+          </div>
+          <input id="inp3dMinDuty" type="range" min="0" max="15" value="3" />
+          <p class="control-desc">Prevents low-throttle 3D commands (<code>DShot 48..100</code> and <code>1048..1100</code>) near the 3D deadband from starving the BEMF comparator or getting mistaken for <code>Flag_Rcp_Stop</code>.</p>
+        </div>
+
+        <div class="control-group">
+          <div class="control-header">
+            <label for="inp3dGlitchFilter">High-RPM Reversal Glitch Filter (<code>Pgm_3D_Glitch_Filter</code>)</label>
+            <span id="val3dGlitchFilter" class="control-readout">1 (2 Confirmations &gt;20k eRPM)</span>
+          </div>
+          <input id="inp3dGlitchFilter" type="range" min="0" max="3" value="1" />
+          <p class="control-desc">Number of consecutive opposite-direction commutations required above 20,000 eRPM before engaging 180° braking. Prevents single DShot bit errors from causing mid-air violent braking.</p>
+        </div>
+
+        <div class="toggle-grid">
+          <label class="toggle-card">
+            <input id="chk3dRevBoost" type="checkbox" checked />
+            <div>
+              <strong>3D Reversal Startup Boost (<code>Pgm_3D_Rev_Boost</code>)</strong>
+              <span>Clears <code>Flag_Motor_Started</code> &amp; resets <code>Demag_Detected_Metric</code> on zero-crossing so <code>t1_int</code> applies startup boost punch at 0 RPM.</span>
+            </div>
+          </label>
+
+          <label class="toggle-card">
+            <input id="chk3dFastRestart" type="checkbox" checked />
+            <div>
+              <strong>1ms Fast 3D Desync Recovery (<code>Pgm_3D_Fast_Restart</code>)</strong>
+              <span>Replaces stock Bluejay's 100ms motor shutdown (<code>wait100ms</code>) with a 1ms fast restart and 6 retries, plus a tighter 12-step initial run phase.</span>
+            </div>
+          </label>
+
+          <label class="toggle-card">
+            <input id="chk3dFastTrack" type="checkbox" checked />
+            <div>
+              <strong>Fast 4-Sample Comm Tracking &amp; Full Post-Rev Torque (<code>Pgm_3D_Fast_Track</code>)</strong>
+              <span>Uses fast <code>div_4_1</code> timing filter during braking/reversals and removes the 50% (<code>#127</code>) low-RPM torque choke after 3D reversals.</span>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Core Bluejay &amp; Motor Commutation Settings</h2>
+        <div class="form-grid-2">
+          <div class="field-box">
+            <label for="selDirection">Motor Direction / 3D Mode</label>
+            <select id="selDirection" class="input-select">
+              <option value="1">Normal (2D)</option>
+              <option value="2">Reversed (2D)</option>
+              <option value="3" selected>Bidirectional 3D (Normal)</option>
+              <option value="4">Bidirectional 3D (Reversed)</option>
+            </select>
+          </div>
+
+          <div class="field-box">
+            <label for="selCommTiming">Commutation Timing (Advance)</label>
+            <select id="selCommTiming" class="input-select">
+              <option value="1">Low (0°)</option>
+              <option value="2">Medium-Low (7.5°)</option>
+              <option value="3">Medium (15°)</option>
+              <option value="4" selected>Medium-High (22.5° — Recommended 3D)</option>
+              <option value="5">High (30°)</option>
+            </select>
+          </div>
+
+          <div class="field-box">
+            <label for="selDemagComp">Demag Compensation</label>
+            <select id="selDemagComp" class="input-select">
+              <option value="1">Disabled</option>
+              <option value="2">Low (Thresh 160)</option>
+              <option value="3" selected>High (Thresh 130 — Recommended 3D)</option>
+            </select>
+          </div>
+
+          <div class="field-box">
+            <label for="selPowerRating">Cell Voltage Reference</label>
+            <select id="selPowerRating" class="input-select">
+              <option value="1">1S (Internal 1.65V Vref)</option>
+              <option value="2" selected>2S+ (VDD 3.3V Vref)</option>
+            </select>
+          </div>
+
+          <div class="field-box">
+            <label for="inpStartupMin">Min Startup Power (<code>Pgm_Startup_Power_Min</code>)</label>
+            <div class="inline-slider">
+              <input id="inpStartupMin" type="range" min="0" max="100" value="29" />
+              <span id="valStartupMin">1014 (29)</span>
+            </div>
+          </div>
+
+          <div class="field-box">
+            <label for="inpStartupMax">Max Startup Power (<code>Pgm_Startup_Power_Max</code>)</label>
+            <div class="inline-slider">
+              <input id="inpStartupMax" type="range" min="1" max="80" value="25" />
+              <span id="valStartupMax">1100 (25)</span>
+            </div>
+          </div>
+
+          <div class="field-box">
+            <label for="inpRpmSlope">Low-RPM Power Slope (<code>Pgm_Rpm_Power_Slope</code>)</label>
+            <div class="inline-slider">
+              <input id="inpRpmSlope" type="range" min="0" max="13" value="9" />
+              <span id="valRpmSlope">9x</span>
+            </div>
+          </div>
+
+          <div class="field-box">
+            <label for="inpBrakingStrength">Damped Light Braking Strength</label>
+            <div class="inline-slider">
+              <input id="inpBrakingStrength" type="range" min="0" max="255" value="255" />
+              <span id="valBrakingStrength">100% (255)</span>
+            </div>
+          </div>
+
+          <div class="field-box">
+            <label for="inpBeepStrength">Beep Strength</label>
+            <div class="inline-slider">
+              <input id="inpBeepStrength" type="range" min="0" max="255" value="40" />
+              <span id="valBeepStrength">40</span>
+            </div>
+          </div>
+
+          <div class="field-box">
+            <label for="inpNameTag">ESC Firmware Name Tag (16 chars)</label>
+            <input id="inpNameTag" type="text" maxlength="16" value="Bluejay3D v0.22 " class="input-text" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Right Column: Interactive 3D Reversal Physics Simulator & EEPROM Map -->
+    <aside class="panel sim-panel">
+      <div class="card">
+        <div class="card-header-row">
+          <div>
+            <h2>Interactive 3D Reversal Simulator</h2>
+            <p class="hint">Stock Bluejay v0.21 vs. Bluejay3D v0.22 (+28k → -28k eRPM Flip)</p>
+          </div>
+        </div>
+
+        <div class="sim-controls">
+          <div>
+            <label for="simInitErpm">Entry Speed: <strong id="valSimInitErpm">28,000 eRPM</strong></label>
+            <input id="simInitErpm" type="range" min="6000" max="45000" step="1000" value="28000" />
+          </div>
+          <div>
+            <label for="simRevThrottle">Reversal Throttle: <strong id="valSimRevThrottle">35%</strong></label>
+            <input id="simRevThrottle" type="range" min="5" max="100" step="5" value="35" />
+          </div>
+        </div>
+
+        <div class="kpi-row">
+          <div class="kpi-box kpi-good">
+            <span class="kpi-title">Zero-Cross Latency</span>
+            <strong id="kpiZeroCross">5.5 ms vs 11.2 ms</strong>
+            <small id="kpiZeroCrossGain">50.9% Faster Flip</small>
+          </div>
+          <div class="kpi-box kpi-good">
+            <span class="kpi-title">Full Sync Recovery</span>
+            <strong id="kpiFullSync">13.0 ms vs 29.5 ms</strong>
+            <small id="kpiFullSyncGain">55.9% Faster Lock</small>
+          </div>
+          <div class="kpi-box kpi-accent">
+            <span class="kpi-title">Desync Timeout Recovery</span>
+            <strong id="kpiDesyncWait">1 ms vs 100 ms</strong>
+            <small>99% Lockout Reduction</small>
+          </div>
+        </div>
+
+        <div class="chart-wrap">
+          <div class="chart-legend">
+            <span class="leg-item"><i class="swatch swatch-bj3d"></i> Bluejay3D v0.22 (eRPM)</span>
+            <span class="leg-item"><i class="swatch swatch-stock"></i> Stock Bluejay v0.21 (eRPM)</span>
+            <span class="leg-item"><i class="swatch swatch-tlm"></i> Stock Telemetry Spike</span>
+          </div>
+          <canvas id="canvasErpm" width="520" height="220"></canvas>
+        </div>
+
+        <div class="chart-wrap">
+          <div class="chart-legend">
+            <span class="leg-item"><i class="swatch swatch-bj3d"></i> Bluejay3D Effective Duty %</span>
+            <span class="leg-item"><i class="swatch swatch-stock"></i> Stock v0.21 Duty % (Demag Cutoff &amp; 50% Choke)</span>
+          </div>
+          <canvas id="canvasDuty" width="520" height="150"></canvas>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header-row">
+          <h2>Live EEPROM Hex Map (<code>0x00..0x2B</code>)</h2>
+          <span id="eepromDirtyBadge" class="badge-clean">Synced</span>
+        </div>
+        <div id="eepromHexGrid" class="eeprom-grid"></div>
+      </div>
+    </aside>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

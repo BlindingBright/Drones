@@ -1,0 +1,105 @@
+name: "BlueJay3D: Upload Blackbox Logs & Flight Feedback"
+description: "Upload your .BBL blackbox logs (zip) and flight report for BlueJay3D v0.22.0-3D"
+title: "[BlueJay3D Flight Logs]: "
+labels: ["bluejay3d", "flight-logs"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for testing **BlueJay3D (`v0.22.0-3D`)**! Attach your `.BBL` blackbox logs (drag-and-drop a `.zip` containing your Pack 1–4 `.BBL` files into the upload box below) along with a short report.
+  - type: input
+    id: callsign
+    attributes:
+      label: "Pilot name / callsign"
+      placeholder: "e.g. ZoeFPV"
+    validations:
+      required: true
+  - type: input
+    id: esc_target
+    attributes:
+      label: "ESC Target & PWM Frequency flown"
+      placeholder: "e.g. O_H_5 48 kHz, Z_H_30 48 kHz, G_H_30 24 kHz, A_X_5 48 kHz"
+    validations:
+      required: true
+  - type: dropdown
+    id: fw_flown
+    attributes:
+      label: "Which ESC firmware comparison did you fly?"
+      options:
+        - "BlueJay3D v0.22.0-3D (Block A stock-like vs Block B 3D optimized)"
+        - "BlueJay3D v0.22.0-3D (Block B 3D optimized only)"
+        - "Stock Bluejay v0.21.0 vs BlueJay3D v0.22.0-3D"
+        - "Stock BLHeli_S vs BlueJay3D v0.22.0-3D"
+    validations:
+      required: true
+  - type: dropdown
+    id: preset
+    attributes:
+      label: "Which BlueJay3D preset did you fly for Block B?"
+      options:
+        - "1S/2S 3D Whoop Preset (from the testing guide)"
+        - "3-4 inch Toothpick / Micro 3D Preset"
+        - "5-inch 3D Acro Preset"
+        - "Custom settings in Bluejay3D Configurator"
+    validations:
+      required: true
+  - type: textarea
+    id: quad_details
+    attributes:
+      label: "Drone & FC details: AIO/ESC board name, frame, weight, motors (size + kv), props, battery, FC firmware"
+      placeholder: "e.g. CrazyBee F4 SX1280, 65mm 2S whoop, 0802 16000kv, Gemfan 123D, BetaFlight 3D Edition v0.3.1"
+    validations:
+      required: true
+  - type: textarea
+    id: pack_mapping
+    attributes:
+      label: "Which settings was each log flown with? (Drag & drop your .zip of .BBL logs + ESC screenshot here!)"
+      placeholder: "Pack 1 & 2: Block A (Stock v0.21 baseline)\nPack 3 & 4: Block B (1S/2S Whoop Preset)\n\n[Drag and drop your .zip of .BBL logs and screenshots here]"
+    validations:
+      required: true
+  - type: checkboxes
+    id: maneuvers
+    attributes:
+      label: "What did you fly in these logs?"
+      options:
+        - label: "The 4-pack A/B test from the guide (flips with 1-2 s holds)"
+        - label: "Rapid tic-tocks (upright <-> inverted reversals)"
+        - label: "High-RPM full-stick reversals (active braking test)"
+        - label: "Zero-crossing hover / gentle center-stick transitions"
+        - label: "Punch-outs from reversals"
+        - label: "Inverted hover"
+        - label: "Freestyle 3D"
+        - label: "Bench test only (props off / bench_verify.py)"
+  - type: dropdown
+    id: rating
+    attributes:
+      label: "Compared with Block A (stock Bluejay v0.21 behavior), how did Block B (BlueJay3D) feel?"
+      options:
+        - "5 - Much better than stock Bluejay"
+        - "4 - Somewhat better than stock Bluejay"
+        - "3 - No noticeable difference"
+        - "2 - Somewhat worse than stock Bluejay"
+        - "1 - Much worse than stock Bluejay"
+        - "Skipped (only flew Block B)"
+    validations:
+      required: true
+  - type: checkboxes
+    id: observations
+    attributes:
+      label: "Did you notice any of these?"
+      options:
+        - label: "Clean, instant reversals with no desyncs"
+        - label: "Motor stall or desync (motor stopped, stuttered or squealed)"
+        - label: "Fast 1 ms recovery caught a desync mid-air without dropping an arm"
+        - label: "Deadband stutter or hesitation near stick center"
+        - label: "Drift or wobble after flips / reversals"
+        - label: "Hot motors or ESC"
+        - label: "Crash"
+        - label: "Nothing unusual"
+  - type: textarea
+    id: report
+    attributes:
+      label: "Short report: how did it fly? Did BlueJay3D fix desyncs or center-stick stutters?"
+      placeholder: "Describe how reversals felt in Packs 1-2 vs Packs 3-4..."
+    validations:
+      required: true

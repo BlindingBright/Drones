@@ -1,0 +1,143 @@
+;**** **** **** **** **** **** **** **** **** **** **** **** ****
+;
+; Bluejay digital ESC firmware for controlling brushless motors in multirotors
+;
+; Copyleft  2022-2023 Daniel Mosquera
+; Copyright 2020-2022 Mathias Rasmussen
+; Copyright 2011-2017 Steffen Skaug
+;
+; This file is part of Bluejay.
+;
+; Bluejay is free software: you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation, either version 3 of the License, or
+; (at your option) any later version.
+;
+; Bluejay is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with Bluejay.  If not, see <http://www.gnu.org/licenses/>.
+;
+;**** **** **** **** **** **** **** **** **** **** **** **** ****
+;
+; Power control
+;
+;**** **** **** **** **** **** **** **** **** **** **** **** ****
+
+;**** **** **** **** **** **** **** **** **** **** **** **** ****
+;
+; Switch power off
+;
+; Switches all FETs off
+;
+;**** **** **** **** **** **** **** **** **** **** **** **** ****
+switch_power_off:
+    All_Pwm_Fets_Off                    ; Turn off all pwm FETs
+    All_Com_Fets_Off                    ; Turn off all commutation FETs
+    Set_All_Pwm_Phases_Off
+    ret
+
+;**** **** **** **** **** **** **** **** **** **** **** **** ****
+;
+; Set PWM limit low RPM
+;
+; Sets power limit for low RPM
+;
+;**** **** **** **** **** **** **** **** **** **** **** **** ****
+set_pwm_limit:
+    ; Maintain 3D braking limit across all commutation steps while braking
+    jnb  Flag_Dir_Change_Brake, set_pwm_limit_not_braking
+    mov  Pwm_Limit_By_Rpm, Pwm_3D_Brake_Limit
+    ret
+
+set_pwm_limit_not_braking:
+    jb   Flag_High_Rpm, set_pwm_limit_high_rpm ; If high rpm,limit pwm by rpm instead
+
+set_pwm_limit_low_rpm:
+    ; Set pwm limit for startup phase to avoid burning the esc/motor during startup
+    ; (Startup can happen after a desync caused by a crash, if that is the case it
+    ; will be better to avoid burning esc/motor)
+    mov  Temp1, Pwm_Limit_Beg
+
+    ; Exit if startup phase is set
+    jb   Flag_Startup_Phase, set_pwm_limit_low_rpm_exit
+
+    ; Set default pwm limit for other phases
+    mov  Temp1, #0FFh                   ; Default full power
+
+    mov  A, Low_Rpm_Pwr_Slope           ; Check if low RPM power protection is enabled
+    jz   set_pwm_limit_low_rpm_exit     ; Exit if disabled (zero)
+
+    mov  A, Comm_Period4x_H
+    jz   set_pwm_limit_low_rpm_exit     ; Avoid divide by zero
+
+    mov  A, #255                        ; Divide 255 by Comm_Period4x_H
+    jnb  Flag_Initial_Run_Phase, set_pwm_limit_calculate ; More protection for initial run phase
+    jnb  Flag_Pgm_Bidir, set_pwm_limit_initial_half
+    jb   Flag_3D_Fast_Track, set_pwm_limit_calculate ; Full post-reversal low-RPM torque in 3D mode
+set_pwm_limit_initial_half:
+    mov  A, #127
+
+set_pwm_limit_calculate:
+    mov  B, Comm_Period4x_H
+    div  AB
+    mov  B, Low_Rpm_Pwr_Slope           ; Multiply by slope
+    mul  AB
+    mov  Temp1, A                       ; Set new limit
+    xch  A, B
+
+    ; If RPM_PWM_LIMIT < 255 goto set_pwm_limit_check_limit_to_min
+    jz   set_pwm_limit_check_limit_to_min ; Limit to max
+
+    ; Limit is bigger than 0xFF -> set max pwm and exit
+    mov  Pwm_Limit_By_Rpm, #0FFh
+    ret
+
+set_pwm_limit_check_limit_to_min:
+    clr  C
+    mov  A, Temp1                       ; Limit to min
+    subb A, Pwm_Limit_Beg
+    jnc  set_pwm_limit_low_rpm_exit
+
+    mov  Temp1, Pwm_Limit_Beg
+
+set_pwm_limit_low_rpm_exit:
+    mov  Pwm_Limit_By_Rpm, Temp1
+    ret
+
+;**** **** **** **** **** **** **** **** **** **** **** **** ****
+;
+; Set PWM limit high RPM
+;
+; Sets power limit for high RPM
+;
+;**** **** **** **** **** **** **** **** **** **** **** **** ****
+set_pwm_limit_high_rpm:
+    clr  C
+    mov  A, Comm_Period4x_L
+IF MCU_TYPE == MCU_BB2 or MCU_TYPE == MCU_BB51
+    subb A, #0A0h                       ; Limit Comm_Period4x to 160,which is ~510k erpm
+ELSE
+    subb A, #0E4h                       ; Limit Comm_Period4x to 228,which is ~358k erpm
+ENDIF
+    mov  A, Comm_Period4x_H
+    subb A, #00h
+
+    mov  A, Pwm_Limit_By_Rpm
+    jnc  set_pwm_limit_high_rpm_inc_limit
+
+    dec  A
+    sjmp set_pwm_limit_high_rpm_store
+
+set_pwm_limit_high_rpm_inc_limit:
+    inc  A
+
+set_pwm_limit_high_rpm_store:
+    jz   set_pwm_limit_high_rpm_end
+    mov  Pwm_Limit_By_Rpm, A
+
+set_pwm_limit_high_rpm_end:
+    ret

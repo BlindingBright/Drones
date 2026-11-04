@@ -1,0 +1,61 @@
+# BlueJay3D v0.22.0-3D EEPROM Preset Reference (0x1A00..0x1A5F)
+
+## BlockA_Stock_v021_Baseline.bin
+Packs 1 & 2 (Block A): Emulates stock Bluejay v0.21.0 commutation/braking on the v0.22.0-3D binary for clean A/B flight testing.
+  0x1A03: 21
+  0x1A05: 3
+  0x1A09: 5
+  0x1A0B: 4
+  0x1A13: 2
+  0x1A1B: 1
+  0x1A1C: 5
+  0x1A1D: 0
+  0x1A1E: 0
+  0x1A1F: 0
+  0x1A20: 0
+  0x1A21: 0
+
+## BlockB_1S_2S_Whoop.bin
+Packs 3 & 4 (Block B - 1S/2S 3D Whoop): Calibrated for 0702/0802/1002 high-KV whoops (e.g. Lil Horny).
+  0x1A03: 33
+  0x1A05: 3
+  0x1A09: 29
+  0x1A0B: 4
+  0x1A13: 3
+  0x1A1B: 8
+  0x1A1C: 7
+  0x1A1D: 4
+  0x1A1E: 1
+  0x1A1F: 1
+  0x1A20: 1
+  0x1A21: 1
+
+## BlockB_3_4_Toothpick.bin
+Packs 3 & 4 (Block B - 3"-4" Toothpick / Micro 3D): Calibrated for 1204-1404 2S-4S builds.
+  0x1A03: 29
+  0x1A05: 3
+  0x1A09: 25
+  0x1A0B: 4
+  0x1A13: 3
+  0x1A1B: 8
+  0x1A1C: 5
+  0x1A1D: 3
+  0x1A1E: 1
+  0x1A1F: 1
+  0x1A20: 1
+  0x1A21: 1
+
+## BlockB_5inch_Acro.bin
+Packs 3 & 4 (Block B - 5-inch 3D Acro): Calibrated for 2207-2306 4S-6S high-inertia props.
+  0x1A03: 25
+  0x1A05: 3
+  0x1A09: 21
+  0x1A0B: 4
+  0x1A13: 3
+  0x1A1B: 6
+  0x1A1C: 4
+  0x1A1D: 3
+  0x1A1E: 1
+  0x1A1F: 1
+  0x1A20: 1
+  0x1A21: 2

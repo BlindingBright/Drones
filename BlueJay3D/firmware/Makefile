@@ -1,0 +1,189 @@
+# Current version
+TAG			:= v0.22.0-3D
+VERSION		?= $(TAG)
+SETTINGSDIR	?= ./src/Settings
+
+# Target parameters
+LAYOUTS		= A B C D E F G H I J K L M N O P Q R S T U V W Z \
+			  OA
+MCUS			= H
+LAYOUTS_X		= A B C D E
+MCUS_X		= X
+DEADTIMES		= 0 5 10 15 20 25 30 40 50 70 90 120
+PWM_FREQS		= 24 48 96
+
+# Example single target
+LAYOUT		?= A
+MCU			?= H
+DEADTIME	?= 5
+PWM			?= 24
+
+# Directory configuration
+OUTPUT_DIR	?= build
+HEX_DIR		?= $(OUTPUT_DIR)/hex
+
+# Path to the keil binaries
+KEIL_PATH	?= ~/.wine/drive_c/Keil_v5/C51/BIN
+
+# Assembler and linker binaries
+AX51_BIN	= $(KEIL_PATH)/AX51.exe
+LX51_BIN	= $(KEIL_PATH)/LX51.exe
+OX51_BIN	= $(KEIL_PATH)/Ohx51.exe
+AX51		= wine $(AX51_BIN)
+LX51		= wine $(LX51_BIN)
+OX51		= wine $(OX51_BIN)
+
+# Set up flags
+#AX51_FLAGS	= DEBUG NOMOD51
+AX51_FLAGS	= NOMOD51 REGISTERBANK(0,1,2) NOLIST NOSYMBOLS
+LX51_FLAGS	=
+
+# Source files
+ASM_SRC		= src/Bluejay.asm
+
+ASM_INC		= 								\
+			$(LAYOUTS:%=src/Layouts/%.inc)	\
+			src/Layouts/Base.inc			\
+			src/BLHeliBootLoad.inc			\
+			src/Silabs/SI_EFM8BB2_Defs.inc	\
+			src/Silabs/SI_EFM8BB51_Defs.inc	\
+			src/Silabs/SI_EFM8LB1_Defs.inc	\
+			src/Modules/Common.asm			\
+			src/Modules/Commutation.asm		\
+			src/Modules/DShot.asm			\
+			src/Modules/Eeprom.asm			\
+			src/Modules/Fx.asm				\
+			src/Modules/Isrs.asm			\
+			src/Modules/Macros.asm			\
+			src/Modules/Power.asm			\
+			src/Modules/Scheduler.asm		\
+			src/Modules/Settings.asm		\
+			src/Modules/Timing.asm
+
+# Check that wine/simplicity studio is available
+EXECUTABLES	= $(AX51_BIN) $(LX51_BIN) $(OX51_BIN)
+DUMMYVAR	:= $(foreach exec, $(EXECUTABLES), \
+				$(if $(wildcard $(exec)),found, \
+				$(error "Could not find $(exec). Make sure to set the correct paths to the simplicity install location")))
+
+# Set up efm8load
+EFM8_LOAD_BIN	?= tools/efm8load.py
+EFM8_LOAD_PORT	?= /dev/ttyUSB0
+EFM8_LOAD_BAUD	?= 115200
+
+# Delete object files on error and warnings
+.DELETE_ON_ERROR:
+
+# AX51 mixes up input defines when run in parallel. Maybe because you cannot change the TMP directory per invocation.
+.NOTPARALLEL:
+
+define MAKE_OBJ
+OBJS += $(1)_$(2)_$(3)_$(4)_$(VERSION).OBJ
+$(OUTPUT_DIR)/$(1)_$(2)_$(3)_$(4)_$(VERSION).OBJ : $(ASM_SRC) $(ASM_INC)
+	$(eval _ESC			:= $(1))
+	$(eval _ESC_INT		:= $(shell printf "%d" "'${_ESC}"))
+	$(eval _ESCNO		:= $(shell echo $$(( $(_ESC_INT) - 65 + 1))))
+
+	$(if $(shell if [ ${_ESC} = "OA" ]; then echo "TRUE"; fi),$(eval _ESCNO := '27'),)
+
+	$(eval _MCU_TYPE	:= $(subst L,0,$(subst H,1,$(subst X,2,$(2)))))
+	$(eval _DEADTIME	:= $(3))
+	$(eval _PWM_FREQ	:= $(subst 24,0,$(subst 48,1,$(subst 96,2,$(4)))))
+	$$(eval _LST		:= $$(patsubst %.OBJ,%.LST,$$@))
+	@mkdir -p $(OUTPUT_DIR)
+	@echo "AX51 : $$@"
+	@$(AX51) $(ASM_SRC) \
+		"INCDIR($(SETTINGSDIR)) " \
+		"DEFINE(ESCNO=$(_ESCNO)) " \
+		"DEFINE(MCU_TYPE=$(_MCU_TYPE)) "\
+		"DEFINE(DEADTIME=$(_DEADTIME)) "\
+		"DEFINE(PWM_FREQ=$(_PWM_FREQ)) "\
+		"OBJECT($$@) "\
+		"PRINT($$(_LST)) "\
+		"$(AX51_FLAGS)" > /dev/null 2>&1 || (grep -B 3 -E "\*\*\* (ERROR|WARNING)" $$(_LST); exit 1)
+endef
+
+SINGLE_TARGET_HEX = $(HEX_DIR)/$(LAYOUT)_$(MCU)_$(DEADTIME)_$(PWM)_$(VERSION).hex
+
+single_target : $(SINGLE_TARGET_HEX)
+
+# Create all obj targets using macro expansion
+$(foreach _l, $(LAYOUTS), \
+	$(foreach _m, $(MCUS), \
+		$(foreach _d, $(DEADTIMES), \
+			$(foreach _p, $(filter-out $(subst L,96,$(_m)), $(PWM_FREQS)), \
+				$(eval $(call MAKE_OBJ,$(_l),$(_m),$(_d),$(_p)))))))
+
+$(foreach _l, $(LAYOUTS_X), \
+	$(foreach _m, $(MCUS_X), \
+		$(foreach _d, $(DEADTIMES), \
+			$(foreach _p, $(filter-out $(subst L,96,$(_m)), $(PWM_FREQS)), \
+				$(eval $(call MAKE_OBJ,$(_l),$(_m),$(_d),$(_p)))))))
+
+HEX_TARGETS = $(OBJS:%.OBJ=$(HEX_DIR)/%.hex)
+
+all : $(HEX_TARGETS)
+	@echo "\nbuild finished. built $(shell ls -Aq $(HEX_DIR) | wc -l) hex targets\n"
+
+$(HEX_DIR)/%.hex : $(OUTPUT_DIR)/%.OBJ
+	@mkdir -p $(HEX_DIR)
+	@echo "HEX  : linking & generating $@"
+	@python3 ../tools/omf2hex.py "$<" "$@"
+
+POPULAR_3D_TARGETS = \
+	$(HEX_DIR)/O_H_5_24_$(VERSION).hex \
+	$(HEX_DIR)/O_H_5_48_$(VERSION).hex \
+	$(HEX_DIR)/O_H_5_96_$(VERSION).hex \
+	$(HEX_DIR)/A_H_0_24_$(VERSION).hex \
+	$(HEX_DIR)/A_H_0_48_$(VERSION).hex \
+	$(HEX_DIR)/A_H_5_24_$(VERSION).hex \
+	$(HEX_DIR)/A_H_5_48_$(VERSION).hex \
+	$(HEX_DIR)/A_H_5_96_$(VERSION).hex \
+	$(HEX_DIR)/Z_H_30_24_$(VERSION).hex \
+	$(HEX_DIR)/Z_H_30_48_$(VERSION).hex \
+	$(HEX_DIR)/Z_H_30_96_$(VERSION).hex \
+	$(HEX_DIR)/S_H_50_24_$(VERSION).hex \
+	$(HEX_DIR)/S_H_50_48_$(VERSION).hex \
+	$(HEX_DIR)/S_H_50_96_$(VERSION).hex \
+	$(HEX_DIR)/G_H_30_24_$(VERSION).hex \
+	$(HEX_DIR)/G_H_30_48_$(VERSION).hex \
+	$(HEX_DIR)/G_H_30_96_$(VERSION).hex \
+	$(HEX_DIR)/Q_H_20_24_$(VERSION).hex \
+	$(HEX_DIR)/Q_H_20_48_$(VERSION).hex \
+	$(HEX_DIR)/J_H_15_24_$(VERSION).hex \
+	$(HEX_DIR)/J_H_15_48_$(VERSION).hex \
+	$(HEX_DIR)/A_X_5_24_$(VERSION).hex \
+	$(HEX_DIR)/A_X_5_48_$(VERSION).hex \
+	$(HEX_DIR)/A_X_5_96_$(VERSION).hex \
+	$(HEX_DIR)/B_X_30_24_$(VERSION).hex \
+	$(HEX_DIR)/B_X_30_48_$(VERSION).hex
+
+popular_3d : $(POPULAR_3D_TARGETS)
+	@echo "\nBluejay3D build finished. Built $(shell ls -Aq $(HEX_DIR)/*.hex | wc -l) hex targets in $(HEX_DIR)/\n"
+
+# Check if most recent commit changes production code (hex output)
+check_commit: $(SINGLE_TARGET_HEX)
+	@mv $(SINGLE_TARGET_HEX) $(SINGLE_TARGET_HEX:.hex=_after.hex)
+	@git checkout HEAD~1
+	@make $(SINGLE_TARGET_HEX)
+	@git checkout -
+	@diff $(SINGLE_TARGET_HEX) $(SINGLE_TARGET_HEX:.hex=_after.hex)
+
+changelog:
+	@npx -q mathiasvr/generate-changelog --exclude build,chore,ci,docs,refactor,style,other
+
+help:
+	@echo ""
+	@echo "Usage examples"
+	@echo "================================================================"
+	@echo "make all                                 # Build all targets"
+	@echo "make LAYOUT=A MCU=H DEADTIME=5 PWM=24    # Build a single target"
+	@echo
+
+clean:
+	@rm -f $(OUTPUT_DIR)/*.{OBJ,MAP,OMF,LST}
+
+efm8load: single_target
+	$(EFM8_LOAD_BIN) -p $(EFM8_LOAD_PORT) -b $(EFM8_LOAD_BAUD) -w $(SINGLE_TARGET_HEX)
+
+.PHONY: single_target all changelog help clean efm8load check_commit

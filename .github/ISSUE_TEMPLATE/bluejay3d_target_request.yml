@@ -1,0 +1,93 @@
+name: "BlueJay3D: Request an ESC Target / Board Build"
+description: "Request a BlueJay3D firmware build for your 8-bit ESC or AIO flight controller"
+title: "[BlueJay3D Target Request]: "
+labels: ["bluejay3d", "target-request"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Want to test **BlueJay3D** on an 8-bit ESC or AIO flight controller that isn't in [`TARGETS.md`](https://github.com/BlindingBright/Drones/blob/bluejay3d/BlueJay3D/TARGETS.md) yet (or not sure which layout your board uses)? Fill out the fields below and we'll identify or build a test `.hex` firmware for it.
+        *(Tip: In [esc-configurator.com](https://esc-configurator.com) or the Bluejay3D Configurator, click **Read Settings**. Your ESC target code looks like `O_H_5`, `Z_H_30`, `A_H_5`, `G_H_30`, or `A_X_5`.)*
+  - type: input
+    id: callsign
+    attributes:
+      label: "Pilot name / callsign"
+      placeholder: "e.g. ZoeFPV"
+    validations:
+      required: true
+  - type: input
+    id: contact
+    attributes:
+      label: "How should we contact you when your build is ready? (Discord name, GitHub, or email)"
+      placeholder: "e.g. Discord @handle or GitHub notification"
+    validations:
+      required: true
+  - type: input
+    id: esc_layout
+    attributes:
+      label: "ESC layout code, exactly as esc-configurator.com shows it"
+      placeholder: "e.g. O_H_5, Z_H_30, B_X_30, or 'Not sure'"
+    validations:
+      required: true
+  - type: input
+    id: product_name
+    attributes:
+      label: "AIO Flight Controller or 4-in-1 ESC manufacturer and product name (a link is great)"
+      placeholder: "e.g. BetaFPV Air 5-in-1 1S AIO or SpeedyBee F405 Mini BLS 35A"
+    validations:
+      required: true
+  - type: dropdown
+    id: esc_type
+    attributes:
+      label: "What kind of ESC hardware is it?"
+      options:
+        - "Built into the board (AIO / whoop / toothpick board)"
+        - "Separate 4-in-1 ESC"
+        - "Four individual ESCs"
+        - "Not sure"
+    validations:
+      required: true
+  - type: dropdown
+    id: esc_firmware
+    attributes:
+      label: "Current ESC firmware and MCU type"
+      options:
+        - "Bluejay (EFM8BB21 / _H_ layout)"
+        - "BLHeli_S (EFM8BB1 / EFM8BB2)"
+        - "Bluejay / BLHeli_S on EFM8BB51 (_X_ layout)"
+        - "Not sure"
+    validations:
+      required: true
+  - type: dropdown
+    id: pwm_freq
+    attributes:
+      label: "Preferred PWM frequency"
+      options:
+        - "48 kHz (Recommended for 1S/2S whoops & toothpicks)"
+        - "24 kHz (Recommended for 5-inch & heavy props)"
+        - "96 kHz"
+        - "All three (24 / 48 / 96 kHz)"
+    validations:
+      required: true
+  - type: textarea
+    id: quad_details
+    attributes:
+      label: "Your 3D quad: frame, motors (size + kv), props, battery cells, and FC firmware"
+      placeholder: "e.g. 65mm 2S whoop, 0802 16000kv, Gemfan 123D, BetaFlight 3D Edition v0.3.1"
+    validations:
+      required: true
+  - type: dropdown
+    id: will_fly
+    attributes:
+      label: "Will you fly the test and send logs?"
+      options:
+        - "Yes: the full 4-pack A/B test from the guide"
+        - "Yes: I'll fly it and send some logs"
+        - "Maybe: I mostly want to try it"
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: "Anything else we should know? (desync symptoms on stock Bluejay, questions)"
+      placeholder: "Optional notes..."

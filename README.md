@@ -2,6 +2,12 @@
 
 Frames, mounts, tunes and flight-log analysis for my FPV builds. Each project lives in its own folder.
 
+## New: BlueJay3D (8-bit 3D ESC firmware — testers wanted)
+
+**[BlueJay3D](BlueJay3D/)** (`v0.22.0-3D`) backports the 3D commutation smoothness, active direction-change braking, minimum 3D duty floor, reversal startup boost, and 1 ms fast desync recovery of 32-bit **AM32** and **ESCape32** into 8-bit **Bluejay** (`EFM8BB1`, `EFM8BB2`, and `EFM8BB51`), fixing 9 compounding 3D desync and telemetry bugs in stock Bluejay `v0.21.0`.
+Includes ready-to-flash `.hex` files for **[63 ESC target layouts / 135 builds](BlueJay3D/TARGETS.md)** across 24/48/96 kHz (other layouts: [request a build](https://forms.gle/1p93ZjiqDp1PLWA96) or [open a Target Request issue](https://github.com/BlindingBright/Drones/issues/new?template=bluejay3d_target_request.yml)), an easy 4-pack [testing guide](BlueJay3D/TESTING_GUIDE.md), the standalone [Bluejay3D Configurator](BlueJay3D/configurator/), 1-click [EEPROM presets](BlueJay3D/presets/), an 8051 machine-code emulator & bench verification suite, and full source.
+8-bit 3D pilots: please test it and [send your logs](https://forms.gle/Vfq3c2W7Lp5FE36t5) *(or via [GitHub Issue](https://github.com/BlindingBright/Drones/issues/new?template=bluejay3d_log_upload.yml))*!
+
 ## New: BetaFlight 3D Edition (testers wanted)
 
 **[BetaFlight 3D Edition](BetaFlight%203D%20Edition/)** is an experimental Betaflight 4.5.1 build with improvements for 3D
