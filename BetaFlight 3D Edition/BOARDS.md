@@ -1,6 +1,6 @@
 # BetaFlight 3D Edition: firmware for every board
 
-**v0.3.1-test**: 47 flight controllers, all built from the same commit (`161e867a9`, Betaflight 4.5.1 base).
+**v0.3.1-test**: 88 flight controllers, all built from the same commit (`161e867a9`, Betaflight 4.5.1 base).
 After flashing, the CLI `version` command shows `4.5.1 ... (161e867a9)`. All files are on the
 [v0.3.1-test release page](https://github.com/BlindingBright/betaflight/releases/tag/v0.3.1-3d-test).
 Then follow the **[testing guide](TESTING_GUIDE.md)**.
@@ -47,6 +47,35 @@ Find your board name: Betaflight Configurator → CLI → `version`. The name at
 | DarwinFPV TinyApe 2S ELRS AIO (no blackbox flash) | `DARWINF4SX1280HD` | STM32F411 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_DARWINF4SX1280HD.hex) |
 | DarwinFPV F435 AIO | `DARWINF435` | AT32F435G | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_DARWINF435.hex) |
 | JHEMCU H743 AIO | `JHEH743_AIO` | STM32H743 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_JHEH743_AIO.hex) |
+| Fractal Engineering SP8 1S AIO (AM32 8A, built-in ELRS) | `FRACSP8AIO` | AT32F435G | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_FRACSP8AIO.hex) |
+| BetaFPV G473 AIO | `BETAFPVG473` | STM32G47x | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_BETAFPVG473.hex) |
+| BetaFPV F435 AIO | `BETAFPVF435` | AT32F435G | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_BETAFPVF435.hex) |
+| iFlight BLITZ F435 | `IFLIGHT_BLITZ_F435` | AT32F435G | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_IFLIGHT_BLITZ_F435.hex) |
+| iFlight F411 AIO (32-bit ESC) | `IFLIGHT_F411_AIO32` | STM32F411 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_IFLIGHT_F411_AIO32.hex) |
+| iFlight F745 AIO V2 | `IFLIGHT_F745_AIO_V2` | STM32F745 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_IFLIGHT_F745_AIO_V2.hex) |
+| iFlight H743 AIO V2 | `IFLIGHT_H743_AIO_V2` | STM32H743 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_IFLIGHT_H743_AIO_V2.hex) |
+| GEPRC F722 AIO | `GEPRC_F722_AIO` | STM32F722 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_GEPRC_F722_AIO.hex) |
+| GEPRC TAKER G4 AIO | `TAKERG4AIO` | STM32G47x | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_TAKERG4AIO.hex) |
+| GEPRC F411 AIO | `GEPRCF411_AIO` | STM32F411 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_GEPRCF411_AIO.hex) |
+| HGLRC F722 AIO | `HGLRCF722AIO` | STM32F722 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_HGLRCF722AIO.hex) |
+| HGLRC Zeus F722 AIO | `ZEUSF722_AIO` | STM32F722 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_ZEUSF722_AIO.hex) |
+| HGLRC F411 SX1280 AIO (ELRS) | `HGLRCF411SX1280` | STM32F411 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_HGLRCF411SX1280.hex) |
+| NewBeeDrone Infinity AIO V2 Pro | `NBD_INFINITYAIOV2PRO` | STM32F745 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_NBD_INFINITYAIOV2PRO.hex) |
+| NeutronRC G4 AIO | `NEUTRONRCG4AIO` | STM32G47x | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_NEUTRONRCG4AIO.hex) |
+| LUX Micro AIO | `LUXMICROAIO` | STM32G47x | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_LUXMICROAIO.hex) |
+| Airbot G4 AIO | `AIRBOTG4AIO` | STM32G47x | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_AIRBOTG4AIO.hex) |
+| Holybro Kakute G4 AIO | `KAKUTEG4AIO` | STM32G47x | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_KAKUTEG4AIO.hex) |
+| Foxeer F745 AIO V4 | `FOXEERF745V4_AIO` | STM32F745 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_FOXEERF745V4_AIO.hex) |
+| SpeedyBee F745 AIO | `SPEEDYBEE_F745_AIO` | STM32F745 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_SPEEDYBEE_F745_AIO.hex) |
+| Flywoo GOKU GN745 AIO | `FLYWOOF745AIO` | STM32F745 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_FLYWOOF745AIO.hex) |
+| Axisflying Argus F7 AIO | `ARGUSF7AIO` | STM32F722 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_ARGUSF7AIO.hex) |
+| Skystars F405 AIO | `SKYSTARSF405AIO` | STM32F405 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_SKYSTARSF405AIO.hex) |
+| JHEMCU F435 | `JHEF435` | AT32F435G | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_JHEF435.hex) |
+| CCRC F435 AIO | `CCRCF435AIO` | AT32F435G | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_CCRCF435AIO.hex) |
+| BAYCK Dolphin Mini | `BAYCK_DOLPHIN_MINI` | AT32F435G | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_BAYCK_DOLPHIN_MINI.hex) |
+| EMAX F405 ELRS AIO | `EMAX_F405_ELRS_AIO` | STM32F405 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_EMAX_F405_ELRS_AIO.hex) |
+| EMAX Tinyhawk F4 SX1280 AIO (ELRS) | `EMAX_TINYHAWKF4SX1280` | STM32F411 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_EMAX_TINYHAWKF4SX1280.hex) |
+| BetaFPV F411 RX AIO | `BETAFPVF411RX` | STM32F411 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_BETAFPVF411RX.hex) |
 | **5-inch / stack** | | | |
 | TBS Lucid FC | `TBS_LUCID_FC` | AT32F435M | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_TBS_LUCID_FC.hex) |
 | TBS Lucid H7 | `TBS_LUCID_H7` | STM32H743 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_TBS_LUCID_H7.hex) |
@@ -80,6 +109,18 @@ Find your board name: Betaflight Configurator → CLI → `version`. The name at
 | Flywoo GOKU F722 Pro V2 (incl. Pro Mini V2 20x20 stack, ICM42688 gyro) | `FLYWOOF722PROV2` | STM32F722 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_FLYWOOF722PROV2.hex) |
 | Flywoo GOKU F722 Pro (V1, incl. Mini 20x20 stack, MPU6000 gyro) | `FLYWOOF722PRO` | STM32F722 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_FLYWOOF722PRO.hex) |
 | Sequre H7 V2 | `SEQUREH7V2` | STM32H743 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_SEQUREH7V2.hex) |
+| Diatone Mamba F722 | `MAMBAF722` | STM32F722 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_MAMBAF722.hex) |
+| Diatone Mamba F405 (US) | `MAMBAF405US` | STM32F405 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_MAMBAF405US.hex) |
+| SpeedyBee F7 Mini V2 | `SPEEDYBEEF7MINIV2` | STM32F722 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_SPEEDYBEEF7MINIV2.hex) |
+| Holybro Kakute H7 Mini | `KAKUTEH7MINI` | STM32H743 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_KAKUTEH7MINI.hex) |
+| Holybro Kakute F7 Mini V3 | `KAKUTEF7MINIV3` | STM32F722 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_KAKUTEF7MINIV3.hex) |
+| GEPRC TAKER F722 SE | `TAKERF722SE` | STM32F722 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_TAKERF722SE.hex) |
+| Foxeer F722 V3 | `FOXEERF722V3` | STM32F722 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_FOXEERF722V3.hex) |
+| Matek F722 | `MATEKF722` | STM32F722 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_MATEKF722.hex) |
+| T-Motor Velox F7 V2 | `TMOTORVELOXF7V2` | STM32F722 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_TMOTORVELOXF7V2.hex) |
+| Axisflying F7 Pro | `AXISFLYINGF7PRO` | STM32F722 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_AXISFLYINGF7PRO.hex) |
+| iFlight BLITZ F7 Pro | `IFLIGHT_BLITZ_F7_PRO` | STM32F722 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_IFLIGHT_BLITZ_F7_PRO.hex) |
+| Skystars F7 HD Pro | `SKYSTARSF7HDPRO` | STM32F722 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_SKYSTARSF7HDPRO.hex) |
 
 ## How to test
 The [testing guide](TESTING_GUIDE.md) works for every board in this list: back up, flash, paste Block A, fly 2 packs,
@@ -88,6 +129,12 @@ ESCs give RPM telemetry (`dshot_bidir = ON`: AM32, Bluejay, BLHeli_32). Stock BL
 250 ms timer by itself).
 
 Notes on requested boards:
+- **Fractal Engineering SP8 (`FRACSP8AIO`)**: 1S AIO with AM32 8A ESCs and built-in ELRS. There is no official Betaflight
+  target for it; this build uses Fractal's own target definition (FractalEngineer/config, branch `SP8-AIO`). Not flown on the
+  3D Edition yet: bench-check props off first. AM32 settings: [am32.ca/configurator](https://am32.ca/configurator), ESC target `SP8AIO`.
+- **Boards added in bulk (v0.3.1)**: common AIOs (many with 32-bit ESCs that run AM32) and popular 5-inch FCs. Built from the
+  official Betaflight 4.5 targets but not flown with the 3D Edition yet. Make sure the target matches what `version` shows on
+  your board today.
 - **DarwinFPV TinyApe (`DARWINF4SX1280HD`)**: built-in SPI ExpressLRS is enabled on the 4.5.1 target. Coming from
   Betaflight 4.4.2, re-bind after flashing, check the binding phrase, and check that your transmitter's ELRS version matches. The board has **no blackbox flash**, so it can't record
   logs; DVR plus a written report still helps (see the guide's "No blackbox" note).

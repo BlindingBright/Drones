@@ -57,3 +57,9 @@ make CC=gcc CXX=g++ test_pid_unittest test_cli_unittest test_rc_controls_unittes
 If you build for another board and fly it, please send the logs through the
 [log form](README.md#send-logs--feedback) and say which board and commit you built. Builds for other boards can also be
 [requested with the build request form](https://forms.gle/1p93ZjiqDp1PLWA96) or from ZoeFPV (Discord link at [zoefpv.com](https://zoefpv.com)).
+
+## Targets not in the official config repo
+
+- **`FRACSP8AIO`** (Fractal Engineering SP8): copy [targets/FRACSP8AIO/config.h](targets/FRACSP8AIO/config.h) to
+  `src/config/configs/FRACSP8AIO/config.h`, then `make CONFIG=FRACSP8AIO`. It's Fractal's target definition
+  (FractalEngineer/config, branch `SP8-AIO`) with one change for 4.5: `SERIAL_PORT_UART1` → `SERIAL_PORT_USART1`.
