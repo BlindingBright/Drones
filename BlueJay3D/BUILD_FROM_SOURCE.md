@@ -67,5 +67,5 @@ python3 tools/bench_verify.py --offline-only
 
 ## Sharing a build or requesting a target
 
-If you build and fly another target, please upload your logs through the **[log upload form](https://forms.gle/Vfq3c2W7Lp5FE36t5)** *(or [GitHub Log Upload Form](https://github.com/BlindingBright/Drones/issues/new?template=bluejay3d_log_upload.yml))*.
-Need a target built for you? **[Request a build here](https://forms.gle/1p93ZjiqDp1PLWA96)** *(or via [GitHub Target Request](https://github.com/BlindingBright/Drones/issues/new?template=bluejay3d_target_request.yml))*.
+If you build and fly another target, please upload your logs through the **[log upload form](https://docs.google.com/forms/d/e/1FAIpQLSfmN5fuS82CXPKGCXlqQAUPCoa6tT8LgZesW7zxZt6WFHSnpw/viewform)** *(or [GitHub Log Upload Form](https://github.com/BlindingBright/Drones/issues/new?template=bluejay3d_log_upload.yml))*.
+Need a target built for you? **[Request a build here](https://docs.google.com/forms/d/e/1FAIpQLSegPRjFi6s6WUmWW0QfRsDMLYOeNchlNj9iVQxU-3Z2g0Upxw/viewform)** *(or via [GitHub Target Request](https://github.com/BlindingBright/Drones/issues/new?template=bluejay3d_target_request.yml))*.

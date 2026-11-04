@@ -83,7 +83,7 @@ def create_target_request_form(forms_service) -> dict:
         "Want to test BlueJay3D on an 8-bit ESC or AIO flight controller that isn't in the list yet "
         "(or not sure which ESC layout your board uses)? Tell us your board/ESC and we'll identify or "
         "build a test firmware for it. When it's ready, it gets added to TARGETS.md and we'll contact you.\n\n"
-        "Check the download list first; 115 firmware builds across 45 ESC layouts (EFM8BB1, EFM8BB2, and "
+        "Check the download list first; 135 firmware builds across 63 ESC layouts (EFM8BB1, EFM8BB2, and "
         "EFM8BB51 at 24/48/96 kHz) are already built. Project page, guide and downloads: "
         "https://github.com/BlindingBright/Drones/tree/bluejay3d/BlueJay3D\n\n"
         "Tip: in esc-configurator.com or the Bluejay3D Configurator, click Read Settings. "
@@ -205,6 +205,10 @@ def create_target_request_form(forms_service) -> dict:
         )
 
     forms_service.forms().batchUpdate(formId=form_id, body={"requests": requests}).execute()
+    forms_service.forms().setPublishSettings(
+        formId=form_id,
+        body={"publishSettings": {"publishState": {"isPublished": True, "isAcceptingResponses": True}}},
+    ).execute()
     final_form = forms_service.forms().get(formId=form_id).execute()
     return {
         "formId": form_id,
@@ -413,6 +417,10 @@ def create_log_upload_form(forms_service, drive_service, request_form_uri: str) 
             )
 
     forms_service.forms().batchUpdate(formId=form_id, body={"requests": requests}).execute()
+    forms_service.forms().setPublishSettings(
+        formId=form_id,
+        body={"publishSettings": {"publishState": {"isPublished": True, "isAcceptingResponses": True}}},
+    ).execute()
     final_form = forms_service.forms().get(formId=form_id).execute()
     return {
         "formId": form_id,

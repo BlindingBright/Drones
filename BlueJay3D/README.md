@@ -13,7 +13,7 @@ Tic-tocks, punch-outs from reversals, and flips through center stick reverse cle
 
 1. **[Find your ESC's firmware (`TARGETS.md`)](TARGETS.md)** (63 ESC layouts / 135 `.hex` builds across 24, 48, and 96 kHz)
 2. **[Follow the pilot testing guide (`TESTING_GUIDE.md`)](TESTING_GUIDE.md)**: 2-minute props-off bench check, then 4 packs with one settings change in the middle (Block A vs Block B)
-3. **[Upload your logs (Google Form)](https://forms.gle/Vfq3c2W7Lp5FE36t5)** *(or attach to a [GitHub Log Issue](https://github.com/BlindingBright/Drones/issues/new?template=bluejay3d_log_upload.yml))*
+3. **[Upload your logs (Google Form)](https://docs.google.com/forms/d/e/1FAIpQLSfmN5fuS82CXPKGCXlqQAUPCoa6tT8LgZesW7zxZt6WFHSnpw/viewform)** *(or attach to a [GitHub Log Issue](https://github.com/BlindingBright/Drones/issues/new?template=bluejay3d_log_upload.yml))*
 
 ## Downloads
 
@@ -29,18 +29,18 @@ Tic-tocks, punch-outs from reversals, and flips through center stick reverse cle
 | **Pilot testing guide** | [TESTING_GUIDE.md](TESTING_GUIDE.md) | **Start here** — 2-min bench check + 4-pack Block A / Block B flight test |
 | **Bluejay3D Configurator** | [configurator/](configurator/) | WebSerial 4-way passthrough + offline `.hex` / `.bin` editor + 3D reversal simulator |
 | **3D EEPROM Presets** | [presets/](presets/) | [`BlockA_Stock_v021_Baseline.bin`](presets/BlockA_Stock_v021_Baseline.bin) · [`BlockB_1S_2S_Whoop.bin`](presets/BlockB_1S_2S_Whoop.bin) · [`BlockB_3_4_Toothpick.bin`](presets/BlockB_3_4_Toothpick.bin) · [`BlockB_5inch_Acro.bin`](presets/BlockB_5inch_Acro.bin) |
-| **Log & feedback upload** | [Google Form](https://forms.gle/Vfq3c2W7Lp5FE36t5) · [GitHub Form](https://github.com/BlindingBright/Drones/issues/new?template=bluejay3d_log_upload.yml) | Upload up to 10 `.BBL` logs at once |
+| **Log & feedback upload** | [Google Form](https://docs.google.com/forms/d/e/1FAIpQLSfmN5fuS82CXPKGCXlqQAUPCoa6tT8LgZesW7zxZt6WFHSnpw/viewform) · [GitHub Form](https://github.com/BlindingBright/Drones/issues/new?template=bluejay3d_log_upload.yml) | Upload up to 10 `.BBL` logs at once |
 | **Pre-flight bench verifier** | [`tools/bench_verify.py`](tools/bench_verify.py) | 8051 machine-code SIL emulator + automated props-off MSP motor reversal sweep |
 | **Technical breakdown** | [ARCHITECTURE_AND_FIXES.md](ARCHITECTURE_AND_FIXES.md) | Deep dive into all 9 stock Bluejay 3D bugs and the AM32/ESCape32 assembly backports |
 | **Source code & build guide** | [firmware/src/](firmware/src/) · [BUILD_FROM_SOURCE.md](BUILD_FROM_SOURCE.md) | Full EFM8 8051 assembly source + Python OMF-251 linker (`tools/omf2hex.py`) |
 
-**ESC layout or board not in [the list](TARGETS.md)?** **[Request a build for your ESC / board](https://forms.gle/1p93ZjiqDp1PLWA96)** (Google Form, no sign-in needed) or **[open a Target Request issue](https://github.com/BlindingBright/Drones/issues/new?template=bluejay3d_target_request.yml)**, or contact ZoeFPV (Discord link at [zoefpv.com](https://zoefpv.com)).
+**ESC layout or board not in [the list](TARGETS.md)?** **[Request a build for your ESC / board](https://docs.google.com/forms/d/e/1FAIpQLSegPRjFi6s6WUmWW0QfRsDMLYOeNchlNj9iVQxU-3Z2g0Upxw/viewform)** (Google Form, no sign-in needed) or **[open a Target Request issue](https://github.com/BlindingBright/Drones/issues/new?template=bluejay3d_target_request.yml)**, or contact ZoeFPV (Discord link at [zoefpv.com](https://zoefpv.com)).
 
 *(Maintainer note: to spin up dedicated standalone Google Forms for BlueJay3D in your own Google Drive, run `python3 tools/create_bluejay3d_forms.py` or paste [`tools/create_bluejay3d_forms.gs`](tools/create_bluejay3d_forms.gs) into [script.google.com](https://script.google.com).)*
 
 ## Send logs & feedback
 
-### 👉 [Upload your blackbox logs and report (Google Form)](https://forms.gle/Vfq3c2W7Lp5FE36t5)
+### 👉 [Upload your blackbox logs and report (Google Form)](https://docs.google.com/forms/d/e/1FAIpQLSfmN5fuS82CXPKGCXlqQAUPCoa6tT8LgZesW7zxZt6WFHSnpw/viewform)
 
 You can upload up to 10 `.BBL` blackbox logs at once, along with your ESC/drone details, a screenshot of your Bluejay3D Configurator settings, and a short flight report.
 Uploading files in Google Forms requires a Google sign-in. Without a Google account, you can drag-and-drop a `.zip` of your logs directly into our **[GitHub Log Upload Form](https://github.com/BlindingBright/Drones/issues/new?template=bluejay3d_log_upload.yml)**.

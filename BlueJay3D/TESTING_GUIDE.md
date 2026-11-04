@@ -12,7 +12,7 @@ Thanks for helping test **BlueJay3D**! About 15 minutes on the bench, then **4 p
 | 4 | Fly **pack 1 and pack 2** |
 | 5 | Apply **Block B** (the new BlueJay3D 3D handling), bench-check with props off |
 | 6 | Fly **pack 3 and pack 4** |
-| 7 | [Upload the 4 logs](https://forms.gle/Vfq3c2W7Lp5FE36t5) *(or via [GitHub Issue](https://github.com/BlindingBright/Drones/issues/new?template=bluejay3d_log_upload.yml))* and say how it felt |
+| 7 | [Upload the 4 logs](https://docs.google.com/forms/d/e/1FAIpQLSfmN5fuS82CXPKGCXlqQAUPCoa6tT8LgZesW7zxZt6WFHSnpw/viewform) *(or via [GitHub Issue](https://github.com/BlindingBright/Drones/issues/new?template=bluejay3d_log_upload.yml))* and say how it felt |
 
 Everything else below is the detail for each step. Every step has a checkbox so you can keep your place.
 
@@ -130,7 +130,7 @@ Now enable the full **BlueJay3D (`v0.22.0-3D`)** 3D commutation, active braking,
 
 ## 9. Send your logs
 
-### 👉 [Upload your logs and report here (Google Form)](https://forms.gle/Vfq3c2W7Lp5FE36t5)
+### 👉 [Upload your logs and report here (Google Form)](https://docs.google.com/forms/d/e/1FAIpQLSfmN5fuS82CXPKGCXlqQAUPCoa6tT8LgZesW7zxZt6WFHSnpw/viewform)
 
 - [ ] Upload all 4 `.BBL` files in one go (up to 10 files, 100 MB each), plus a screenshot of your Bluejay3D Configurator settings.
 - [ ] Note which packs were Block A and Block B, which ESC target you flew (e.g. `O_H_5 48 kHz`), and how reversals felt.
@@ -157,4 +157,4 @@ Uploading files on Google Forms requires a Google sign-in. **No Google account?*
 
 ## No blackbox on your board?
 
-Some 1S/2S AIOs (such as the DarwinFPV TinyApe `DARWINF4SX1280HD` or certain 1S BetaFPV boards) have no onboard flash chip. You can still help: fly the same 4-pack Block A vs Block B test, record **DVR**, and submit a written report in the [form](https://forms.gle/Vfq3c2W7Lp5FE36t5) describing whether desyncs or stutters changed between Packs 1–2 and Packs 3–4.
+Some 1S/2S AIOs (such as the DarwinFPV TinyApe `DARWINF4SX1280HD` or certain 1S BetaFPV boards) have no onboard flash chip. You can still help: fly the same 4-pack Block A vs Block B test, record **DVR**, and submit a written report in the [form](https://docs.google.com/forms/d/e/1FAIpQLSfmN5fuS82CXPKGCXlqQAUPCoa6tT8LgZesW7zxZt6WFHSnpw/viewform) describing whether desyncs or stutters changed between Packs 1–2 and Packs 3–4.

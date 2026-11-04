@@ -4,8 +4,8 @@
 After flashing, the ESC firmware tag reads **`Bluejay3D v0.22`** (version code `22.0`, EEPROM layout `v208`).
 Once flashed, follow the **[pilot testing guide](TESTING_GUIDE.md)**.
 
-> **Fly carefully and bench-check with props off first.** Please **[send your blackbox logs](https://forms.gle/Vfq3c2W7Lp5FE36t5)** (or via [GitHub Issue](https://github.com/BlindingBright/Drones/issues/new?template=bluejay3d_log_upload.yml)): that's how an ESC target gets flight-confirmed.
-> ESC layout or board not listed? **[Request a build](https://forms.gle/1p93ZjiqDp1PLWA96)** *(or [open a Target Request issue](https://github.com/BlindingBright/Drones/issues/new?template=bluejay3d_target_request.yml)).*
+> **Fly carefully and bench-check with props off first.** Please **[send your blackbox logs](https://docs.google.com/forms/d/e/1FAIpQLSfmN5fuS82CXPKGCXlqQAUPCoa6tT8LgZesW7zxZt6WFHSnpw/viewform)** (or via [GitHub Issue](https://github.com/BlindingBright/Drones/issues/new?template=bluejay3d_log_upload.yml)): that's how an ESC target gets flight-confirmed.
+> ESC layout or board not listed? **[Request a build](https://docs.google.com/forms/d/e/1FAIpQLSegPRjFi6s6WUmWW0QfRsDMLYOeNchlNj9iVQxU-3Z2g0Upxw/viewform)** *(or [open a Target Request issue](https://github.com/BlindingBright/Drones/issues/new?template=bluejay3d_target_request.yml)).*
 
 ---
 
@@ -139,4 +139,4 @@ Full SHA-256 checksums for all 135 files: **[`firmware/SHA256SUMS.txt`](firmware
 
 ## Need another layout or deadtime?
 
-Any `(LAYOUT, MCU, DEADTIME, PWM)` combination supported by Bluejay can be built in 2 seconds with [BUILD_FROM_SOURCE.md](BUILD_FROM_SOURCE.md), or **[request a build](https://forms.gle/1p93ZjiqDp1PLWA96)** *(or [open a GitHub Target Request](https://github.com/BlindingBright/Drones/issues/new?template=bluejay3d_target_request.yml))* and we'll build it and add it to this table.
+Any `(LAYOUT, MCU, DEADTIME, PWM)` combination supported by Bluejay can be built in 2 seconds with [BUILD_FROM_SOURCE.md](BUILD_FROM_SOURCE.md), or **[request a build](https://docs.google.com/forms/d/e/1FAIpQLSegPRjFi6s6WUmWW0QfRsDMLYOeNchlNj9iVQxU-3Z2g0Upxw/viewform)** *(or [open a GitHub Target Request](https://github.com/BlindingBright/Drones/issues/new?template=bluejay3d_target_request.yml))* and we'll build it and add it to this table.
