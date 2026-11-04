@@ -5,7 +5,7 @@ The complete source code for **BlueJay3D (`v0.22.0-3D`)** is located right here 
 ## Download the code
 
 ```bash
-git clone -b bluejay3d https://github.com/BlindingBright/Drones.git
+git clone https://github.com/BlindingBright/Drones.git
 cd "Drones/BlueJay3D/firmware"
 ```
 

@@ -85,7 +85,7 @@ def create_target_request_form(forms_service) -> dict:
         "build a test firmware for it. When it's ready, it gets added to TARGETS.md and we'll contact you.\n\n"
         "Check the download list first; 135 firmware builds across 63 ESC layouts (EFM8BB1, EFM8BB2, and "
         "EFM8BB51 at 24/48/96 kHz) are already built. Project page, guide and downloads: "
-        "https://github.com/BlindingBright/Drones/tree/bluejay3d/BlueJay3D\n\n"
+        "https://github.com/BlindingBright/Drones/tree/main/BlueJay3D\n\n"
         "Tip: in esc-configurator.com or the Bluejay3D Configurator, click Read Settings. "
         "The 5-character ESC layout code is shown on each ESC (e.g. O_H_5, Z_H_30, A_H_5, G_H_30, or A_X_5)."
     )
@@ -236,7 +236,7 @@ def create_log_upload_form(forms_service, drive_service, request_form_uri: str) 
         "about your ESC/drone and a short report. Every log helps prove (or disprove) the 9 backported "
         "AM32/ESCape32 3D commutation, braking, and fast-restart fixes across different 8-bit ESCs.\n\n"
         "Testing guide, firmware, presets, and configurator: "
-        "https://github.com/BlindingBright/Drones/tree/bluejay3d/BlueJay3D\n\n"
+        "https://github.com/BlindingBright/Drones/tree/main/BlueJay3D\n\n"
         "File uploads need a Google sign-in (that's how Google Forms handles files). You can upload up to "
         f"10 logs at once. Need a build for a different ESC layout? Request one at {request_form_uri} "
         "or contact ZoeFPV (Discord link at zoefpv.com)."
