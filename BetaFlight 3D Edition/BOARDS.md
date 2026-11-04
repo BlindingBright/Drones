@@ -9,7 +9,7 @@ Then follow the **[testing guide](TESTING_GUIDE.md)**.
 > Fly carefully, and please [send your logs](https://forms.gle/Vfq3c2W7Lp5FE36t5): that's how a board gets confirmed.
 > Board not listed? **[Request a build](https://forms.gle/1p93ZjiqDp1PLWA96).**
 
-**New in this release (requested boards):** DarwinFPV TinyApe `DARWINF4SX1280HD`, Flywoo GOKU F722 Pro V2 `FLYWOOF722PROV2`,
+**Added in v0.3.0 (requested boards):** DarwinFPV TinyApe `DARWINF4SX1280HD`, Flywoo GOKU F722 Pro V2 `FLYWOOF722PROV2`,
 Sequre H7 V2 `SEQUREH7V2`.
 
 **Already on Betaflight 2026.6?** The 3D Edition is built on 4.5.1; flashing it means going back to 4.5.1 (back up `diff all`

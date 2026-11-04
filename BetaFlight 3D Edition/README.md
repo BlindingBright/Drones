@@ -8,8 +8,8 @@ through center should hold their attitude better instead of drifting after every
 > We need logs from more pilots and more quads before proposing it to the main Betaflight project.
 > Use it for testing. For everyday flying, official Betaflight is the safe choice.
 
-> **New in v0.3.1:** the best 3D settings are now the defaults, plus fixes for four places where stock Betaflight sends
-> reverse thrust in 3D (low-voltage cutoff, failsafe landing, `thr_mid`, sag compensation). Want to help test those?
+> **New in v0.3.1:** the best 3D settings are now the defaults, plus fixes for three places where stock Betaflight sends
+> reverse thrust in 3D (low-voltage cutoff, failsafe landing, `thr_mid` with `thr_expo`), and sag compensation now works in 3D. Want to help test those?
 > **[New-feature testing notes](V0.3.1_FEATURE_TESTING.md)**.
 
 ## Start here

@@ -22,8 +22,8 @@ every flip it drifts until the trim rebuilds. The 3D Edition remembers both trim
 and (with RPM telemetry) lets the I-term go as soon as all motors have actually restarted (~150 ms on a whoop) instead
 of waiting 250 ms. v0.3.0 added two more 3D fixes: anti-gravity no longer treats every flip as a throttle chop, and
 dynamic idle (which stock Betaflight skips in 3D) gives the motors more command while they restart after a flip.
-v0.3.1 makes these the defaults and fixes four places where stock Betaflight sends reverse thrust in 3D (low-voltage
-cutoff, failsafe landing, `thr_mid`, sag compensation); those have their own [feature tests](V0.3.1_FEATURE_TESTING.md).
+v0.3.1 makes these the defaults and fixes three places where stock Betaflight sends reverse thrust in 3D (low-voltage
+cutoff, failsafe landing, `thr_mid` with `thr_expo`), plus makes sag compensation work in 3D; those have their own [feature tests](V0.3.1_FEATURE_TESTING.md).
 On ZoeFPV's whoop: trim error in the first 250 ms after a flip about 65% smaller, pitch drift after flips about 20% lower,
 and with the v0.3.0 settings less shake in the first 60 ms after a flip (one test day, indicative). Now we need other quads.
 
