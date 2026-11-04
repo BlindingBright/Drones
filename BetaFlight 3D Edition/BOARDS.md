@@ -118,7 +118,7 @@ Find your board name: Betaflight Configurator → CLI → `version`. The name at
 | Foxeer F722 V3 | `FOXEERF722V3` | STM32F722 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_FOXEERF722V3.hex) |
 | Matek F722 | `MATEKF722` | STM32F722 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_MATEKF722.hex) |
 | T-Motor Velox F7 V2 | `TMOTORVELOXF7V2` | STM32F722 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_TMOTORVELOXF7V2.hex) |
-| T-Motor F7 (BMI270) | `TMOTORF7` | STM32F722 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_TMOTORF7.hex) |
+| T-Motor F7 (BMI270; tested stack ships with AM32 ESC `TMOTOR_G071`) | `TMOTORF7` | STM32F722 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_TMOTORF7.hex) |
 | Axisflying F7 Pro | `AXISFLYINGF7PRO` | STM32F722 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_AXISFLYINGF7PRO.hex) |
 | iFlight BLITZ F7 Pro | `IFLIGHT_BLITZ_F7_PRO` | STM32F722 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_IFLIGHT_BLITZ_F7_PRO.hex) |
 | Skystars F7 HD Pro | `SKYSTARSF7HDPRO` | STM32F722 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_SKYSTARSF7HDPRO.hex) |
