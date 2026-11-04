@@ -1,4 +1,4 @@
-# BetaFlight 3D Edition: pilot testing guide (v0.3.0-test)
+# BetaFlight 3D Edition: pilot testing guide (v0.3.1-test)
 
 Thanks for helping test! About 20 minutes on the bench, then **4 packs of flying with one settings change in the middle.**
 
@@ -20,8 +20,10 @@ Everything else below is the detail for each step. Every step has a checkbox so 
 learned) and keeps it at zero for a fixed 250 ms. But a 3D quad needs a *different* trim upright than inverted, so after
 every flip it drifts until the trim rebuilds. The 3D Edition remembers both trims, loads the right one on each flip,
 and (with RPM telemetry) lets the I-term go as soon as all motors have actually restarted (~150 ms on a whoop) instead
-of waiting 250 ms. v0.3.0 adds two more 3D fixes: anti-gravity no longer treats every flip as a throttle chop, and
+of waiting 250 ms. v0.3.0 added two more 3D fixes: anti-gravity no longer treats every flip as a throttle chop, and
 dynamic idle (which stock Betaflight skips in 3D) gives the motors more command while they restart after a flip.
+v0.3.1 makes these the defaults and fixes four places where stock Betaflight sends reverse thrust in 3D (low-voltage
+cutoff, failsafe landing, `thr_mid`, sag compensation); those have their own [feature tests](V0.3.1_FEATURE_TESTING.md).
 On ZoeFPV's whoop: trim error in the first 250 ms after a flip about 65% smaller, pitch drift after flips about 20% lower,
 and with the v0.3.0 settings less shake in the first 60 ms after a flip (one test day, indicative). Now we need other quads.
 
@@ -71,9 +73,9 @@ For reference, ZoeFPV's AM32 settings on the Lucid whoop (a starting point, not 
 
 ## 4. Flash the firmware
 
-- [ ] Battery unplugged → **Firmware Flasher** → **Load Firmware [Local]** → pick your `BetaFlight3DEdition_v0.3.0-test_<BOARD>.hex`.
+- [ ] Battery unplugged → **Firmware Flasher** → **Load Firmware [Local]** → pick your `BetaFlight3DEdition_v0.3.1-test_<BOARD>.hex`.
 - [ ] **Flash Firmware** → wait for "Programming: SUCCESSFUL".
-- [ ] Connect → **CLI** → `version`. You should see **`4.5.1`** and **`(9421121f7)`**, and your board name.
+- [ ] Connect → **CLI** → `version`. You should see **`4.5.1`** and **`(161e867a9)`**, and your board name.
 - [ ] If your settings were wiped, paste your `diff all` backup from step 2 and press Enter.
   (Coming from Betaflight 4.4 or 2026.x? A few lines may be rejected. Re-enter those by hand; check receiver and ports.)
 
@@ -102,8 +104,8 @@ set dyn_idle_min_rpm = 0
 save
 ```
 
-This is exactly stock Betaflight behaviour, plus logging. It also resets every 3D Edition setting to its default, so it's safe
-if you flew an earlier 3D Edition build before. Your PIDs, rates, receiver, OSD and other 3D settings (deadband etc.) are not touched.
+This is exactly stock Betaflight behaviour, plus logging. v0.3.1's defaults are the new 3D handling, so Block A is how you get
+stock: it sets every 3D Edition setting explicitly, whatever you flashed or flew before. Your PIDs, rates, receiver, OSD and other 3D settings (deadband etc.) are not touched.
 
 **TBS Lucid AIO built like Lil Horny** (2S, 0802, 31 mm 3D props)? Paste the [starter tune](tunes/3D_Edition_starter_tune_TBS_LUCID_AIO.txt)
 instead; it already contains Block A. **CrazyBee F4 SX1280?** Use [its settings file](tunes/3D_Edition_settings_CRAZYBEEF4SX1280.txt) (also contains Block A).
@@ -162,7 +164,8 @@ set 3d_anti_gravity = GATED
 set 3d_ag_approach_pct = 15
 save
 ```
-(Without telemetry the firmware can't see the motors restart, so it keeps the 250 ms timer. Don't use `RPM` there: it would wait the 400 ms cap every time.)
+(Without telemetry the firmware can't see the motors restart, so it keeps the 250 ms timer; v0.3.1 does that by itself even if
+`3d_iterm_release` is left at `RPM`. Block A set it to `TIME`, and that's what this block keeps.)
 
 - [ ] Reconnect, `get 3d_` → `3d_iterm_mode = PER_DIRECTION`, `3d_anti_gravity = GATED`, `3d_ag_approach_pct = 15`
       (with telemetry also `3d_iterm_release = RPM` and `3d_dyn_idle = ON`).
@@ -195,8 +198,8 @@ Then you're done. If you want to go back to your own setup: **flash official Bet
 
 | Problem | What to do |
 |---|---|
-| `version` doesn't show `(9421121f7)` | The flash didn't take, or it's an older 3D Edition file. Flash again (step 4). |
-| `get 3d_` says a setting doesn't exist | You're on stock Betaflight or an older 3D Edition build. Flash the v0.3.0 file. |
+| `version` doesn't show `(161e867a9)` | The flash didn't take, or it's an older 3D Edition file. Flash again (step 4). |
+| `get 3d_` says a setting doesn't exist | You're on stock Betaflight or an older 3D Edition build. Flash the v0.3.1 file. |
 | Blackbox stops before the pack ends | Erase before every pack. Still full? `set blackbox_sample_rate = 1/8` (fits a full whoop pack on 8 MB flash; this is what Lil Horny uses). |
 | A motor stalls, stutters or stops after a reversal | Disarm. Check ESC settings, solder joints, props. Mention it in the [form](https://forms.gle/Vfq3c2W7Lp5FE36t5). |
 | The quad drifts or wobbles after flips | That's what we're measuring. Keep flying the routine and describe it. |

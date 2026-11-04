@@ -1,6 +1,8 @@
-# BetaFlight 3D Edition v0.3.0-test: best 3D settings found so far (= testing guide Block B, with RPM telemetry)
-# Paste on top of your own tune. Not a full tune: PIDs, rates, receiver, OSD stay as they are.
-# Needs bidirectional DShot RPM telemetry (dshot_bidir = ON: AM32, Bluejay, BLHeli_32). Without it, see TESTING_GUIDE.md Block B.
+# BetaFlight 3D Edition v0.3.1-test: best 3D settings found so far (ZoeFPV, Pass 53/56)
+# v0.3.1 ships these 3D values as its defaults. Paste this if you upgraded without a full chip erase, or to put them back
+# after an A/B test. Not a full tune: PIDs, rates, receiver, OSD stay as they are.
+# Dynamic idle and RPM release need bidirectional DShot RPM telemetry (dshot_bidir = ON: AM32, Bluejay, BLHeli_32).
+# Without it, RPM release falls back to the 250 ms timer and dynamic idle stays off; leave the dyn_idle_* lines out.
 # UNPLUG THE BATTERY FIRST (3D: saving with a battery in can spin the motors up). After saving, bench-check props OFF:
 # ~10 fast reversals through center, all motors restart cleanly.
 
