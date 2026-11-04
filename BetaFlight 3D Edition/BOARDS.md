@@ -1,6 +1,6 @@
 # BetaFlight 3D Edition: firmware for every board
 
-**v0.3.1-test**: 88 flight controllers, all built from the same commit (`161e867a9`, Betaflight 4.5.1 base).
+**v0.3.1-test**: 89 flight controllers, all built from the same commit (`161e867a9`, Betaflight 4.5.1 base).
 After flashing, the CLI `version` command shows `4.5.1 ... (161e867a9)`. All files are on the
 [v0.3.1-test release page](https://github.com/BlindingBright/betaflight/releases/tag/v0.3.1-3d-test).
 Then follow the **[testing guide](TESTING_GUIDE.md)**.
@@ -118,6 +118,7 @@ Find your board name: Betaflight Configurator → CLI → `version`. The name at
 | Foxeer F722 V3 | `FOXEERF722V3` | STM32F722 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_FOXEERF722V3.hex) |
 | Matek F722 | `MATEKF722` | STM32F722 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_MATEKF722.hex) |
 | T-Motor Velox F7 V2 | `TMOTORVELOXF7V2` | STM32F722 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_TMOTORVELOXF7V2.hex) |
+| T-Motor F7 (BMI270) | `TMOTORF7` | STM32F722 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_TMOTORF7.hex) |
 | Axisflying F7 Pro | `AXISFLYINGF7PRO` | STM32F722 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_AXISFLYINGF7PRO.hex) |
 | iFlight BLITZ F7 Pro | `IFLIGHT_BLITZ_F7_PRO` | STM32F722 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_IFLIGHT_BLITZ_F7_PRO.hex) |
 | Skystars F7 HD Pro | `SKYSTARSF7HDPRO` | STM32F722 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_SKYSTARSF7HDPRO.hex) |

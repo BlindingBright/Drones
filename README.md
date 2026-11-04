@@ -15,7 +15,7 @@ Includes ready-to-flash `.hex` files for **[63 ESC target layouts / 135 builds](
 restarted after a reversal, stops anti-gravity treating every flip as a throttle chop, makes dynamic idle work in 3D, and
 fixes places where stock Betaflight sends reverse thrust in 3D (low-voltage cutoff, failsafe, `thr_mid`) and makes sag
 compensation work in 3D.
-**v0.3.1-test** (the best 3D settings are now the defaults) has ready-to-flash files for **[88 boards](BetaFlight%203D%20Edition/BOARDS.md)**
+**v0.3.1-test** (the best 3D settings are now the defaults) has ready-to-flash files for **[89 boards](BetaFlight%203D%20Edition/BOARDS.md)**
 (whoop AIOs and 5-inch stacks; others: [request a build](https://forms.gle/1p93ZjiqDp1PLWA96)), an easy 4-pack
 [testing guide](BetaFlight%203D%20Edition/TESTING_GUIDE.md), a starter tune, and the full source.
 3D pilots: please fly it and [send your logs](https://forms.gle/Vfq3c2W7Lp5FE36t5)!

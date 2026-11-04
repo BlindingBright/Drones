@@ -36,7 +36,7 @@ and with the v0.3.0 settings less shake in the first 60 ms after a flip (one tes
 - [ ] A flight controller **with blackbox** (onboard flash or SD card). No blackbox? You can still help, see [No blackbox](#no-blackbox-on-your-board).
 - [ ] [Betaflight Configurator](https://github.com/betaflight/betaflight-configurator/releases) and a USB data cable
 - [ ] [am32.ca/configurator](https://am32.ca/configurator) (Chrome or Edge) to check your ESC settings
-- [ ] Your firmware file from **[BOARDS.md](BOARDS.md)** (88 boards). The name must match your board exactly.
+- [ ] Your firmware file from **[BOARDS.md](BOARDS.md)** (89 boards). The name must match your board exactly.
 
 ## 1. Safety first (read this)
 
