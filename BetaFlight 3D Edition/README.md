@@ -4,7 +4,7 @@
 through center should hold their attitude better instead of drifting after every motor reversal.
 
 > **Status: v0.3.1-test (test firmware).** Developed and flight-tested on the **TBS Lucid AIO 1-2S** (ZoeFPV's "Lil Horny",
-> test passes 34–56). Firmware is built for **[44 boards](BOARDS.md)** (Betaflight 4.5.1 base).
+> test passes 34–56). Firmware is built for **[47 boards](BOARDS.md)** (Betaflight 4.5.1 base).
 > We need logs from more pilots and more quads before proposing it to the main Betaflight project.
 > Use it for testing. For everyday flying, official Betaflight is the safe choice.
 
@@ -25,7 +25,7 @@ through center should hold their attitude better instead of drifting after every
 |---|---|---|
 | **Firmware: TBS Lucid AIO 1-2S** | `BetaFlight3DEdition_v0.3.1-test_TBS_LUCID_AIO.hex` | **[⬇ Download](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_TBS_LUCID_AIO.hex)** · [copy in this folder](firmware/TBS_LUCID_AIO/BetaFlight3DEdition_v0.3.1-test_TBS_LUCID_AIO.hex) · [release page](https://github.com/BlindingBright/betaflight/releases/tag/v0.3.1-3d-test) |
 | **Firmware: CrazyBee F4 SX1280** (`CRAZYBEEF4SX1280`) | `BetaFlight3DEdition_v0.3.1-test_CRAZYBEEF4SX1280.hex` | **[⬇ Download](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_CRAZYBEEF4SX1280.hex)** · [copy in this folder](firmware/CRAZYBEEF4SX1280/BetaFlight3DEdition_v0.3.1-test_CRAZYBEEF4SX1280.hex) · settings: [3D_Edition_settings_CRAZYBEEF4SX1280.txt](tunes/3D_Edition_settings_CRAZYBEEF4SX1280.txt) |
-| **All boards (44)** | [BOARDS.md](BOARDS.md) | Whoop/AIO and 5-inch boards: SpeedyBee, Matek, Kakute, Mamba, Foxeer, iFlight, JHE, GEPRC, BetaFPV, Flywoo, DarwinFPV, Sequre… |
+| **All boards (47)** | [BOARDS.md](BOARDS.md) | Whoop/AIO and 5-inch boards: SpeedyBee, Matek, Kakute, Mamba, Foxeer, iFlight, JHE, GEPRC, BetaFPV, Flywoo, DarwinFPV, Sequre… |
 | **Pilot testing guide** | [TESTING_GUIDE.md](TESTING_GUIDE.md) | **Start here** |
 | **Log & feedback upload** | [Google Form](https://forms.gle/Vfq3c2W7Lp5FE36t5) | Up to 10 logs at once |
 | **Starter tune** (paste in CLI) | [3D_Edition_starter_tune_TBS_LUCID_AIO.txt](tunes/3D_Edition_starter_tune_TBS_LUCID_AIO.txt) | Lucid only: 3D, motor, filter, PID and Block A settings |

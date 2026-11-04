@@ -1,6 +1,6 @@
 # BetaFlight 3D Edition: firmware for every board
 
-**v0.3.1-test**: 44 flight controllers, all built from the same commit (`161e867a9`, Betaflight 4.5.1 base).
+**v0.3.1-test**: 47 flight controllers, all built from the same commit (`161e867a9`, Betaflight 4.5.1 base).
 After flashing, the CLI `version` command shows `4.5.1 ... (161e867a9)`. All files are on the
 [v0.3.1-test release page](https://github.com/BlindingBright/betaflight/releases/tag/v0.3.1-3d-test).
 Then follow the **[testing guide](TESTING_GUIDE.md)**.
@@ -8,6 +8,9 @@ Then follow the **[testing guide](TESTING_GUIDE.md)**.
 > **Most of these builds have not been flown yet.** The Lucid AIO is the board the change was developed and flight-tested on.
 > Fly carefully, and please [send your logs](https://forms.gle/Vfq3c2W7Lp5FE36t5): that's how a board gets confirmed.
 > Board not listed? **[Request a build](https://forms.gle/1p93ZjiqDp1PLWA96).**
+
+**New in v0.3.1 (requested boards):** DarwinFPV F435 AIO `DARWINF435`, JHEMCU H743 AIO `JHEH743_AIO`,
+Flywoo GOKU F722 Pro V1 / Mini `FLYWOOF722PRO`.
 
 **Added in v0.3.0 (requested boards):** DarwinFPV TinyApe `DARWINF4SX1280HD`, Flywoo GOKU F722 Pro V2 `FLYWOOF722PROV2`,
 Sequre H7 V2 `SEQUREH7V2`.
@@ -42,6 +45,8 @@ Find your board name: Betaflight Configurator → CLI → `version`. The name at
 | Matek F411 | `MATEKF411` | STM32F411 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_MATEKF411.hex) |
 | Flywoo F411 5-in-1 AIO | `FLYWOOF411_5IN1_AIO` | STM32F411 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_FLYWOOF411_5IN1_AIO.hex) |
 | DarwinFPV TinyApe 2S ELRS AIO (no blackbox flash) | `DARWINF4SX1280HD` | STM32F411 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_DARWINF4SX1280HD.hex) |
+| DarwinFPV F435 AIO | `DARWINF435` | AT32F435G | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_DARWINF435.hex) |
+| JHEMCU H743 AIO | `JHEH743_AIO` | STM32H743 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_JHEH743_AIO.hex) |
 | **5-inch / stack** | | | |
 | TBS Lucid FC | `TBS_LUCID_FC` | AT32F435M | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_TBS_LUCID_FC.hex) |
 | TBS Lucid H7 | `TBS_LUCID_H7` | STM32H743 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_TBS_LUCID_H7.hex) |
@@ -72,7 +77,8 @@ Find your board name: Betaflight Configurator → CLI → `version`. The name at
 | Flywoo F405S AIO | `FLYWOOF405S_AIO` | STM32F405 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_FLYWOOF405S_AIO.hex) |
 | BetaFPV F405 | `BETAFPVF405` | STM32F405 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_BETAFPVF405.hex) |
 | BetaFPV F722 | `BETAFPVF722` | STM32F722 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_BETAFPVF722.hex) |
-| Flywoo GOKU F722 Pro V2 | `FLYWOOF722PROV2` | STM32F722 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_FLYWOOF722PROV2.hex) |
+| Flywoo GOKU F722 Pro V2 (incl. Pro Mini V2 20x20 stack, ICM42688 gyro) | `FLYWOOF722PROV2` | STM32F722 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_FLYWOOF722PROV2.hex) |
+| Flywoo GOKU F722 Pro (V1, incl. Mini 20x20 stack, MPU6000 gyro) | `FLYWOOF722PRO` | STM32F722 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_FLYWOOF722PRO.hex) |
 | Sequre H7 V2 | `SEQUREH7V2` | STM32H743 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.1-3d-test/BetaFlight3DEdition_v0.3.1-test_SEQUREH7V2.hex) |
 
 ## How to test
@@ -85,5 +91,10 @@ Notes on requested boards:
 - **DarwinFPV TinyApe (`DARWINF4SX1280HD`)**: built-in SPI ExpressLRS is enabled on the 4.5.1 target. Coming from
   Betaflight 4.4.2, re-bind after flashing, check the binding phrase, and check that your transmitter's ELRS version matches. The board has **no blackbox flash**, so it can't record
   logs; DVR plus a written report still helps (see the guide's "No blackbox" note).
+- **Flywoo GOKU F722 Mini stacks**: two versions with different gyros. Check the board name your current Betaflight shows
+  (CLI `version`): `FLYWOOF722PROV2` (ICM42688, current Pro Mini V2) or `FLYWOOF722PRO` (MPU6000, V1). Flash the matching file.
+- **DarwinFPV F435 AIO (`DARWINF435`)**: AT32F435, 16 MB blackbox flash.
+- **JHEMCU H743 AIO (`JHEH743_AIO`)**: only 2 MB blackbox flash; on a 5-inch use `set blackbox_sample_rate = 1/16`, erase before
+  every pack, and expect a short log (fly the flips early in the pack).
 - **Flywoo GOKU F722 Pro V2 / Sequre H7 V2**: 16 MB flash; on a 5-inch at 8 kHz, `set blackbox_sample_rate = 1/4` or `1/8`
   helps a full pack fit.
