@@ -1,4 +1,4 @@
-# BetaFlight 3D Edition: pilot testing guide (v0.3.1-test)
+# BetaFlight 3D Edition: pilot testing guide (v0.3.2-test, Betaflight 2026.6.2 base)
 
 Thanks for helping test! About 20 minutes on the bench, then **4 packs of flying with one settings change in the middle.**
 
@@ -22,7 +22,7 @@ every flip it drifts until the trim rebuilds. The 3D Edition remembers both trim
 and (with RPM telemetry) lets the I-term go as soon as all motors have actually restarted (~150 ms on a whoop) instead
 of waiting 250 ms. v0.3.0 added two more 3D fixes: anti-gravity no longer treats every flip as a throttle chop, and
 dynamic idle (which stock Betaflight skips in 3D) gives the motors more command while they restart after a flip.
-v0.3.1 makes these the defaults and fixes three places where stock Betaflight sends reverse thrust in 3D (low-voltage
+v0.3.1 made these the defaults and fixes three places where stock Betaflight sends reverse thrust in 3D (low-voltage
 cutoff, failsafe landing, `thr_mid` with `thr_expo`), plus makes sag compensation work in 3D; those have their own [feature tests](V0.3.1_FEATURE_TESTING.md).
 On ZoeFPV's whoop: trim error in the first 250 ms after a flip about 65% smaller, pitch drift after flips about 20% lower,
 and with the v0.3.0 settings less shake in the first 60 ms after a flip (one test day, indicative). Now we need other quads.
@@ -36,7 +36,7 @@ and with the v0.3.0 settings less shake in the first 60 ms after a flip (one tes
 - [ ] A flight controller **with blackbox** (onboard flash or SD card). No blackbox? You can still help, see [No blackbox](#no-blackbox-on-your-board).
 - [ ] [Betaflight Configurator](https://github.com/betaflight/betaflight-configurator/releases) and a USB data cable
 - [ ] [am32.ca/configurator](https://am32.ca/configurator) (Chrome or Edge) to check your ESC settings
-- [ ] Your firmware file from **[BOARDS.md](BOARDS.md)** (89 boards). The name must match your board exactly.
+- [ ] Your firmware file from **[BOARDS.md](BOARDS.md)** (90 boards). The name must match your board exactly.
 
 ## 1. Safety first (read this)
 
@@ -73,11 +73,12 @@ For reference, ZoeFPV's AM32 settings on the Lucid whoop (a starting point, not 
 
 ## 4. Flash the firmware
 
-- [ ] Battery unplugged → **Firmware Flasher** → **Load Firmware [Local]** → pick your `BetaFlight3DEdition_v0.3.1-test_<BOARD>.hex`.
+- [ ] Battery unplugged → **Firmware Flasher** → **Load Firmware [Local]** → pick your `BetaFlight3DEdition_v0.3.2-test_<BOARD>.hex`.
 - [ ] **Flash Firmware** → wait for "Programming: SUCCESSFUL".
-- [ ] Connect → **CLI** → `version`. You should see **`4.5.1`** and **`(161e867a9)`**, and your board name.
+- [ ] Connect → **CLI** → `version`. You should see **`2026.6.2`** and **`(ea347bdd5)`**, and your board name.
 - [ ] If your settings were wiped, paste your `diff all` backup from step 2 and press Enter.
-  (Coming from Betaflight 4.4 or 2026.x? A few lines may be rejected. Re-enter those by hand; check receiver and ports.)
+  (Coming from Betaflight 4.5 / BF3D v0.3.1 or older? A 4.5 backup has renamed lines (D-max, `dshot_idle_value`): see
+  [BOARDS.md](BOARDS.md). Re-enter rejected lines by hand; check receiver and ports.)
 
 ## 5. Paste Block A (packs 1 and 2: stock behaviour)
 
@@ -104,7 +105,7 @@ set dyn_idle_min_rpm = 0
 save
 ```
 
-This is exactly stock Betaflight behaviour, plus logging. v0.3.1's defaults are the new 3D handling, so Block A is how you get
+This is exactly stock Betaflight behaviour, plus logging. BF3D's defaults are the new 3D handling, so Block A is how you get
 stock: it sets every 3D Edition setting explicitly, whatever you flashed or flew before. Your PIDs, rates, receiver, OSD and other 3D settings (deadband etc.) are not touched.
 
 **TBS Lucid AIO built like Lil Horny** (2S, 0802, 31 mm 3D props)? Paste the [starter tune](tunes/3D_Edition_starter_tune_TBS_LUCID_AIO.txt)
@@ -164,7 +165,7 @@ set 3d_anti_gravity = GATED
 set 3d_ag_approach_pct = 15
 save
 ```
-(Without telemetry the firmware can't see the motors restart, so it keeps the 250 ms timer; v0.3.1 does that by itself even if
+(Without telemetry the firmware can't see the motors restart, so it keeps the 250 ms timer; BF3D does that by itself even if
 `3d_iterm_release` is left at `RPM`. Block A set it to `TIME`, and that's what this block keeps.)
 
 - [ ] Reconnect, `get 3d_` → `3d_iterm_mode = PER_DIRECTION`, `3d_anti_gravity = GATED`, `3d_ag_approach_pct = 15`
@@ -198,8 +199,8 @@ Then you're done. If you want to go back to your own setup: **flash official Bet
 
 | Problem | What to do |
 |---|---|
-| `version` doesn't show `(161e867a9)` | The flash didn't take, or it's an older 3D Edition file. Flash again (step 4). |
-| `get 3d_` says a setting doesn't exist | You're on stock Betaflight or an older 3D Edition build. Flash the v0.3.1 file. |
+| `version` doesn't show `(ea347bdd5)` | The flash didn't take, or it's an older 3D Edition file. Flash again (step 4). |
+| `get 3d_` says a setting doesn't exist | You're on stock Betaflight or an older 3D Edition build. Flash the v0.3.2 file. |
 | Blackbox stops before the pack ends | Erase before every pack. Still full? `set blackbox_sample_rate = 1/8` (fits a full whoop pack on 8 MB flash; this is what Lil Horny uses). |
 | A motor stalls, stutters or stops after a reversal | Disarm. Check ESC settings, solder joints, props. Mention it in the [form](https://forms.gle/Vfq3c2W7Lp5FE36t5). |
 | The quad drifts or wobbles after flips | That's what we're measuring. Keep flying the routine and describe it. |
@@ -220,7 +221,7 @@ in packs 1–2 vs 3–4. Leave `debug_mode` as it is; it does nothing without a 
 
 ### 5-inch and bigger props
 Same blocks. Bigger props restart slower; with `RPM` release the firmware waits for the motors (up to the 400 ms cap), so nothing
-to change. Not on Betaflight 4.5.1? See [BOARDS.md](BOARDS.md) for the 2026.6 note.
+to change.
 
 ### Other boards
 Full list and notes: **[BOARDS.md](BOARDS.md)**. Not there? **[Request a build](https://forms.gle/1p93ZjiqDp1PLWA96)**,

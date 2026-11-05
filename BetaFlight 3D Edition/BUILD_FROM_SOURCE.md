@@ -1,56 +1,64 @@
 # Building BetaFlight 3D Edition from source
 
-The code lives in the Betaflight fork **[BlindingBright/betaflight](https://github.com/BlindingBright/betaflight)**,
-branch **`3d-iterm-memory`**, based on Betaflight **4.5.1** (`77d01ba3b`). The v0.3.1-test release is commit `161e867a9`
-(tag `v0.3.1-3d-test`).
+The code lives in the Betaflight fork **[BlindingBright/betaflight](https://github.com/BlindingBright/betaflight)**:
+
+| Version | Branch | Base | Release commit |
+|---|---|---|---|
+| **v0.3.2-test** (current) | **`3d-v0.3.2`** | Betaflight **2026.6.2** (`e0b7bb01b`) | `ea347bdd5` (tag `v0.3.2-3d-test`) |
+| v0.3.1-test (flown, 4.5 fallback) | `3d-iterm-memory` | Betaflight 4.5.1 (`77d01ba3b`) | `161e867a9` (tag `v0.3.1-3d-test`) |
 
 ## Download the code
 
 | What | Link |
 |---|---|
-| Exact source of the v0.3.1-test release (zip) | <https://github.com/BlindingBright/betaflight/archive/refs/tags/v0.3.1-3d-test.zip> |
-| Same, tar.gz | <https://github.com/BlindingBright/betaflight/archive/refs/tags/v0.3.1-3d-test.tar.gz> |
-| v0.2.2-test source | <https://github.com/BlindingBright/betaflight/archive/refs/tags/v0.2.2-3d-test.zip> |
-| Older v0.1.0-test source | <https://github.com/BlindingBright/betaflight/archive/refs/tags/v0.1.0-3d-test.zip> |
-| Latest development branch (zip) | <https://github.com/BlindingBright/betaflight/archive/refs/heads/3d-iterm-memory.zip> |
-| Browse the code | <https://github.com/BlindingBright/betaflight/tree/3d-iterm-memory> |
-| Just the changes vs Betaflight 4.5.1 | <https://github.com/BlindingBright/betaflight/compare/77d01ba3b...3d-iterm-memory> |
+| Exact source of the v0.3.2-test release (zip) | <https://github.com/BlindingBright/betaflight/archive/refs/tags/v0.3.2-3d-test.zip> |
+| Same, tar.gz | <https://github.com/BlindingBright/betaflight/archive/refs/tags/v0.3.2-3d-test.tar.gz> |
+| v0.3.1-test source (4.5.1) | <https://github.com/BlindingBright/betaflight/archive/refs/tags/v0.3.1-3d-test.zip> |
+| Browse the code | <https://github.com/BlindingBright/betaflight/tree/3d-v0.3.2> |
+| Just the changes vs Betaflight 2026.6.2 | <https://github.com/BlindingBright/betaflight/compare/2026.6.2...3d-v0.3.2> |
 
 Or with git:
 ```bash
-git clone -b 3d-iterm-memory https://github.com/BlindingBright/betaflight.git
+git clone -b 3d-v0.3.2 https://github.com/BlindingBright/betaflight.git
 cd betaflight
 ```
 
-## Build (Linux, macOS, or Windows with WSL)
+## Build v0.3.2 (Linux, macOS, or Windows with WSL)
 
-Betaflight 4.5 boards come from the separate **config** repo. Use its `4.5-config` branch:
+Board configs are the **config** submodule (`src/config`), pinned at `3a406c5`, the revision Betaflight 2026.6.2 uses:
 
 ```bash
-git clone -b 4.5-config https://github.com/betaflight/config.git src/config
-git -C src/config checkout 283a21f      # the board-config revision the release was built with (optional)
-make arm_sdk_install                     # downloads the pinned GCC 10.3.1 into ./tools
+git submodule update --init src/config   # or: make configs
+make arm_sdk_install                     # downloads the pinned compiler into ./tools
 make CONFIG=TBS_LUCID_AIO                # or CONFIG=<your board>
 ```
 
-The firmware lands in `obj/betaflight_4.5.1_<MCU>_<BOARD>.hex`. Flash it with Betaflight Configurator →
+The firmware lands in `obj/betaflight_2026.6.2_<MCU>_<BOARD>.hex`. Flash it with Betaflight Configurator →
 Firmware Flasher → **Load Firmware [Local]**.
 
 Notes from building it:
-- If `make arm_sdk_install` downloads but `make` still says the compiler is missing, extract it by hand:
-  `tar -C tools -xjf downloads/gcc-arm-none-eabi-10.3-2021.10-*-linux.tar.bz2`, then
-  `touch tools/gcc-arm-none-eabi-10.3-2021.10/bin/arm-none-eabi-gcc-10.3.1`.
-- Commit (or stash) your changes before building a test binary, and run `touch src/main/build/version.c` after
-  committing. Otherwise the firmware reports `norevision` instead of the commit hash, and logs can't be traced to a build.
-- Board names: `ls src/config/configs`. Not every board fits every feature; the 3D Edition changes add a few KB (the F411 builds are at 51–65% of flash).
+- Board configs are grouped by manufacturer: `ls src/config/configs/*/` (e.g. `configs/TEBS/TBS_LUCID_AIO`).
+- Commit your changes before building a test binary and run `touch src/main/build/version.c` afterwards. Otherwise the
+  firmware reports `norevision` instead of the commit hash, and logs can't be traced to a build.
 
 ## Run the unit tests
 
 ```bash
-cd src/test
-make CC=gcc CXX=g++ test_pid_unittest test_cli_unittest test_rc_controls_unittest test_blackbox_unittest
+make CC=gcc CXX=g++ test_mixer_3d_unittest test_rc_3d_unittest test_pid_unittest
 ```
-(Betaflight 4.5's test harness only accepts clang 7–16; with a newer clang, build the tests with gcc as above.)
+v0.3.2: mixer 30, rc_3d 4, PID 17 tests pass; the full suite (`make CC=gcc CXX=g++ test`) runs 62 binaries / 510 tests. Seven
+flight-plan tests (`flight_plan_*`, `flight_failsafe*`, `osd_nav_map`, `telemetry_mavlink_mission`) don't compile with gcc's C++
+front end on stock 2026.6.2 either (`_Static_assert` in `pg/flight_plan.h`).
+
+## Build v0.3.1 (Betaflight 4.5.1)
+
+```bash
+git clone -b 3d-iterm-memory https://github.com/BlindingBright/betaflight.git && cd betaflight
+git clone -b 4.5-config https://github.com/betaflight/config.git src/config
+git -C src/config checkout 283a21f
+make arm_sdk_install && make CONFIG=TBS_LUCID_AIO        # obj/betaflight_4.5.1_<MCU>_<BOARD>.hex
+```
+4.5's test harness only accepts clang 7–16; with a newer clang, build the tests with gcc (`make CC=gcc CXX=g++ ...`).
 
 ## Sharing a build
 
@@ -60,6 +68,8 @@ If you build for another board and fly it, please send the logs through the
 
 ## Targets not in the official config repo
 
-- **`FRACSP8AIO`** (Fractal Engineering SP8): copy [targets/FRACSP8AIO/config.h](targets/FRACSP8AIO/config.h) to
-  `src/config/configs/FRACSP8AIO/config.h`, then `make CONFIG=FRACSP8AIO`. It's Fractal's target definition
-  (FractalEngineer/config, branch `SP8-AIO`) with one change for 4.5: `SERIAL_PORT_UART1` → `SERIAL_PORT_USART1`.
+- **`FRACSP8AIO`** (Fractal Engineering SP8), from Fractal's target definition (FractalEngineer/config, branch `SP8-AIO`):
+  - v0.3.2 / 2026.6: copy [targets/FRACSP8AIO/2026.6/config.h](targets/FRACSP8AIO/2026.6/config.h) (unchanged) to
+    `src/config/configs/FRAC/FRACSP8AIO/config.h`, then `make CONFIG=FRACSP8AIO`.
+  - v0.3.1 / 4.5: [targets/FRACSP8AIO/4.5/config.h](targets/FRACSP8AIO/4.5/config.h) to `src/config/configs/FRACSP8AIO/`
+    (one change for 4.5: `SERIAL_PORT_UART1` → `SERIAL_PORT_USART1`).
