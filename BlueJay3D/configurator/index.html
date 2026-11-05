@@ -19,6 +19,9 @@
       <button id="btnConnectSerial" class="btn btn-primary" title="Connect to Flight Controller via WebSerial 4-Way Passthrough">
         🔌 Connect ESC (WebSerial 4-Way)
       </button>
+      <button id="btnDisconnectSerial" class="btn btn-danger" style="display: none;" title="Disconnect from Flight Controller and release serial port">
+        🚫 Disconnect
+      </button>
       <label class="btn btn-secondary" for="fileUploadInput">
         📂 Load .HEX / .BIN
         <input id="fileUploadInput" type="file" accept=".hex,.bin" hidden />
@@ -106,6 +109,7 @@
           <button id="btnReadEsc" class="btn btn-secondary btn-sm" disabled>Read ESCs</button>
           <button id="btnWriteEsc" class="btn btn-primary btn-sm" disabled>Write EEPROM</button>
           <button id="btnFlashEsc" class="btn btn-accent btn-sm" disabled>Flash .HEX</button>
+          <button id="btnDisconnectEscSlot" class="btn btn-danger btn-sm" style="display: none;" title="Disconnect and release serial port">Disconnect</button>
         </div>
       </section>
     </aside>

@@ -141,6 +141,16 @@ code {
   border-color: var(--primary);
 }
 
+.btn-danger {
+  background: var(--danger);
+  color: #ffffff;
+  border-color: rgba(239, 68, 68, 0.4);
+}
+.btn-danger:hover:not(:disabled) {
+  background: #dc2626;
+  border-color: #b91c1c;
+}
+
 .btn-sm {
   padding: 6px 10px;
   font-size: 12px;

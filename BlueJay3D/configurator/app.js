@@ -729,7 +729,68 @@ function bindControls() {
     a.click();
   });
 
-  // WebSerial 4-Way Interface Connection
+  // WebSerial 4-Way Interface Connection & Disconnection
+  function setSerialConnectedState(connected) {
+    const btnConnect = document.getElementById('btnConnectSerial');
+    const btnDisconnect = document.getElementById('btnDisconnectSerial');
+    const btnDisconnectSlot = document.getElementById('btnDisconnectEscSlot');
+    const box = document.getElementById('serialStatusBox');
+    const statusText = document.getElementById('serialStatusText');
+    const btnRead = document.getElementById('btnReadEsc');
+    const btnWrite = document.getElementById('btnWriteEsc');
+    const btnFlash = document.getElementById('btnFlashEsc');
+
+    if (connected) {
+      if (btnConnect) btnConnect.style.display = 'none';
+      if (btnDisconnect) btnDisconnect.style.display = 'inline-flex';
+      if (btnDisconnectSlot) btnDisconnectSlot.style.display = 'inline-flex';
+      box.classList.add('connected');
+      box.classList.remove('disconnected');
+      statusText.textContent = 'Connected via WebSerial (115200 4-Way Ready)';
+      btnRead.disabled = false;
+      btnWrite.disabled = false;
+      btnFlash.disabled = false;
+    } else {
+      if (btnConnect) btnConnect.style.display = 'inline-flex';
+      if (btnDisconnect) btnDisconnect.style.display = 'none';
+      if (btnDisconnectSlot) btnDisconnectSlot.style.display = 'none';
+      box.classList.remove('connected');
+      box.classList.add('disconnected');
+      statusText.textContent = 'Disconnected — Serial Port Released (Ready to Reconnect)';
+      btnRead.disabled = true;
+      btnWrite.disabled = true;
+      btnFlash.disabled = true;
+      for (let esc = 1; esc <= 4; esc++) {
+        const slotEl = document.getElementById(`escSlot${esc}`);
+        if (slotEl) slotEl.innerHTML = `<strong>ESC ${esc}</strong><span>Ready (Sim/Hex)</span>`;
+      }
+    }
+  }
+
+  async function disconnectSerial() {
+    if (!state.serialPort) return;
+    const statusText = document.getElementById('serialStatusText');
+    try {
+      if (statusText) statusText.textContent = 'Disconnecting: Exiting 4-Way & Releasing Port...';
+      // Attempt clean 4-way interface exit (cmd 0x34) so Betaflight FC returns to normal MSP
+      if (state.serialPort.writable) {
+        try {
+          const writer = state.serialPort.writable.getWriter();
+          await send4WayCommand(writer, 0x34, 0, [0]); // cmd_InterfaceExit = 0x34
+          writer.releaseLock();
+        } catch (e) {
+          console.warn('4-Way exit notification ignored:', e);
+        }
+      }
+      await state.serialPort.close();
+    } catch (err) {
+      console.warn('Error during serial port close:', err);
+    } finally {
+      state.serialPort = null;
+      setSerialConnectedState(false);
+    }
+  }
+
   document.getElementById('btnConnectSerial').addEventListener('click', async () => {
     if (!('serial' in navigator)) {
       alert('WebSerial API requires Chrome/Edge/Brave over localhost or HTTPS.');
@@ -739,16 +800,30 @@ function bindControls() {
       const port = await navigator.serial.requestPort();
       await port.open({ baudRate: 115200 });
       state.serialPort = port;
-      const box = document.getElementById('serialStatusBox');
-      box.classList.add('connected');
-      document.getElementById('serialStatusText').textContent = 'Connected via WebSerial (115200 4-Way Ready)';
-      document.getElementById('btnReadEsc').disabled = false;
-      document.getElementById('btnWriteEsc').disabled = false;
-      document.getElementById('btnFlashEsc').disabled = false;
+      setSerialConnectedState(true);
     } catch (err) {
       console.warn('WebSerial connection canceled or failed:', err);
     }
   });
+
+  const btnDisconnect = document.getElementById('btnDisconnectSerial');
+  if (btnDisconnect) {
+    btnDisconnect.addEventListener('click', disconnectSerial);
+  }
+
+  const btnDisconnectSlot = document.getElementById('btnDisconnectEscSlot');
+  if (btnDisconnectSlot) {
+    btnDisconnectSlot.addEventListener('click', disconnectSerial);
+  }
+
+  // Auto-detect hardware unplug
+  if ('serial' in navigator) {
+    navigator.serial.addEventListener('disconnect', (event) => {
+      if (state.serialPort && event.target === state.serialPort) {
+        disconnectSerial();
+      }
+    });
+  }
 
   document.getElementById('btnReadEsc').addEventListener('click', () => run4WayAction('read'));
   document.getElementById('btnWriteEsc').addEventListener('click', () => run4WayAction('write'));

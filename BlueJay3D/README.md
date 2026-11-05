@@ -28,12 +28,19 @@ Tic-tocks, punch-outs from reversals, and flips through center stick reverse cle
 | **Firmware: `A_X_5` & `B_X_30`** *(EFM8BB51 newer 2024+ AIOs & 4-in-1s)* | `A_X_5_48_v0.22.0-3D.hex` | **[⬇ A_X_5 48k](firmware/hex/A_X_5_48_v0.22.0-3D.hex)** · [⬇ B_X_30 48k](firmware/hex/B_X_30_48_v0.22.0-3D.hex) · [all BB51](TARGETS.md#efm8bb51-targets-_x_) |
 | **All ESC targets (63 layouts / 135 files)** | [TARGETS.md](TARGETS.md) | Board-to-target lookup table + direct `.hex` links & [SHA-256 hashes](firmware/SHA256SUMS.txt) |
 | **Pilot testing guide** | [TESTING_GUIDE.md](TESTING_GUIDE.md) | **Start here** — 2-min bench check + 4-pack Block A / Block B flight test |
-| **Bluejay3D Configurator** | [configurator/](configurator/) | WebSerial 4-way passthrough + offline `.hex` / `.bin` editor + 3D reversal simulator |
+| **Bluejay3D Configurator** | [configurator/](configurator/) · [Launcher Guide](BLUEJAY3D_CONFIGURATOR_GUIDE.md) | 1-click launcher (`./run_bluejay3d_configurator.sh` / `.bat`) with disconnect button + WebSerial 4-way passthrough + offline editor |
 | **3D EEPROM Presets** | [presets/](presets/) | [`BlockA_Stock_v021_Baseline.bin`](presets/BlockA_Stock_v021_Baseline.bin) · [`BlockB_1S_2S_Whoop.bin`](presets/BlockB_1S_2S_Whoop.bin) · [`BlockB_3_4_Toothpick.bin`](presets/BlockB_3_4_Toothpick.bin) · [`BlockB_5inch_Acro.bin`](presets/BlockB_5inch_Acro.bin) |
 | **Log & feedback upload** | [Google Form](https://docs.google.com/forms/d/e/1FAIpQLSfmN5fuS82CXPKGCXlqQAUPCoa6tT8LgZesW7zxZt6WFHSnpw/viewform) · [GitHub Form](https://github.com/BlindingBright/Drones/issues/new?template=bluejay3d_log_upload.yml) | Upload up to 10 `.BBL` logs at once |
 | **Pre-flight bench verifier** | [`tools/bench_verify.py`](tools/bench_verify.py) | 8051 machine-code SIL emulator + automated props-off MSP motor reversal sweep |
 | **Technical breakdown** | [ARCHITECTURE_AND_FIXES.md](ARCHITECTURE_AND_FIXES.md) | Deep dive into all 9 stock Bluejay 3D bugs and the AM32/ESCape32 assembly backports |
 | **Source code & build guide** | [firmware/src/](firmware/src/) · [BUILD_FROM_SOURCE.md](BUILD_FROM_SOURCE.md) | Full EFM8 8051 assembly source + Python OMF-251 linker (`tools/omf2hex.py`) |
+
+### 🚀 1-Click Local Configurator Launcher
+Run the Bluejay3D Configurator locally on your machine with one command:
+* **Linux / macOS**: `./run_bluejay3d_configurator.sh`
+* **Windows**: Double-click `run_bluejay3d_configurator.bat`
+
+Features auto-port finding, quad USB serial scanning, automatic Chromium browser launch, and a dedicated **`🚫 Disconnect`** button to cleanly release the serial port when done! See the **[Configurator Guide](BLUEJAY3D_CONFIGURATOR_GUIDE.md)** for details.
 
 **ESC layout or board not in [the list](TARGETS.md)?** **[Request a build for your ESC / board](https://docs.google.com/forms/d/e/1FAIpQLSegPRjFi6s6WUmWW0QfRsDMLYOeNchlNj9iVQxU-3Z2g0Upxw/viewform)** (Google Form, no sign-in needed) or **[open a Target Request issue](https://github.com/BlindingBright/Drones/issues/new?template=bluejay3d_target_request.yml)**, or contact ZoeFPV (Discord link at [zoefpv.com](https://zoefpv.com)).
 
