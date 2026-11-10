@@ -10,7 +10,7 @@ preset for your quad, check the motors, fly.
 | Firmware | [Lucid AIO hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.3-3d-test/BetaFlight3DEdition_v0.3.3-test_TBS_LUCID_AIO.hex) · [other boards](BOARDS.md) | [XRotor F7 hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.3-3d-test/BetaFlight3DEdition_v0.3.3-test_HOBBYWING_XROTORF7CONV.hex) · [T-Motor F7 hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.3-3d-test/BetaFlight3DEdition_v0.3.3-test_TMOTORF7.hex) · [other boards](BOARDS.md) |
 | Dynamic idle | 5000 rpm (flown) | 3000 rpm (hover-tested) |
 | PIDs P-I-D (roll / pitch / yaw) | 54-88-46 / 53-95-50 / 50-95 | 35-85-20 / 37-92-21 / 32-85 |
-| Flight status | Tune flown on BF3D v0.3.1 (Betaflight 4.5.1), translated to 2026.6. **Not flown on the 2026.6 base yet**: do a hover test first | **Flown** on v0.3.3 over several packs with blackbox logs; the pilot reports it feels close to perfect |
+| Flight status | Tune flown on BF3D v0.3.1 (Betaflight 4.5.1), translated to 2026.6, and since flown on v0.3.3 on the whoop (pilot: felt good; logs to follow). Fly your first pack carefully (hover first) | **Flown** on v0.3.3 over several packs with blackbox logs; the pilot reports it feels close to perfect |
 
 ## What a preset is, and why it is not a plain `diff all`
 

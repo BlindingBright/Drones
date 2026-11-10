@@ -274,7 +274,7 @@ Seven flight-plan tests don't compile with gcc's C++ front end on stock 2026.6.2
 | Reverse mixer bounds (v0.3.3) | same 5-inch | Logged inverted motor outputs follow the corrected bounds in every pack |
 | Dynamic idle 3000 rpm | same 5-inch, hover | Slowest motor held at ~3000 rpm, no stalls (see [section 3](#3-dynamic-idle-in-3d)) |
 | Safety fixes (section 4) | unit tests only | Not yet bench-tested on hardware |
-| Whoop on the 2026.6 base | not flown yet | Same 3D code; tune translated from the flown 4.5 one |
+| Whoop on the 2026.6 base (v0.3.3) | Lil Horny | Flown with the tune translated from the flown 4.5 one; pilot report: felt good. Logs not analysed yet |
 
 Known open issue: on the 5-inch a small roll twitch (about 25 °/s at ~11 Hz) follows throttle changes. It was already present on stock-like
 tunes and is not caused by the 3D changes as far as the logs show; the cause is not found yet.

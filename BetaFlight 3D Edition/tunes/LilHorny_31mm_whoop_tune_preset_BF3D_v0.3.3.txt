@@ -6,7 +6,7 @@
 #
 # ZoeFPV's "Lil Horny": TBS Lucid AIO 1-2S, 31 mm props, AM32 ESCs, 12-pole motors. This is the tune she flew on BF3D v0.3.1
 # (Betaflight 4.5.1, test passes 34-56), translated to the 2026.6 settings names. A code comparison shows the same D / D-max,
-# feedforward and I-term behaviour, but it has NOT flown on the 2026.6 base yet: treat the first pack as a test (hover first).
+# feedforward and I-term behaviour, and it has since flown on the 2026.6 base on Lil Horny (pilot: felt good; logs not analysed yet). Treat your first pack as a test (hover first).
 # It is a starting point for other 31 mm whoops: different motors / props / weight may want other PIDs.
 #
 # YOU NEED FIRST

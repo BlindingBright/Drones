@@ -6,7 +6,7 @@ reverse (failsafe, low-voltage cutoff, throttle curve) are fixed.
 
 > **Status: v0.3.3-test (test firmware, Betaflight 2026.6.2 base, [90 boards](BOARDS.md)).** Developed and flight-tested by
 > ZoeFPV on a 31 mm whoop and a 6S 5-inch. v0.3.3 has flown on the **5-inch** (several packs with blackbox logs); the whoop tune
-> was flown on the earlier Betaflight 4.5 version (v0.3.1) and has not flown on 2026.6 yet. We need logs from more pilots and more
+> was flown on the earlier Betaflight 4.5 version (v0.3.1) and has since flown on 2026.6 (v0.3.3): the pilot says it felt good, logs to follow. We need logs from more pilots and more
 > quads before proposing it to the main Betaflight project. Use it for testing; for everyday flying official Betaflight is the safe choice.
 
 ## ⭐ Presets: ready-to-paste tunes
@@ -19,7 +19,7 @@ tune only: **it never touches your board, ports, switches, motor order or rates*
 | **Preset** | **[⬇ LilHorny_31mm_whoop_tune_preset_BF3D_v0.3.3.txt](tunes/LilHorny_31mm_whoop_tune_preset_BF3D_v0.3.3.txt)** | **[⬇ Unicorn_5inch_MAIN_tune_preset_BF3D_v0.3.3.txt](tunes/Unicorn_5inch_MAIN_tune_preset_BF3D_v0.3.3.txt)** |
 | Made on | "Lil Horny": TBS Lucid AIO 1-2S, 31 mm props, AM32 | "Unicorn": Hobbywing XRotor F7 (flown) and a T-Motor F7 twin (hover-tested), 6S 2010 motors, APC 5x4 3D props, AM32 |
 | Firmware | [Lucid AIO](https://github.com/BlindingBright/betaflight/releases/download/v0.3.3-3d-test/BetaFlight3DEdition_v0.3.3-test_TBS_LUCID_AIO.hex) · [all boards](BOARDS.md) | [XRotor F7](https://github.com/BlindingBright/betaflight/releases/download/v0.3.3-3d-test/BetaFlight3DEdition_v0.3.3-test_HOBBYWING_XROTORF7CONV.hex) · [T-Motor F7](https://github.com/BlindingBright/betaflight/releases/download/v0.3.3-3d-test/BetaFlight3DEdition_v0.3.3-test_TMOTORF7.hex) · [all boards](BOARDS.md) |
-| Status | Tune flown on v0.3.1; **hover-test first** on 2026.6 | **Flown on v0.3.3**; feels close to perfect |
+| Status | Tune flown on v0.3.1, then on v0.3.3 (2026.6): felt good, logs to follow | **Flown on v0.3.3**; feels close to perfect |
 
 **Read [PRESETS.md](PRESETS.md) first**: requirements (3D set up, bidirectional DShot, your motor pole count), the exact steps, how to go back,
 and how to adapt the tune to your quad.
@@ -92,7 +92,7 @@ One quad isn't proof: that's why we need your logs.
 
 ## Roadmap
 
-- Fly the whoop on v0.3.3 and a full 5-inch pack with dynamic idle.
+- Whoop logs on v0.3.3, and a full 5-inch pack with dynamic idle.
 - A better estimate of the per-direction trim (it stores a noisy average today).
 - Prepare upstream pull requests (Betaflight `master`, one fix per PR, stock defaults). The reverse airmode bounds fix applies to stock Betaflight as is.
 - Per-direction thrust / TPA.

@@ -108,7 +108,7 @@ Then:
 
 ## 5. Set up Betaflight
 
-> **Want the 3D improvements? Use BetaFlight 3D Edition (Betaflight 2026.6.2 based) instead:** flash the [Lucid AIO firmware](https://github.com/BlindingBright/betaflight/releases/download/v0.3.3-3d-test/BetaFlight3DEdition_v0.3.3-test_TBS_LUCID_AIO.hex) and paste the **[31 mm whoop preset](../BetaFlight%203D%20Edition/tunes/LilHorny_31mm_whoop_tune_preset_BF3D_v0.3.3.txt)** instead of the master tune below. It is this same tune translated to 2026.6 (not flown on 2026.6 yet: hover-test first). Details: [PRESETS.md](../BetaFlight%203D%20Edition/PRESETS.md).
+> **Want the 3D improvements? Use BetaFlight 3D Edition (Betaflight 2026.6.2 based) instead:** flash the [Lucid AIO firmware](https://github.com/BlindingBright/betaflight/releases/download/v0.3.3-3d-test/BetaFlight3DEdition_v0.3.3-test_TBS_LUCID_AIO.hex) and paste the **[31 mm whoop preset](../BetaFlight%203D%20Edition/tunes/LilHorny_31mm_whoop_tune_preset_BF3D_v0.3.3.txt)** instead of the master tune below. It is this same tune translated to 2026.6 (flown on 2026.6: felt good, logs to follow; hover-test first on your own build). Details: [PRESETS.md](../BetaFlight%203D%20Edition/PRESETS.md).
 
 1. Make sure the Lucid is running **Betaflight 4.5.1**.
 2. Open the **CLI** tab.
