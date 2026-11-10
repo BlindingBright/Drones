@@ -76,8 +76,6 @@ set rpm_filter_fade_range_hz = 50
 set rpm_filter_q = 500
 set rpm_filter_weights = 100,100,100
 set acc_lpf_hz = 25
-set min_check = 1050
-set max_check = 1900
 
 profile 0
 set profile_name = LilHorny

@@ -21,7 +21,7 @@ set 3d_ag_approach_pct = 15
 set 3d_dyn_idle = ON
 
 profile 0
-# 50 (5000 rpm) for 1S/2S whoops with high-kv motors (flown); 30 for 5-inch / low-kv (log replay only, not flown yet).
+# 50 (5000 rpm) for 1S/2S whoops with high-kv motors (flown); 30 for 5-inch / low-kv (hover-tested on a 6S 5-inch).
 # Keep it below the rpm of your slowest motor
 # at center stick.
 set dyn_idle_min_rpm = 50

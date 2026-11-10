@@ -6,7 +6,7 @@ preset for your quad, check the motors, fly.
 | | **31 mm 3D whoop** | **6S 5-inch 3D** |
 |---|---|---|
 | Preset file | **[LilHorny_31mm_whoop_tune_preset_BF3D_v0.3.3.txt](tunes/LilHorny_31mm_whoop_tune_preset_BF3D_v0.3.3.txt)** | **[Unicorn_5inch_MAIN_tune_preset_BF3D_v0.3.3.txt](tunes/Unicorn_5inch_MAIN_tune_preset_BF3D_v0.3.3.txt)** |
-| Flown on | "Lil Horny": TBS Lucid AIO 1-2S, 31 mm props, AM32, 12-pole motors | "Unicorn": Hobbywing XRotor F7 (also a T-Motor F7 twin), 6S, 2010 ~1950 kv, APC 5x4 3D props, AM32, ~700 g with GoPro |
+| Flown on | "Lil Horny": TBS Lucid AIO 1-2S, 31 mm props, AM32, 12-pole motors | "Unicorn": Hobbywing XRotor F7 (flown); a T-Motor F7 twin runs it too (hover-tested), 6S, 2010 ~1950 kv, APC 5x4 3D props, AM32, ~700 g with GoPro |
 | Firmware | [Lucid AIO hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.3-3d-test/BetaFlight3DEdition_v0.3.3-test_TBS_LUCID_AIO.hex) · [other boards](BOARDS.md) | [XRotor F7 hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.3-3d-test/BetaFlight3DEdition_v0.3.3-test_HOBBYWING_XROTORF7CONV.hex) · [T-Motor F7 hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.3-3d-test/BetaFlight3DEdition_v0.3.3-test_TMOTORF7.hex) · [other boards](BOARDS.md) |
 | Dynamic idle | 5000 rpm (flown) | 3000 rpm (hover-tested) |
 | PIDs P-I-D (roll / pitch / yaw) | 54-88-46 / 53-95-50 / 50-95 | 35-85-20 / 37-92-21 / 32-85 |
@@ -20,7 +20,7 @@ Pasted onto someone else's quad it would wipe their setup or fail on a different
 - **Sets:** the 3D settings, the PIDs and feedforward, the D-term and gyro filters, TPA, anti-gravity, thrust linearisation, dynamic
   idle, stick deadbands, and the 2026.6 defaults the tune depends on, *written out* so an old setup can't leak through.
 - **Never touches:** `board_name`, serial ports, `aux` switches, `feature` lines (including `feature 3D`), motor order,
-  `yaw_motors_reversed`, accelerometer calibration, `motor_poles`, the PID loop divider (`pid_process_denom`), and your rates.
+  `yaw_motors_reversed`, accelerometer calibration, `motor_poles`, your radio endpoints (`min_check` / `max_check`), the PID loop divider (`pid_process_denom`), and your rates.
 - **Overwrites** PID profile 0 and names it (`Unicorn` / `LilHorny`). Other profiles are left alone.
 - **Rates** are an optional block at the bottom of each file, commented out. Remove the `#` to use ZoeFPV's "Z' Magic" rates.
 - **Safe on the wrong firmware:** the file is a command batch. If any line is rejected (for example the `3d_*` settings on stock Betaflight),
@@ -77,11 +77,11 @@ They are starting points, not magic. Different motors, props, weight or ESC firm
 ## How the presets were made and checked
 
 - The 5-inch preset is the XRotor's saved configuration after the final flight, with only hardware lines removed. Tested by loading it
-  from `defaults` onto the XRotor (without saving): 95 lines, no errors, and the result matched the flown configuration with zero differences.
+  from `defaults` onto the XRotor (without saving): 93 lines, no errors, and the result matched the flown configuration with zero differences.
 - The whoop preset is generated from the running configuration of Lil Horny after v0.3.3 was loaded; every line was checked against it,
   and nothing the whoop sets differently from default was missed. It has not yet been loaded onto the quad from a preset file.
-- Every line was accepted by v0.3.3: the 5-inch file by loading it live (above), the whoop file because its values come from the quad's own
-  running configuration.
+- The 5-inch file was accepted line by line by v0.3.3 (live test above). The whoop file is expected to load cleanly, since its values come from the
+  quad's own running configuration, but it has **not** been loaded onto the quad yet.
 
 ZoeFPV's full Lil Horny CLI, with its hardware lines, is here as a reference: [ZoeFPV_LilHorny_v0.3.3_full_CLI.txt](tunes/ZoeFPV_LilHorny_v0.3.3_full_CLI.txt).
 Don't paste a full CLI like that on a different board.

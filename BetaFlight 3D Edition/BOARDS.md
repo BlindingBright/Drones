@@ -21,7 +21,7 @@ Flywoo GOKU F722 Pro V1 / Mini `FLYWOOF722PRO`.
 **Added in v0.3.0 (requested boards):** DarwinFPV TinyApe `DARWINF4SX1280HD`, Flywoo GOKU F722 Pro V2 `FLYWOOF722PROV2`,
 Sequre H7 V2 `SEQUREH7V2`.
 
-**Coming from BF3D v0.3.2?** Flash v0.3.3 over it; your settings are kept.
+**Coming from BF3D v0.3.2?** Flash v0.3.3 over it; your settings are kept (same Betaflight base).
 
 **Coming from Betaflight 4.5 or BF3D v0.3.1?** v0.3.3 is built on 2026.6.2. Back up `diff all` first. A 4.5 diff doesn't paste
 as-is: 2026.6 renamed D-max (`d_*` is the base D, `d_max_*` the max; 4.5 had `d_min_*` / `d_*`), `dshot_idle_value` is now

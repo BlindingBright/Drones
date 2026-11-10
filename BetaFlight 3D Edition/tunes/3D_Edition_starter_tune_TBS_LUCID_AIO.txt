@@ -1,4 +1,7 @@
-# BetaFlight 3D Edition v0.3.2-test (Betaflight 2026.6 base): starter tune for the TBS Lucid AIO (1-2S)
+# *** THIS FILE SETS STOCK 3D BEHAVIOUR (Block A of the testing guide: RESET / TIME / STOCK, dynamic idle OFF) FOR A/B TESTING. ***
+# *** For normal flying paste the 31 mm whoop PRESET instead (PRESETS.md): pasting this after it switches the 3D Edition features off. ***
+#
+# BetaFlight 3D Edition (Betaflight 2026.6 base): starter tune for the TBS Lucid AIO (1-2S), testing-guide Block A
 # Tuned on ZoeFPV's "Lil Horny": 2S, 0802 16000kv motors, Gemfan 31 mm 3D props, ~30 g.
 # Other motors/props/frames: it should fly, but expect to adjust PIDs.
 #

@@ -1,7 +1,7 @@
 # BetaFlight 3D Edition: version history
 
-Every version is a test release. Each adds to the one before, and saved settings survive an upgrade (the 3D settings are appended to
-the existing settings structure, never reordered). What each change does is explained in [HOW_IT_WORKS.md](HOW_IT_WORKS.md).
+Every version is a test release. Each adds to the one before. Saved settings survive an upgrade on the same Betaflight base (the 3D settings are appended to
+the existing settings structure, never reordered); across bases (4.5 to 2026.6) paste a preset or full CLI. What each change does is explained in [HOW_IT_WORKS.md](HOW_IT_WORKS.md).
 
 | Version | Date | Base | What changed | Boards |
 |---|---|---|---|---|

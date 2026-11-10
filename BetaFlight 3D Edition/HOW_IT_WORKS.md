@@ -163,7 +163,7 @@ or desync. **Stock Betaflight does not run it in 3D at all**: the code lives onl
 **5-inch hover log** (XRotor, dynamic idle at 3000 rpm): the slowest motor sat at about 3000-3100 rpm and was below 3000 rpm for
 0.13 s and 0.21 s in two tests of about 30 s each, with no stalls, no zero-rpm readings and no desync-like jumps. After a flip all motors were back above
 3000 rpm in a median 43-45 ms (73 ms without dynamic idle on an earlier flight), and the lowest rpm reached in the 450 ms after a flip
-rose from about 510 to about 740-790. Small sample (31 flips); the slower tail (p90) did not improve. A full-pack flight is still to come.
+rose from about 510 to about 740-790. Small sample (31 flips), and the flying differed: the no-dynamic-idle number comes from a hard 102-flip pack, these two from gentle hover tests. The slower tail (p90) did not improve. A full-pack flight is still to come.
 
 ---
 
@@ -247,8 +247,9 @@ To get fully stock 3D behaviour for a comparison: `3d_iterm_mode = RESET`, `3d_i
 `3d_anti_gravity = STOCK`, `3d_dyn_idle = OFF` (the [testing guide](TESTING_GUIDE.md)'s Block A does this). The always-on fixes
 (sections 1D, 4 and 5) have no switch.
 
-**Saved settings survive an upgrade.** New 3D fields are appended to the existing settings structure with no version bump, so flashing a
-new BF3D over an older one keeps your saved 3D deadbands and settings. The flip side: new *defaults* only arrive with a full chip erase,
+**Saved settings survive an upgrade on the same Betaflight base** (v0.3.2 to v0.3.3, or 4.5.1 to 4.5.1). New 3D fields are appended to the existing settings
+structure with no version bump, so flashing a newer BF3D over an older one keeps your saved 3D deadbands and settings. Across Betaflight bases
+(4.5 to 2026.6) paste a full CLI or a preset instead. The flip side: new *defaults* only arrive with a full chip erase,
 `defaults`, or by pasting a [preset](PRESETS.md).
 
 ---

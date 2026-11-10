@@ -17,7 +17,7 @@ tune only: **it never touches your board, ports, switches, motor order or rates*
 | | 🛸 **31 mm 3D whoop** | 🚁 **6S 5-inch 3D** |
 |---|---|---|
 | **Preset** | **[⬇ LilHorny_31mm_whoop_tune_preset_BF3D_v0.3.3.txt](tunes/LilHorny_31mm_whoop_tune_preset_BF3D_v0.3.3.txt)** | **[⬇ Unicorn_5inch_MAIN_tune_preset_BF3D_v0.3.3.txt](tunes/Unicorn_5inch_MAIN_tune_preset_BF3D_v0.3.3.txt)** |
-| Made on | "Lil Horny": TBS Lucid AIO 1-2S, 31 mm props, AM32 | "Unicorn": Hobbywing XRotor F7 / T-Motor F7, 6S 2010 motors, APC 5x4 3D props, AM32 |
+| Made on | "Lil Horny": TBS Lucid AIO 1-2S, 31 mm props, AM32 | "Unicorn": Hobbywing XRotor F7 (flown) and a T-Motor F7 twin (hover-tested), 6S 2010 motors, APC 5x4 3D props, AM32 |
 | Firmware | [Lucid AIO](https://github.com/BlindingBright/betaflight/releases/download/v0.3.3-3d-test/BetaFlight3DEdition_v0.3.3-test_TBS_LUCID_AIO.hex) · [all boards](BOARDS.md) | [XRotor F7](https://github.com/BlindingBright/betaflight/releases/download/v0.3.3-3d-test/BetaFlight3DEdition_v0.3.3-test_HOBBYWING_XROTORF7CONV.hex) · [T-Motor F7](https://github.com/BlindingBright/betaflight/releases/download/v0.3.3-3d-test/BetaFlight3DEdition_v0.3.3-test_TMOTORF7.hex) · [all boards](BOARDS.md) |
 | Status | Tune flown on v0.3.1; **hover-test first** on 2026.6 | **Flown on v0.3.3**; feels close to perfect |
 
@@ -108,7 +108,7 @@ One quad isn't proof: that's why we need your logs.
 | [FEATURE_TESTING.md](FEATURE_TESTING.md) | Bench and flight tests for the safety fixes |
 | [CHANGELOG.md](CHANGELOG.md) | Version history and upgrade notes |
 | [BUILD_FROM_SOURCE.md](BUILD_FROM_SOURCE.md) | Build the firmware yourself |
-| More tune files | [best 3D settings](tunes/3D_Edition_best_settings_v0.3.1.txt) (any board with RPM telemetry) · [Lucid starter tune](tunes/3D_Edition_starter_tune_TBS_LUCID_AIO.txt) · [ZoeFPV's full Lil Horny CLI](tunes/ZoeFPV_LilHorny_v0.3.3_full_CLI.txt) (reference; don't paste it whole) |
+| More tune files | [best 3D settings](tunes/3D_Edition_best_settings_v0.3.1.txt) (just the 3D settings, any board with RPM telemetry; its dynamic idle value 50 is for whoops, use 30 on a 5-inch) · [Lucid testing-guide Block A](tunes/3D_Edition_starter_tune_TBS_LUCID_AIO.txt) (**stock** 3D behaviour for A/B testing, not for normal flying) · [ZoeFPV's full Lil Horny CLI](tunes/ZoeFPV_LilHorny_v0.3.3_full_CLI.txt) (reference; don't paste it whole) |
 
 ## Credits and license
 
