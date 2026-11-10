@@ -1,0 +1,51 @@
+# ==============================================================================
+# "Unicorn 5-inch MAIN" tune preset for BetaFlight 3D Edition v0.3.3 (Betaflight 2026.6.2)
+# Craft: 5-inch 3D, 6S, 2010-size ~1911-1960 kv, APC 5x4 3D props, AM32 2.22 ESCs, ~700 g with GoPro.
+# Flown 2026-11-09 on the Hobbywing XRotor F7 (4 packs of iteration; final: roll/pitch error 10 % / 9 % in fast moves).
+# Apply ON TOP of Betaflight 2026.6.2 defaults for everything it does not list (stock gyro / dyn notch / RPM filters,
+# iterm_rotation OFF, anti-gravity, TPA mode D). Paste in the CLI, then `save`. Does not touch ports, switches, rates, motor order.
+# Needs bidirectional DShot (RPM filter, 3D RPM release). 3D settings are the v0.3.3 firmware defaults, written out.
+# ==============================================================================
+set dshot_bidir = ON
+set pid_process_denom = 2
+set small_angle = 180
+set deadband = 2
+set yaw_deadband = 2
+set 3d_deadband_low = 1496
+set 3d_deadband_high = 1504
+set 3d_neutral = 1500
+set 3d_deadband_throttle = 3
+set 3d_iterm_mode = PER_DIRECTION
+set 3d_iterm_axes = ALL
+set 3d_iterm_release = RPM
+set 3d_iterm_load = FLIP
+set 3d_anti_gravity = GATED
+set 3d_ag_approach_pct = 15
+set 3d_dyn_idle = ON
+set debug_mode = 3D_ITERM
+profile 0
+set profile_name = Unicorn
+set dterm_lpf1_dyn_min_hz = 70
+set dterm_lpf1_dyn_max_hz = 140
+set dterm_lpf1_type = BIQUAD
+set dterm_lpf1_static_hz = 0
+set dterm_lpf2_static_hz = 135
+set p_pitch = 37
+set i_pitch = 92
+set d_pitch = 21
+set f_pitch = 135
+set p_roll = 35
+set i_roll = 85
+set d_roll = 20
+set f_roll = 126
+set p_yaw = 32
+set i_yaw = 85
+set f_yaw = 115
+set d_max_roll = 25
+set d_max_pitch = 27
+set thrust_linear = 10
+set feedforward_boost = 5
+set simplified_pids_mode = OFF
+set simplified_dterm_filter = OFF
+set tpa_rate = 60
+set dyn_idle_min_rpm = 30

@@ -1,4 +1,4 @@
-# BetaFlight 3D Edition: pilot testing guide (v0.3.2-test, Betaflight 2026.6.2 base)
+# BetaFlight 3D Edition: pilot testing guide (v0.3.3-test, Betaflight 2026.6.2 base)
 
 Thanks for helping test! About 20 minutes on the bench, then **4 packs of flying with one settings change in the middle.**
 
@@ -73,9 +73,9 @@ For reference, ZoeFPV's AM32 settings on the Lucid whoop (a starting point, not 
 
 ## 4. Flash the firmware
 
-- [ ] Battery unplugged → **Firmware Flasher** → **Load Firmware [Local]** → pick your `BetaFlight3DEdition_v0.3.2-test_<BOARD>.hex`.
+- [ ] Battery unplugged → **Firmware Flasher** → **Load Firmware [Local]** → pick your `BetaFlight3DEdition_v0.3.3-test_<BOARD>.hex`.
 - [ ] **Flash Firmware** → wait for "Programming: SUCCESSFUL".
-- [ ] Connect → **CLI** → `version`. You should see **`2026.6.2`** and **`(ea347bdd5)`**, and your board name.
+- [ ] Connect → **CLI** → `version`. You should see **`2026.6.2`** and **`(fb947bea1)`**, and your board name.
 - [ ] If your settings were wiped, paste your `diff all` backup from step 2 and press Enter.
   (Coming from Betaflight 4.5 / BF3D v0.3.1 or older? A 4.5 backup has renamed lines (D-max, `dshot_idle_value`): see
   [BOARDS.md](BOARDS.md). Re-enter rejected lines by hand; check receiver and ports.)
@@ -155,7 +155,7 @@ set dyn_idle_max_increase = 100
 save
 ```
 `dyn_idle_min_rpm = 50` (5000 rpm) suits 1S/2S whoops with high-kv motors (flown). **5-inch and other low-kv quads: use 30**
-(from log replay, not flown yet; bench-check first and send logs).
+(hover-tested on a 6S 5-inch, no full flight logged yet; bench-check first and send logs).
 Rule of thumb: below the rpm your slowest motor idles at with the stick centered (check in the Motors tab or a log).
 
 **Without RPM telemetry** (stock BLHeli_S): dynamic idle and RPM release both need RPM telemetry, so:
@@ -199,8 +199,8 @@ Then you're done. If you want to go back to your own setup: **flash official Bet
 
 | Problem | What to do |
 |---|---|
-| `version` doesn't show `(ea347bdd5)` | The flash didn't take, or it's an older 3D Edition file. Flash again (step 4). |
-| `get 3d_` says a setting doesn't exist | You're on stock Betaflight or an older 3D Edition build. Flash the v0.3.2 file. |
+| `version` doesn't show `(fb947bea1)` | The flash didn't take, or it's an older 3D Edition file. Flash again (step 4). |
+| `get 3d_` says a setting doesn't exist | You're on stock Betaflight or an older 3D Edition build. Flash the v0.3.3 file. |
 | Blackbox stops before the pack ends | Erase before every pack. Still full? `set blackbox_sample_rate = 1/8` (fits a full whoop pack on 8 MB flash; this is what Lil Horny uses). |
 | A motor stalls, stutters or stops after a reversal | Disarm. Check ESC settings, solder joints, props. Mention it in the [form](https://forms.gle/Vfq3c2W7Lp5FE36t5). |
 | The quad drifts or wobbles after flips | That's what we're measuring. Keep flying the routine and describe it. |

@@ -4,26 +4,27 @@ The code lives in the Betaflight fork **[BlindingBright/betaflight](https://gith
 
 | Version | Branch | Base | Release commit |
 |---|---|---|---|
-| **v0.3.2-test** (current) | **`3d-v0.3.2`** | Betaflight **2026.6.2** (`e0b7bb01b`) | `ea347bdd5` (tag `v0.3.2-3d-test`) |
+| **v0.3.3-test** (current) | **`3d-v0.3.3`** | Betaflight **2026.6.2** (`e0b7bb01b`) | `fb947bea1` (tag `v0.3.3-3d-test`) |
+| v0.3.2-test (first 2026.6.2 build) | `3d-v0.3.2` | Betaflight 2026.6.2 (`e0b7bb01b`) | `ea347bdd5` (tag `v0.3.2-3d-test`) |
 | v0.3.1-test (flown, 4.5 fallback) | `3d-iterm-memory` | Betaflight 4.5.1 (`77d01ba3b`) | `161e867a9` (tag `v0.3.1-3d-test`) |
 
 ## Download the code
 
 | What | Link |
 |---|---|
-| Exact source of the v0.3.2-test release (zip) | <https://github.com/BlindingBright/betaflight/archive/refs/tags/v0.3.2-3d-test.zip> |
-| Same, tar.gz | <https://github.com/BlindingBright/betaflight/archive/refs/tags/v0.3.2-3d-test.tar.gz> |
+| Exact source of the v0.3.3-test release (zip) | <https://github.com/BlindingBright/betaflight/archive/refs/tags/v0.3.3-3d-test.zip> |
+| Same, tar.gz | <https://github.com/BlindingBright/betaflight/archive/refs/tags/v0.3.3-3d-test.tar.gz> |
 | v0.3.1-test source (4.5.1) | <https://github.com/BlindingBright/betaflight/archive/refs/tags/v0.3.1-3d-test.zip> |
-| Browse the code | <https://github.com/BlindingBright/betaflight/tree/3d-v0.3.2> |
-| Just the changes vs Betaflight 2026.6.2 | <https://github.com/BlindingBright/betaflight/compare/2026.6.2...3d-v0.3.2> |
+| Browse the code | <https://github.com/BlindingBright/betaflight/tree/3d-v0.3.3> |
+| Just the changes vs Betaflight 2026.6.2 | <https://github.com/BlindingBright/betaflight/compare/2026.6.2...3d-v0.3.3> |
 
 Or with git:
 ```bash
-git clone -b 3d-v0.3.2 https://github.com/BlindingBright/betaflight.git
+git clone -b 3d-v0.3.3 https://github.com/BlindingBright/betaflight.git
 cd betaflight
 ```
 
-## Build v0.3.2 (Linux, macOS, or Windows with WSL)
+## Build v0.3.3 (Linux, macOS, or Windows with WSL)
 
 Board configs are the **config** submodule (`src/config`), pinned at `3a406c5`, the revision Betaflight 2026.6.2 uses:
 
@@ -46,7 +47,7 @@ Notes from building it:
 ```bash
 make CC=gcc CXX=g++ test_mixer_3d_unittest test_rc_3d_unittest test_pid_unittest
 ```
-v0.3.2: mixer 30, rc_3d 4, PID 17 tests pass; the full suite (`make CC=gcc CXX=g++ test`) runs 62 binaries / 510 tests. Seven
+v0.3.3: mixer 33, rc_3d 4, PID 18 tests pass; the full suite (`make CC=gcc CXX=g++ test -k`) runs 62 binaries / 518 tests. Seven
 flight-plan tests (`flight_plan_*`, `flight_failsafe*`, `osd_nav_map`, `telemetry_mavlink_mission`) don't compile with gcc's C++
 front end on stock 2026.6.2 either (`_Static_assert` in `pg/flight_plan.h`).
 
@@ -69,7 +70,7 @@ If you build for another board and fly it, please send the logs through the
 ## Targets not in the official config repo
 
 - **`FRACSP8AIO`** (Fractal Engineering SP8), from Fractal's target definition (FractalEngineer/config, branch `SP8-AIO`):
-  - v0.3.2 / 2026.6: copy [targets/FRACSP8AIO/2026.6/config.h](targets/FRACSP8AIO/2026.6/config.h) (unchanged) to
+  - v0.3.2, v0.3.3 / 2026.6: copy [targets/FRACSP8AIO/2026.6/config.h](targets/FRACSP8AIO/2026.6/config.h) (unchanged) to
     `src/config/configs/FRAC/FRACSP8AIO/config.h`, then `make CONFIG=FRACSP8AIO`.
   - v0.3.1 / 4.5: [targets/FRACSP8AIO/4.5/config.h](targets/FRACSP8AIO/4.5/config.h) to `src/config/configs/FRACSP8AIO/`
     (one change for 4.5: `SERIAL_PORT_UART1` → `SERIAL_PORT_USART1`).

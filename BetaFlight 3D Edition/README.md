@@ -3,14 +3,20 @@
 **Betaflight with improvements for 3D (reversible-motor) flight.** Tic-tocks, punch-outs from reversals, and flips
 through center should hold their attitude better instead of drifting after every motor reversal.
 
-> **Status: v0.3.2-test (test firmware, Betaflight 2026.6.2 base).** The 3D changes were developed and flight-tested on the
-> **TBS Lucid AIO 1-2S** (ZoeFPV's "Lil Horny", test passes 34–56) on the Betaflight 4.5.1 base (v0.3.1). v0.3.2 is the same 3D
-> code on the latest stable Betaflight, **not flown yet**. Firmware is built for **[90 boards](BOARDS.md)**.
+> **Status: v0.3.3-test (test firmware, Betaflight 2026.6.2 base).** The 3D changes were developed and flight-tested on the
+> **TBS Lucid AIO 1-2S** (ZoeFPV's "Lil Horny", test passes 34–56) on the Betaflight 4.5.1 base (v0.3.1). On the 2026.6.2 base,
+> v0.3.3 has **flown on a 6S 5-inch** (Hobbywing XRotor F7, AM32; five packs, about 250 motor reversals). The whoop has not flown on
+> 2026.6 yet. Firmware is built for **[90 boards](BOARDS.md)**.
 > We need logs from more pilots and more quads before proposing it to the main Betaflight project.
 > Use it for testing. For everyday flying, official Betaflight is the safe choice.
 
-> **New in v0.3.2:** BetaFlight 3D Edition now runs on **Betaflight 2026.6.2** (was 4.5.1), the first step toward proposing it
-> upstream. Same 3D features and defaults as v0.3.1, plus one new 3D fix: altitude hold (which 2026.6 also uses for failsafe
+> **New in v0.3.3:** two more 3D fixes, both confirmed in blackbox logs on the 5-inch; no new settings, saved settings are kept.
+> (1) With `iterm_rotation = ON`, the I-term held after a motor reversal is no longer rotated between axes while it is held.
+> (2) In reverse, airmode and the throttle limits now use the bounds of the mix the motors actually get (stock used the upright
+> bounds, so a motor could clip or full reverse throttle was pulled down too far). Upright and non-3D flight are unchanged.
+>
+> **v0.3.2:** BetaFlight 3D Edition moved to **Betaflight 2026.6.2** (was 4.5.1), the first step toward proposing it
+> upstream. Same 3D features and defaults as v0.3.1, plus one 3D fix: altitude hold (which 2026.6 also uses for failsafe
 > landing) and GPS rescue now run the motors upright. **Upgrading from v0.3.1 / Betaflight 4.5:** 2026.6 renamed D-max
 > (`d_*` = base, `d_max_*` = max) and `dshot_idle_value` (now `motor_idle`), so a 4.5 `diff all` doesn't paste as-is.
 > v0.3.1 stays available as the flown 4.5 fallback. **[New-feature testing notes](V0.3.1_FEATURE_TESTING.md)**.
@@ -26,20 +32,21 @@ through center should hold their attitude better instead of drifting after every
 
 | | File | |
 |---|---|---|
-| **Firmware: TBS Lucid AIO 1-2S** | `BetaFlight3DEdition_v0.3.2-test_TBS_LUCID_AIO.hex` | **[⬇ Download](https://github.com/BlindingBright/betaflight/releases/download/v0.3.2-3d-test/BetaFlight3DEdition_v0.3.2-test_TBS_LUCID_AIO.hex)** · [copy in this folder](firmware/TBS_LUCID_AIO/BetaFlight3DEdition_v0.3.2-test_TBS_LUCID_AIO.hex) · [release page](https://github.com/BlindingBright/betaflight/releases/tag/v0.3.2-3d-test) |
-| **Firmware: CrazyBee F4 SX1280** (`CRAZYBEEF4SX1280`) | `BetaFlight3DEdition_v0.3.2-test_CRAZYBEEF4SX1280.hex` | **[⬇ Download](https://github.com/BlindingBright/betaflight/releases/download/v0.3.2-3d-test/BetaFlight3DEdition_v0.3.2-test_CRAZYBEEF4SX1280.hex)** · [copy in this folder](firmware/CRAZYBEEF4SX1280/BetaFlight3DEdition_v0.3.2-test_CRAZYBEEF4SX1280.hex) · settings: [3D_Edition_settings_CRAZYBEEF4SX1280.txt](tunes/3D_Edition_settings_CRAZYBEEF4SX1280.txt) |
+| **Firmware: TBS Lucid AIO 1-2S** | `BetaFlight3DEdition_v0.3.3-test_TBS_LUCID_AIO.hex` | **[⬇ Download](https://github.com/BlindingBright/betaflight/releases/download/v0.3.3-3d-test/BetaFlight3DEdition_v0.3.3-test_TBS_LUCID_AIO.hex)** · [copy in this folder](firmware/TBS_LUCID_AIO/BetaFlight3DEdition_v0.3.3-test_TBS_LUCID_AIO.hex) · [release page](https://github.com/BlindingBright/betaflight/releases/tag/v0.3.3-3d-test) |
+| **Firmware: CrazyBee F4 SX1280** (`CRAZYBEEF4SX1280`) | `BetaFlight3DEdition_v0.3.3-test_CRAZYBEEF4SX1280.hex` | **[⬇ Download](https://github.com/BlindingBright/betaflight/releases/download/v0.3.3-3d-test/BetaFlight3DEdition_v0.3.3-test_CRAZYBEEF4SX1280.hex)** · [copy in this folder](firmware/CRAZYBEEF4SX1280/BetaFlight3DEdition_v0.3.3-test_CRAZYBEEF4SX1280.hex) · settings: [3D_Edition_settings_CRAZYBEEF4SX1280.txt](tunes/3D_Edition_settings_CRAZYBEEF4SX1280.txt) |
 | **All boards (90)** | [BOARDS.md](BOARDS.md) | Whoop/AIO and 5-inch boards: Fractal SP8, BetaFPV, GEPRC, HGLRC, NewBeeDrone, Holybro, SpeedyBee, Matek, Kakute, Mamba, Foxeer, iFlight, JHE, GEPRC, BetaFPV, Flywoo, DarwinFPV, Sequre… |
 | **Pilot testing guide** | [TESTING_GUIDE.md](TESTING_GUIDE.md) | **Start here** |
 | **Log & feedback upload** | [Google Form](https://forms.gle/Vfq3c2W7Lp5FE36t5) | Up to 10 logs at once |
 | **Starter tune** (paste in CLI) | [3D_Edition_starter_tune_TBS_LUCID_AIO.txt](tunes/3D_Edition_starter_tune_TBS_LUCID_AIO.txt) | Lucid only, v0.3.2 / 2026.6 names: 3D, motor, filter, PID and Block A settings ([4.5 / v0.3.1 version](tunes/3D_Edition_starter_tune_TBS_LUCID_AIO_v0.3.1_BF4.5.txt)) |
 | **Best settings** (paste in CLI) | [3D_Edition_best_settings_v0.3.1.txt](tunes/3D_Edition_best_settings_v0.3.1.txt) | The recommended 3D settings (= v0.3.1 defaults + dynamic idle), any board with RPM telemetry |
-| ZoeFPV's full CLI (reference) | [ZoeFPV_LilHorny_v0.3.2_full_CLI.txt](tunes/ZoeFPV_LilHorny_v0.3.2_full_CLI.txt) (2026.6) · [old 4.5 diff](tunes/ZoeFPV_LilHorny_diff_all.txt) | Contains build-specific settings; don't paste it whole |
-| **Source code** | [zip](https://github.com/BlindingBright/betaflight/archive/refs/tags/v0.3.2-3d-test.zip) · [tar.gz](https://github.com/BlindingBright/betaflight/archive/refs/tags/v0.3.2-3d-test.tar.gz) · [browse](https://github.com/BlindingBright/betaflight/tree/3d-v0.3.2) | How to build: [BUILD_FROM_SOURCE.md](BUILD_FROM_SOURCE.md) |
+| **5-inch 3D tune** (paste in CLI) | [Unicorn_5inch_MAIN_tune_preset_BF3D_v0.3.3.txt](tunes/Unicorn_5inch_MAIN_tune_preset_BF3D_v0.3.3.txt) | ZoeFPV's 6S 5-inch 3D tune (2010-size ~1950 kv, 5x4 3D props, AM32), flown on v0.3.3. On top of 2026.6 defaults; doesn't touch ports, switches or rates |
+| ZoeFPV's full CLI (reference) | [ZoeFPV_LilHorny_v0.3.3_full_CLI.txt](tunes/ZoeFPV_LilHorny_v0.3.3_full_CLI.txt) (2026.6) · [old 4.5 diff](tunes/ZoeFPV_LilHorny_diff_all.txt) | Contains build-specific settings; don't paste it whole |
+| **Source code** | [zip](https://github.com/BlindingBright/betaflight/archive/refs/tags/v0.3.3-3d-test.zip) · [tar.gz](https://github.com/BlindingBright/betaflight/archive/refs/tags/v0.3.3-3d-test.tar.gz) · [browse](https://github.com/BlindingBright/betaflight/tree/3d-v0.3.3) | How to build: [BUILD_FROM_SOURCE.md](BUILD_FROM_SOURCE.md) |
 
 SHA-256: Lucid `ae46eced191b3740b6b31a505b1924af0012286effee05e2f872fea08c0963ad`,
 CrazyBee `72ee667984f30bf42824d999f110595920d2b734cc7df3224a11fae79e55955a`.
-All boards are built from the same commit; after flashing, the CLI `version` command shows `2026.6.2 ... (ea347bdd5)`.
-Older versions: [v0.3.1-test](https://github.com/BlindingBright/betaflight/releases/tag/v0.3.1-3d-test) (Betaflight 4.5.1, the flown version), [v0.3.0-test](https://github.com/BlindingBright/betaflight/releases/tag/v0.3.0-3d-test), [v0.2.2-test](https://github.com/BlindingBright/betaflight/releases/tag/v0.2.2-3d-test), [v0.1.0-test](https://github.com/BlindingBright/betaflight/releases/tag/v0.1.0-3d-test).
+All boards are built from the same commit; after flashing, the CLI `version` command shows `2026.6.2 ... (fb947bea1)`.
+Older versions: [v0.3.2-test](https://github.com/BlindingBright/betaflight/releases/tag/v0.3.2-3d-test) (first 2026.6.2 build), [v0.3.1-test](https://github.com/BlindingBright/betaflight/releases/tag/v0.3.1-3d-test) (Betaflight 4.5.1, the flown version), [v0.3.0-test](https://github.com/BlindingBright/betaflight/releases/tag/v0.3.0-3d-test), [v0.2.2-test](https://github.com/BlindingBright/betaflight/releases/tag/v0.2.2-3d-test), [v0.1.0-test](https://github.com/BlindingBright/betaflight/releases/tag/v0.1.0-3d-test).
 
 **Board not in [the list](BOARDS.md)?** **[Request a build for your board](https://forms.gle/1p93ZjiqDp1PLWA96)** (Google Form, no sign-in needed),
 or contact ZoeFPV (Discord link at [zoefpv.com](https://zoefpv.com)), or [build it yourself](BUILD_FROM_SOURCE.md).
@@ -105,7 +112,11 @@ flip sign. So after every flip the quad drifts until the I-term rebuilds.
   (right after the motors restart, vs 250 ms), the learned trims fill to ~100%, the trim error in the 130–250 ms after a flip is
   about 65% smaller, and pitch drift after flips about 20% lower.
 - v0.3.1 (Pass 56): flies like the Pass 53 best settings, no loop overruns or stalls.
-- v0.3.2 (Betaflight 2026.6.2 base): not flown yet. Unit tests pass (mixer 30, PID 17, rc 4).
+- v0.3.2 (Betaflight 2026.6.2 base): flown on the 6S 5-inch before v0.3.3; its logs are what exposed the two v0.3.3 bugs.
+- v0.3.3 (6S 5-inch, Hobbywing XRotor F7, AM32; whoop not flown on 2026.6 yet): in the pack flown with `iterm_rotation = ON`
+  the held I-term did not change at all through its 36 reversal holds (v0.3.2: up to 41 / 32 / 150 units on roll / pitch / yaw in
+  one hold), and in every pack the reverse motor outputs follow the corrected bounds. On v0.3.2 the old bounds cut 2–3 % (at most 13 %) of the motor band more than
+  needed on about 4 % of inverted time. Unit tests: mixer 33, PID 18, rc 4.
 - v0.3.0 (one same-day A/B, 2 + 2 packs, 143 flips: stock vs `GATED` + approach 15 + 3D dynamic idle): **not worse than stock
   in any window measured**, less shake in the first 60 ms after a flip (about −19%; later windows within noise), the restarting
   motors get ~10% command instead of ~3%, no stalls or desyncs, and the pilot preferred it. One day, one quad: indicative only.
@@ -114,7 +125,7 @@ flip sign. So after every flip the quad drifts until the I-term rebuilds.
 
 One quad isn't proof: that's why we need your logs.
 
-## Best settings (v0.3.1 / v0.3.2)
+## Best settings (v0.3.1 – v0.3.3)
 The 3D values are the defaults. Dynamic idle also needs these two stock settings (battery unplugged; skip them without RPM
 telemetry):
 ```
@@ -123,15 +134,16 @@ set dyn_idle_min_rpm = 50
 set dyn_idle_max_increase = 100
 save
 ```
-`dyn_idle_min_rpm`: 50 for 1S/2S whoops (flown); 30 for 5-inch is from log replay only, not flown yet (keep it below the rpm of
+`dyn_idle_min_rpm`: 50 for 1S/2S whoops (flown); 30 for 5-inch has only been hover-tested so far (keep it below the rpm of
 your slowest motor at center stick). Upgraded without a full chip erase, or coming back from an A/B test? Paste the full
 [best settings file](tunes/3D_Edition_best_settings_v0.3.1.txt). 3D dynamic idle and the approach gate have only flown on one
 whoop so far: bench-check props off first, and please send logs.
 
 ## Roadmap (ideas found in the logs and the code, not built yet)
 
-- Flight-test v0.3.2 (Betaflight 2026.6.2), then prepare upstream pull requests (Betaflight `master`, one fix per PR,
-  stock defaults).
+- Fly the whoop on v0.3.3 (Betaflight 2026.6.2) and a full 5-inch pack with dynamic idle, then prepare upstream pull requests
+  (Betaflight `master`, one fix per PR, stock defaults). The reverse airmode bounds fix applies to stock Betaflight as-is.
+- Per-direction I-term memory: a better estimate of the trim it stores (today it is often no better than zero on roll and yaw).
 - Per-direction thrust / TPA.
 - Propose the 3D fixes to the main Betaflight project once they're confirmed on hardware.
 

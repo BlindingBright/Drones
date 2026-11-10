@@ -1,8 +1,10 @@
 # ==============================================================================
-# Lil Horny: COMPLETE CLI for BetaFlight 3D Edition v0.3.2-test (Betaflight 2026.6.2 base), target TBS_LUCID_AIO
-# Translated from the BF3D v0.3.1 (4.5) CLI: every 4.5 value compared with the 2026.6 defaults; D and D-max renamed
-# (2026.6: d = base, d_max = boosted max; same boost gains). dshot_idle_value -> motor_idle.
-# Flash BetaFlight3DEdition_v0.3.2-test_TBS_LUCID_AIO.hex, battery UNPLUGGED, CLI > Load from file, Enter. Any ###ERROR### = nothing saved.
+# Lil Horny: COMPLETE CLI for BetaFlight 3D Edition v0.3.3-test (Betaflight 2026.6.2 base), target TBS_LUCID_AIO
+# Lil Horny's flown tune (BF3D v0.3.1 on 4.5), translated to 2026.6: every 4.5 value compared with the 2026.6 defaults; D and D-max
+# renamed (2026.6: d = base, d_max = boosted max); dshot_idle_value -> motor_idle. Hardware lines and rates checked against the
+# quad's live config on 2026-11-09. Audit vs 2026.6 (2026-11-09): restored baro_hardware = NONE; 3d_deadband_low/high/neutral kept at the pilot's
+# 1496 / 1504 / 1500. D / D-max, feedforward and I-term values checked against the 2026.6 code: same behaviour as 4.5.
+# Dynamic idle: dyn_idle_min_rpm 50, max increase 100 (the flown whoop values) + 3d_dyn_idle ON.
 # ==============================================================================
 
 # start the command batch
@@ -30,7 +32,7 @@ aux 1 29 1 900 1700 0 0
 # master
 set gyro_lpf1_dyn_min_hz = 300
 set gyro_lpf1_dyn_max_hz = 600
-set acc_calibration = -9,81,-4149,1
+set baro_hardware = NONE
 set motor_poles = 12
 set align_board_pitch = 180
 set align_board_yaw = 45
@@ -51,6 +53,13 @@ set blackbox_sample_rate = 1/8
 set blackbox_disable_acc = ON
 set blackbox_disable_rssi = ON
 set motor_pwm_protocol = DSHOT600
+set 3d_iterm_mode = PER_DIRECTION
+set 3d_iterm_axes = ALL
+set 3d_iterm_release = RPM
+set 3d_iterm_load = FLIP
+set 3d_anti_gravity = GATED
+set 3d_ag_approach_pct = 15
+set 3d_dyn_idle = ON
 
 profile 0
 
