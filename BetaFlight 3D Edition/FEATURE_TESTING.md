@@ -1,4 +1,4 @@
-# BetaFlight 3D Edition v0.3.1 / v0.3.2: testing the new features
+# BetaFlight 3D Edition: testing the safety fixes and 3D features (v0.3.1 to v0.3.3)
 
 Notes for testing each new 3D feature: what it does, how far it has been tested, and how to test it. For the normal
 4-pack test (stock vs 3D Edition), use the **[testing guide](TESTING_GUIDE.md)**.
@@ -10,12 +10,12 @@ Notes for testing each new 3D feature: what it does, how far it has been tested,
 | Source | branch [`3d-v0.3.2`](https://github.com/BlindingBright/betaflight/tree/3d-v0.3.2), tag `v0.3.2-3d-test` (v0.3.1: `3d-iterm-memory`) |
 | Logs | [log form](https://forms.gle/Vfq3c2W7Lp5FE36t5) |
 
-## Test status (2026-11-05)
+## Test status (2026-11-10)
 
 "Flown" = flight-tested with blackbox logs on ZoeFPV's Lil Horny (TBS Lucid AIO, 2S whoop, AM32). Everything else has passed
 unit tests (real mixer, DShot and RC code, both motor directions) and code review, but **not yet a test on real hardware**:
-that's what the tests below are for. "Flown" means flown on v0.3.1 (Betaflight 4.5.1 base); **v0.3.2 (2026.6.2 base) hasn't flown
-yet**, so every row needs a first flight on v0.3.2 too.
+that's what the tests below are for. "Flown" means flown on v0.3.1 (Betaflight 4.5.1 base) on the whoop. On the 2026.6.2 base (v0.3.2, v0.3.3) the I-term
+handling, reverse mixer fix and dynamic idle have flown on a 6S 5-inch; the whoop and every row marked "Not yet" still need a first flight there.
 
 | Feature | Setting (default) | Status | Evidence |
 |---|---|---|---|
@@ -23,7 +23,7 @@ yet**, so every row needs a first flight on v0.3.2 too.
 | I-term released when the motors restart | `3d_iterm_release = RPM` | **Flown** | Released ~150 ms after a flip instead of 250 ms |
 | RPM release without RPM telemetry → 250 ms timer | (automatic) | Unit tests only | Not flown on a quad without bidirectional DShot yet |
 | Anti-gravity ignores flips | `3d_anti_gravity = GATED`, `3d_ag_approach_pct = 15` | **Flown** | Pass 52/53, one same-day A/B on one quad (with dyn idle): about −19% shake in the first 60 ms after a flip, later windows within noise (indicative only); Pass 56 same range |
-| Dynamic idle in 3D | `3d_dyn_idle = ON` + `dyn_idle_min_rpm` | **Flown** (whoop, `dyn_idle_min_rpm = 50`) | Restart command ~10% instead of ~3%, no stalls; 5-inch value 30 is log replay only |
+| Dynamic idle in 3D | `3d_dyn_idle = ON` + `dyn_idle_min_rpm` | **Flown** (whoop, `dyn_idle_min_rpm = 50`); hover-tested (5-inch, 30) | Restart command ~10% instead of ~3%, no stalls; 5-inch: slowest motor held at ~3000 rpm in a hover test, full pack still to come |
 | Fix 1: low-voltage cutoff toward stick center | `vbat_cutoff_percent` < 100 | Not yet | Pass 56 bench attempt didn't engage the cutoff (only the warning voltage was raised); see test 1 |
 | Fix 2: failsafe stage 2 never reverses | `failsafe_procedure = AUTO-LAND` | Not yet | See test 2 |
 | Fix 3: `thr_mid` keeps stick center at zero thrust | `thr_mid` ≠ 50 with `thr_expo` | Not yet | See test 3 |

@@ -15,9 +15,12 @@ Includes ready-to-flash `.hex` files for **[63 ESC target layouts / 135 builds](
 restarted after a reversal, stops anti-gravity treating every flip as a throttle chop, makes dynamic idle work in 3D, and
 fixes places where stock Betaflight sends reverse thrust in 3D (low-voltage cutoff, failsafe, `thr_mid`) and makes sag
 compensation work in 3D.
-**v0.3.2-test** (Betaflight 2026.6.2 base, not flown yet; the flown 4.5 version v0.3.1 stays available) has ready-to-flash files for **[90 boards](BetaFlight%203D%20Edition/BOARDS.md)**
-(whoop AIOs and 5-inch stacks; others: [request a build](https://forms.gle/1p93ZjiqDp1PLWA96)), an easy 4-pack
-[testing guide](BetaFlight%203D%20Edition/TESTING_GUIDE.md), a starter tune, and the full source.
+**v0.3.3-test** (Betaflight 2026.6.2 base; flown on a 6S 5-inch) adds two more 3D fixes and has ready-to-flash files for **[90 boards](BetaFlight%203D%20Edition/BOARDS.md)**
+(whoop AIOs and 5-inch stacks; others: [request a build](https://forms.gle/1p93ZjiqDp1PLWA96)), the full source, and two **ready-to-paste tune presets**:
+a **[31 mm 3D whoop](BetaFlight%203D%20Edition/tunes/LilHorny_31mm_whoop_tune_preset_BF3D_v0.3.3.txt)** and a **[6S 5-inch](BetaFlight%203D%20Edition/tunes/Unicorn_5inch_MAIN_tune_preset_BF3D_v0.3.3.txt)**
+(start with **[PRESETS.md](BetaFlight%203D%20Edition/PRESETS.md)**). Every change from stock Betaflight, how it works and why:
+**[HOW_IT_WORKS.md](BetaFlight%203D%20Edition/HOW_IT_WORKS.md)**. Prefer to compare against stock first? The easy 4-pack
+[testing guide](BetaFlight%203D%20Edition/TESTING_GUIDE.md).
 3D pilots: please fly it and [send your logs](https://forms.gle/Vfq3c2W7Lp5FE36t5)!
 
 ## Latest project: Lil Horny (3D whoop)
@@ -66,6 +69,7 @@ Lil Horny/
    startup power 100, min duty 3, motor KV 2200 (stock is fine), complementary PWM ON and running brake 10.
    Updating AM32 can reset these values (it changed timing to 22.5° on mine), so check them again after any flash.
 3. **Betaflight 4.5.1:** paste `Tune/Lil Horny 3D Master Tune.txt` into the CLI and it will `save`.
+   *(Want the 3D improvements? Flash [BetaFlight 3D Edition](BetaFlight%203D%20Edition/) and paste the [31 mm whoop preset](BetaFlight%203D%20Edition/tunes/LilHorny_31mm_whoop_tune_preset_BF3D_v0.3.3.txt) instead: see [PRESETS.md](BetaFlight%203D%20Edition/PRESETS.md).)*
    It turns on 3D mode (1496 low / 1500 neutral / 1504 high, with a deadband of 3), sets
    `motor_poles = 12` and enables bidirectional DShot.
    Before the first flight, check in the Motors tab (props off) that all four motors spin the right way in both directions. Change motor direction settings via CLI, using the built in motor direction change in BetaFlight is currently bugged and will cause motors to go full throttle on the bench.

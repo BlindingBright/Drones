@@ -2,6 +2,9 @@
 
 Thanks for helping test! About 20 minutes on the bench, then **4 packs of flying with one settings change in the middle.**
 
+> **Just want to fly the 3D Edition rather than A/B-test it?** Flash the firmware and paste a [preset](PRESETS.md) (31 mm whoop or 6S 5-inch).
+> This guide is for comparing stock behaviour against the 3D handling on your own quad. How every change works: [HOW_IT_WORKS.md](HOW_IT_WORKS.md).
+
 ## The short version
 
 | | What you do |
@@ -23,7 +26,8 @@ and (with RPM telemetry) lets the I-term go as soon as all motors have actually 
 of waiting 250 ms. v0.3.0 added two more 3D fixes: anti-gravity no longer treats every flip as a throttle chop, and
 dynamic idle (which stock Betaflight skips in 3D) gives the motors more command while they restart after a flip.
 v0.3.1 made these the defaults and fixes three places where stock Betaflight sends reverse thrust in 3D (low-voltage
-cutoff, failsafe landing, `thr_mid` with `thr_expo`), plus makes sag compensation work in 3D; those have their own [feature tests](V0.3.1_FEATURE_TESTING.md).
+cutoff, failsafe landing, `thr_mid` with `thr_expo`), plus makes sag compensation work in 3D; those have their own [feature tests](FEATURE_TESTING.md).
+v0.3.3 (Betaflight 2026.6.2) adds two more fixes: the held I-term is no longer rotated by `iterm_rotation`, and reverse airmode/throttle limits use the right bounds.
 On ZoeFPV's whoop: trim error in the first 250 ms after a flip about 65% smaller, pitch drift after flips about 20% lower,
 and with the v0.3.0 settings less shake in the first 60 ms after a flip (one test day, indicative). Now we need other quads.
 
@@ -155,7 +159,7 @@ set dyn_idle_max_increase = 100
 save
 ```
 `dyn_idle_min_rpm = 50` (5000 rpm) suits 1S/2S whoops with high-kv motors (flown). **5-inch and other low-kv quads: use 30**
-(hover-tested on a 6S 5-inch, no full flight logged yet; bench-check first and send logs).
+(hover-tested on a 6S 5-inch: the slowest motor held at ~3000 rpm; no full flight logged yet; bench-check first and send logs).
 Rule of thumb: below the rpm your slowest motor idles at with the stick centered (check in the Motors tab or a log).
 
 **Without RPM telemetry** (stock BLHeli_S): dynamic idle and RPM release both need RPM telemetry, so:
@@ -221,7 +225,8 @@ in packs 1–2 vs 3–4. Leave `debug_mode` as it is; it does nothing without a 
 
 ### 5-inch and bigger props
 Same blocks. Bigger props restart slower; with `RPM` release the firmware waits for the motors (up to the 400 ms cap), so nothing
-to change.
+to change. For a 6S 5-inch there is also a flown **[5-inch preset](tunes/Unicorn_5inch_MAIN_tune_preset_BF3D_v0.3.3.txt)** (read [PRESETS.md](PRESETS.md) first).
+If you A/B-test, flying the preset's tune in both blocks keeps the tune out of the comparison.
 
 ### Other boards
 Full list and notes: **[BOARDS.md](BOARDS.md)**. Not there? **[Request a build](https://forms.gle/1p93ZjiqDp1PLWA96)**,

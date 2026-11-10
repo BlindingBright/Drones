@@ -3,7 +3,7 @@
 **v0.3.3-test**: 90 flight controllers, all built from the same commit (`fb947bea1`, **Betaflight 2026.6.2** base).
 After flashing, the CLI `version` command shows `2026.6.2 ... (fb947bea1)`. All files are on the
 [v0.3.3-test release page](https://github.com/BlindingBright/betaflight/releases/tag/v0.3.3-3d-test).
-Then follow the **[testing guide](TESTING_GUIDE.md)**.
+Then paste a **[preset](PRESETS.md)** (31 mm whoop or 6S 5-inch) or follow the **[testing guide](TESTING_GUIDE.md)**.
 
 > **Most of these builds have not been flown yet.** On the 2026.6.2 base, v0.3.3 has flown on the Hobbywing XRotor F7 (6S 5-inch)
 > and been hover-tested on the T-Motor F7. The 3D changes were developed and flight-tested on the Lucid AIO with the 4.5.1 base (v0.3.1).
@@ -40,7 +40,7 @@ Find your board name: Betaflight Configurator → CLI → `version`. The name at
 | Board | Betaflight target | MCU | Download (v0.3.3, 2026.6.2 base) |
 |---|---|---|---|
 | **Whoop / AIO** | | | |
-| TBS Lucid AIO 1-2S | `TBS_LUCID_AIO` | AT32F435M | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.3-3d-test/BetaFlight3DEdition_v0.3.3-test_TBS_LUCID_AIO.hex) |
+| TBS Lucid AIO 1-2S | `TBS_LUCID_AIO` | AT32F435M | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.3-3d-test/BetaFlight3DEdition_v0.3.3-test_TBS_LUCID_AIO.hex) ·  [31 mm whoop preset](tunes/LilHorny_31mm_whoop_tune_preset_BF3D_v0.3.3.txt) |
 | Happymodel CrazyBee F4 SX1280 (ELRS) | `CRAZYBEEF4SX1280` | STM32F411 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.3-3d-test/BetaFlight3DEdition_v0.3.3-test_CRAZYBEEF4SX1280.hex) |
 | Happymodel CrazyBee F4 DX | `CRAZYBEEF4DX` | STM32F411 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.3-3d-test/BetaFlight3DEdition_v0.3.3-test_CRAZYBEEF4DX.hex) |
 | Happymodel CrazyBee F4 FR | `CRAZYBEEF4FR` | STM32F411 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.3-3d-test/BetaFlight3DEdition_v0.3.3-test_CRAZYBEEF4FR.hex) |
@@ -87,7 +87,7 @@ Find your board name: Betaflight Configurator → CLI → `version`. The name at
 | **5-inch / stack** | | | |
 | TBS Lucid FC | `TBS_LUCID_FC` | AT32F435M | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.3-3d-test/BetaFlight3DEdition_v0.3.3-test_TBS_LUCID_FC.hex) |
 | TBS Lucid H7 | `TBS_LUCID_H7` | STM32H743 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.3-3d-test/BetaFlight3DEdition_v0.3.3-test_TBS_LUCID_H7.hex) |
-| Hobbywing XRotor F7 Conv (ZoeFPV's 5-inch 3D quad) | `HOBBYWING_XROTORF7CONV` | STM32F722 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.3-3d-test/BetaFlight3DEdition_v0.3.3-test_HOBBYWING_XROTORF7CONV.hex) · [2026.6.2 base, v0.1 only](https://github.com/BlindingBright/betaflight/releases/download/v0.1.0-3d-test-2026.6/BetaFlight3DEdition_v0.1.0-test-2026.6_HOBBYWING_XROTORF7CONV.hex) |
+| Hobbywing XRotor F7 Conv (ZoeFPV's 5-inch 3D quad) | `HOBBYWING_XROTORF7CONV` | STM32F722 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.3-3d-test/BetaFlight3DEdition_v0.3.3-test_HOBBYWING_XROTORF7CONV.hex) · [2026.6.2 base, v0.1 only](https://github.com/BlindingBright/betaflight/releases/download/v0.1.0-3d-test-2026.6/BetaFlight3DEdition_v0.1.0-test-2026.6_HOBBYWING_XROTORF7CONV.hex) · [5-inch preset](tunes/Unicorn_5inch_MAIN_tune_preset_BF3D_v0.3.3.txt) |
 | SpeedyBee F405 V3 | `SPEEDYBEEF405V3` | STM32F405 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.3-3d-test/BetaFlight3DEdition_v0.3.3-test_SPEEDYBEEF405V3.hex) |
 | SpeedyBee F405 V4 | `SPEEDYBEEF405V4` | STM32F405 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.3-3d-test/BetaFlight3DEdition_v0.3.3-test_SPEEDYBEEF405V4.hex) |
 | SpeedyBee F405 Mini | `SPEEDYBEEF405MINI` | STM32F405 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.3-3d-test/BetaFlight3DEdition_v0.3.3-test_SPEEDYBEEF405MINI.hex) |
@@ -127,7 +127,7 @@ Find your board name: Betaflight Configurator → CLI → `version`. The name at
 | Foxeer F722 V3 | `FOXEERF722V3` | STM32F722 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.3-3d-test/BetaFlight3DEdition_v0.3.3-test_FOXEERF722V3.hex) |
 | Matek F722 | `MATEKF722` | STM32F722 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.3-3d-test/BetaFlight3DEdition_v0.3.3-test_MATEKF722.hex) |
 | T-Motor Velox F7 V2 | `TMOTORVELOXF7V2` | STM32F722 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.3-3d-test/BetaFlight3DEdition_v0.3.3-test_TMOTORVELOXF7V2.hex) |
-| T-Motor F7 (BMI270; tested stack ships with AM32 ESC `TMOTOR_G071`) | `TMOTORF7` | STM32F722 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.3-3d-test/BetaFlight3DEdition_v0.3.3-test_TMOTORF7.hex) |
+| T-Motor F7 (BMI270; tested stack ships with AM32 ESC `TMOTOR_G071`) | `TMOTORF7` | STM32F722 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.3-3d-test/BetaFlight3DEdition_v0.3.3-test_TMOTORF7.hex) · [5-inch preset](tunes/Unicorn_5inch_MAIN_tune_preset_BF3D_v0.3.3.txt) |
 | Axisflying F7 Pro | `AXISFLYINGF7PRO` | STM32F722 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.3-3d-test/BetaFlight3DEdition_v0.3.3-test_AXISFLYINGF7PRO.hex) |
 | iFlight BLITZ F7 Pro | `IFLIGHT_BLITZ_F7_PRO` | STM32F722 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.3-3d-test/BetaFlight3DEdition_v0.3.3-test_IFLIGHT_BLITZ_F7_PRO.hex) |
 | Skystars F7 HD Pro | `SKYSTARSF7HDPRO` | STM32F722 | [⬇ hex](https://github.com/BlindingBright/betaflight/releases/download/v0.3.3-3d-test/BetaFlight3DEdition_v0.3.3-test_SKYSTARSF7HDPRO.hex) |

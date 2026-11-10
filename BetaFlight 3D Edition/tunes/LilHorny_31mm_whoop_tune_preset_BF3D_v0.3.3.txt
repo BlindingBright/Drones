@@ -1,0 +1,159 @@
+# ==============================================================================
+# BetaFlight 3D Edition: 31 mm 3D WHOOP TUNE (paste-in), "Lil Horny" for BF3D v0.3.3-test (Betaflight 2026.6.2)
+#
+# This is NOT a full `diff all`: it changes the tune only and never touches your board, ports, switches, motor order or rates, so it
+# is safe to paste on any 1S-2S 3D whoop. (A real `diff all` starts with `defaults` and your board name and would wipe your own setup.)
+#
+# ZoeFPV's "Lil Horny": TBS Lucid AIO 1-2S, 31 mm props, AM32 ESCs, 12-pole motors. This is the tune she flew on BF3D v0.3.1
+# (Betaflight 4.5.1, test passes 34-56), translated to the 2026.6 settings names. A code comparison shows the same D / D-max,
+# feedforward and I-term behaviour, but it has NOT flown on the 2026.6 base yet: treat the first pack as a test (hover first).
+# It is a starting point for other 31 mm whoops: different motors / props / weight may want other PIDs.
+#
+# YOU NEED FIRST
+#   - BetaFlight 3D Edition v0.3.3-test firmware on your board (BOARDS.md). On stock Betaflight the 3D settings below don't exist:
+#     the batch refuses to save, nothing is changed.
+#   - 3D already set up and flying: `feature 3D` on, ESCs in bidirectional / 3D mode (AM32 / Bluejay), motor directions and
+#     yaw_motors_reversed correct (this file doesn't change them), `dshot_bidir = ON` with `motor_pwm_protocol = DSHOT600` and RPM
+#     telemetry (the RPM filter, 3D RPM release and dynamic idle all need it).
+#   - Set YOUR motor pole count (`set motor_poles = 12` for the usual 12-pole whoop motors): dynamic idle and the RPM filter read rpm
+#     from it. Wrong pole count = wrong rpm.
+#   - `pid_process_denom` and `small_angle` are left alone (the Lucid runs denom 1 on its 8 kHz gyro and the default small_angle 25).
+#
+# HOW TO USE (Betaflight Configurator > CLI)
+#   1. Back up first: type `diff all`, copy it somewhere safe.
+#   2. Paste this whole file (or "Load from file"). It overwrites PID profile 0 and names it "LilHorny".
+#   3. If any ###ERROR### shows up, NOTHING was saved: type `exit` and tell us the line. Otherwise it saves and reboots.
+#   4. Props OFF, battery in: check all four motors spin the right way in both directions and idle smoothly. Then hover test.
+#
+# Dynamic idle is set to 5000 rpm (dyn_idle_min_rpm 50), the value flown on the whoop; keep it below the rpm your slowest motor idles at
+# with the stick centered, or set it to 0 to turn it off. Stick settings: 3d_deadband_low 1496 / high 1504 / neutral 1500, throttle
+# deadband 3 (tight: raise it if a touch at center reverses the motors), stick deadbands 3. Change them to taste.
+# ==============================================================================
+batch start
+
+# 3D, stick and logging
+set deadband = 3
+set yaw_deadband = 3
+set 3d_deadband_low = 1496
+set 3d_deadband_high = 1504
+set 3d_neutral = 1500
+set 3d_deadband_throttle = 3
+set 3d_limit_low = 1000
+set 3d_limit_high = 2000
+set 3d_switched_mode = OFF
+set debug_mode = 3D_ITERM
+
+# BF3D v0.3.3 3D settings (= firmware defaults, written out)
+set 3d_iterm_mode = PER_DIRECTION
+set 3d_iterm_axes = ALL
+set 3d_iterm_release = RPM
+set 3d_iterm_load = FLIP
+set 3d_iterm_rpm_pct = 40
+set 3d_iterm_min_ms = 50
+set 3d_iterm_max_ms = 400
+set 3d_anti_gravity = GATED
+set 3d_ag_approach_pct = 15
+set 3d_dyn_idle = ON
+
+# Betaflight 2026.6.2 settings the tune was flown with (written out so an old setup can't leak through)
+set motor_idle = 150
+set rc_smoothing_auto_factor = 30
+set rc_smoothing_auto_factor_throttle = 30
+set simplified_gyro_filter = OFF
+set gyro_lpf1_type = PT1
+set gyro_lpf1_static_hz = 250
+set gyro_lpf1_dyn_min_hz = 300
+set gyro_lpf1_dyn_max_hz = 600
+set gyro_lpf2_type = PT1
+set gyro_lpf2_static_hz = 500
+set dyn_notch_count = 1
+set dyn_notch_q = 500
+set dyn_notch_min_hz = 100
+set dyn_notch_max_hz = 600
+set rpm_filter_harmonics = 3
+set rpm_filter_min_hz = 100
+set rpm_filter_fade_range_hz = 50
+set rpm_filter_q = 500
+set rpm_filter_weights = 100,100,100
+set acc_lpf_hz = 25
+set min_check = 1050
+set max_check = 1900
+
+profile 0
+set profile_name = LilHorny
+# PIDs: roll 54 / 88 / 46 (D max 53, FF 132), pitch 53 / 95 / 50 (D max 55, FF 110), yaw 50 / 95 (FF 120)
+set p_roll = 54
+set i_roll = 88
+set d_roll = 46
+set d_max_roll = 53
+set f_roll = 132
+set p_pitch = 53
+set i_pitch = 95
+set d_pitch = 50
+set d_max_pitch = 55
+set f_pitch = 110
+set p_yaw = 50
+set i_yaw = 95
+set d_yaw = 0
+set f_yaw = 120
+set d_max_gain = 37
+set d_max_advance = 7
+set simplified_pids_mode = OFF
+set simplified_dterm_filter = OFF
+set dterm_lpf1_type = PT1
+set dterm_lpf1_static_hz = 75
+set dterm_lpf1_dyn_min_hz = 90
+set dterm_lpf1_dyn_max_hz = 180
+set dterm_lpf2_type = PT1
+set dterm_lpf2_static_hz = 180
+set iterm_rotation = OFF
+set iterm_relax = RP
+set iterm_relax_type = SETPOINT
+set iterm_relax_cutoff = 15
+set iterm_windup = 85
+set pidsum_limit = 500
+set pidsum_limit_yaw = 400
+set anti_gravity_gain = 80
+set anti_gravity_cutoff_hz = 5
+set anti_gravity_p_gain = 100
+set thrust_linear = 10
+set feedforward_averaging = OFF
+set feedforward_smooth_factor = 25
+set feedforward_jitter_factor = 7
+set feedforward_max_rate_limit = 90
+set feedforward_boost = 15
+set tpa_mode = D
+set tpa_rate = 35
+set tpa_breakpoint = 1550
+set tpa_low_rate = 20
+set throttle_boost = 5
+set throttle_boost_cutoff = 15
+set motor_output_limit = 100
+set vbat_sag_compensation = 0
+# dynamic idle: keep the slowest motor above 5000 rpm (flown on the whoop)
+set dyn_idle_min_rpm = 50
+set dyn_idle_p_gain = 50
+set dyn_idle_i_gain = 50
+set dyn_idle_d_gain = 50
+set dyn_idle_max_increase = 100
+
+# OPTIONAL: ZoeFPV's rates, "Z' Magic" (remove the leading # on each line to use them)
+# rateprofile 0
+# set thr_expo = 25
+# set roll_rc_rate = 4
+# set pitch_rc_rate = 4
+# set yaw_rc_rate = 4
+# set roll_expo = 33
+# set pitch_expo = 33
+# set yaw_expo = 33
+# set roll_srate = 80
+# set pitch_srate = 80
+# set yaw_srate = 80
+
+# OPTIONAL: blackbox logging like Zoe's logs (1/8 rate fits whole packs on the Lucid's 8 MB flash)
+# set blackbox_sample_rate = 1/8
+# set blackbox_disable_acc = ON
+# set blackbox_disable_rssi = ON
+
+profile 0
+save
